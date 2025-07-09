@@ -1,0 +1,17 @@
+{
+  "name": "heartland-heating-air",
+  "version": "1.0.0",
+  "description": "Heartland Heating & Air HVAC company website",
+  "main": "public/index.html",
+  "scripts": {
+    "dev": "cd public && live-server --port=3000 --open=/index.html",
+    "start": "cd public && live-server --port=3000 --open=/index.html",
+    "build": "echo 'No build step needed for static site'",
+    "preview": "cd public && live-server --port=8080 --open=/index.html --no-browser"
+  },
+  "keywords": ["hvac", "heating", "air-conditioning", "website"],
+  "author": "Heartland Heating & Air",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+} 
