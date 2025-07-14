@@ -46,6 +46,7 @@
 
     <!-- External CSS -->
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="components/Hero.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -116,73 +117,49 @@
           <a href="#contact" class="nav-link">Contact</a>
         </nav>
         <div class="header-cta">
-          <a href="#schedule" class="btn btn-primary">Book Online</a>
-          <a href="tel:+13175550123" class="btn btn-secondary">Call Now</a>
+          <a href="#schedule" class="btn btn-primary schedule-btn-prominent">
+            <i class="fas fa-calendar-check"></i>
+            Schedule Service
+          </a>
+          <a href="tel:+13175550123" class="btn btn-secondary">
+            <i class="fas fa-phone"></i>
+            Call Now
+          </a>
         </div>
       </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-background">
-        <div class="hero-overlay"></div>
-        <!-- Background image placeholder - would be authentic Midwest home/technician photo -->
-        <div class="hero-image-placeholder">
-          <i class="fas fa-home hero-bg-icon"></i>
-        </div>
-      </div>
-      <div class="hero-content">
-        <div class="hero-badge">
-          <i class="fas fa-flag-usa"></i>
-          <span>Proudly Serving the Midwest</span>
-        </div>
-        <h1>
-          <span class="hero-tagline">Comfort Crafted in the Midwest</span>
-          <span class="hero-main">Dependable <span class="text-heartland-red">HVAC</span> Service</span>
-          <span class="hero-sub">American-Made Quality, Neighborly Service</span>
-        </h1>
-        <p class="hero-description">
-          From emergency repairs to complete system installations, Heartland Heating & Air brings 
-          Midwestern work ethic and craftsmanship to every job. Licensed, insured, and Google Guaranteed.
-        </p>
-        <div class="hero-features">
-          <div class="hero-feature">
-            <i class="fas fa-phone-volume"></i>
-            <span>24/7 Emergency Response</span>
+    <!-- Hero Component -->
+    <div id="hero-component-container"></div>
+
+    <!-- Google Reviews Prominence Section -->
+    <section class="google-reviews-banner">
+      <div class="container">
+        <div class="google-reviews-content">
+          <div class="google-badge">
+            <i class="fab fa-google"></i>
+            <span class="google-text">Google</span>
           </div>
-          <div class="hero-feature">
-            <i class="fas fa-medal"></i>
-            <span>Google Guaranteed</span>
-          </div>
-          <div class="hero-feature">
-            <i class="fas fa-users"></i>
-            <span>NATE-Certified Technicians</span>
-          </div>
-        </div>
-        <div class="hero-buttons">
-          <a href="#schedule" class="btn btn-primary btn-large">
-            <i class="fas fa-calendar-check"></i>
-            Schedule Service
-          </a>
-          <a href="tel:+13175550123" class="btn btn-secondary btn-large">
-            <i class="fas fa-phone"></i>
-            Call (317) 555-0123
-          </a>
-        </div>
-        <div class="hero-trust">
-          <div class="hero-reviews">
-            <div class="stars">
+          <div class="rating-display">
+            <div class="stars-large">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
             </div>
-            <span>4.9/5 Rating • 150+ Reviews</span>
+            <span class="rating-score">4.9 out of 5</span>
           </div>
-          <div class="hero-service-area">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>Serving Indianapolis & 50+ Mile Radius</span>
+          <div class="review-count">
+            <span class="review-number">150+</span>
+            <span class="review-text">Customer Reviews</span>
+          </div>
+          <div class="reviews-actions">
+            <a href="#" class="reviews-link">Read All Reviews →</a>
+            <a href="#schedule" class="btn btn-primary schedule-btn-prominent">
+              <i class="fas fa-calendar-check"></i>
+              Schedule Service
+            </a>
           </div>
         </div>
       </div>
@@ -232,6 +209,10 @@
               <li>American-made equipment preferred</li>
             </ul>
             <div class="service-cta">
+              <a href="#schedule" class="btn btn-primary schedule-btn-prominent">
+                <i class="fas fa-calendar-check"></i>
+                Schedule Service
+              </a>
               <a href="#contact" class="btn btn-outline">Get Free Quote</a>
             </div>
           </div>
@@ -249,6 +230,10 @@
               <li>Emergency cooling restoration</li>
             </ul>
             <div class="service-cta">
+              <a href="#schedule" class="btn btn-primary schedule-btn-prominent">
+                <i class="fas fa-calendar-check"></i>
+                Schedule Service
+              </a>
               <a href="#contact" class="btn btn-outline">Schedule Repair</a>
             </div>
           </div>
@@ -266,6 +251,10 @@
               <li>UV light sanitization</li>
             </ul>
             <div class="service-cta">
+              <a href="#schedule" class="btn btn-primary schedule-btn-prominent">
+                <i class="fas fa-calendar-check"></i>
+                Schedule Service
+              </a>
               <a href="#contact" class="btn btn-outline">Learn More</a>
             </div>
           </div>
@@ -283,6 +272,10 @@
               <li>Extended equipment life</li>
             </ul>
             <div class="service-cta">
+              <a href="#schedule" class="btn btn-primary schedule-btn-prominent">
+                <i class="fas fa-calendar-check"></i>
+                Schedule Service
+              </a>
               <a href="#contact" class="btn btn-outline">Join Plan</a>
             </div>
           </div>
@@ -300,6 +293,10 @@
               <li>Energy-efficient upgrades</li>
             </ul>
             <div class="service-cta">
+              <a href="#schedule" class="btn btn-primary schedule-btn-prominent">
+                <i class="fas fa-calendar-check"></i>
+                Schedule Service
+              </a>
               <a href="#contact" class="btn btn-outline">Get Quote</a>
             </div>
           </div>
@@ -387,28 +384,79 @@
             </div>
           </div>
           <div class="schedule-widget">
-            <div class="calendly-placeholder">
-              <div class="placeholder-content">
-                <i class="fas fa-calendar-alt"></i>
-                <h3>Online Scheduling Widget</h3>
-                <p>Replace with your Calendly embed:</p>
-                <code>https://calendly.com/heartland-hvac/service-appointment</code>
-                <div class="placeholder-form">
-                  <select class="form-input">
-                    <option>Select Service Type</option>
-                    <option>Furnace Repair</option>
-                    <option>AC Service</option>
-                    <option>Maintenance</option>
-                    <option>Installation Quote</option>
-                    <option>Emergency Service</option>
+            <div class="scheduler-container">
+              <div class="scheduler-header">
+                <h3>Select Your Service & Time</h3>
+                <p>Book online 24/7 - No phone calls needed!</p>
+              </div>
+              
+              <div class="scheduler-form">
+                <div class="service-selection">
+                  <label>What service do you need?</label>
+                  <select id="serviceType" class="scheduler-input">
+                    <option value="">Select Service Type</option>
+                    <option value="furnace-repair">Furnace Repair</option>
+                    <option value="furnace-installation">Furnace Installation</option>
+                    <option value="ac-repair">AC Repair</option>
+                    <option value="ac-installation">AC Installation</option>
+                    <option value="maintenance">Maintenance Tune-up</option>
+                    <option value="air-quality">Indoor Air Quality</option>
+                    <option value="emergency">Emergency Service</option>
+                    <option value="quote">Free Estimate</option>
                   </select>
-                  <select class="form-input">
-                    <option>Preferred Time</option>
-                    <option>Morning (8-11 AM)</option>
-                    <option>Afternoon (12-3 PM)</option>
-                    <option>Evening (3-6 PM)</option>
-                  </select>
-                  <button class="btn btn-primary">View Available Times</button>
+                </div>
+                
+                <div class="urgency-selection">
+                  <label>How urgent is this?</label>
+                  <div class="urgency-options">
+                    <label class="urgency-option">
+                      <input type="radio" name="urgency" value="emergency" />
+                      <span class="urgency-label emergency">Emergency (Same Day)</span>
+                    </label>
+                    <label class="urgency-option">
+                      <input type="radio" name="urgency" value="urgent" />
+                      <span class="urgency-label urgent">Urgent (1-2 Days)</span>
+                    </label>
+                    <label class="urgency-option">
+                      <input type="radio" name="urgency" value="routine" />
+                      <span class="urgency-label routine">Routine (3-7 Days)</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="time-selection">
+                  <label>Preferred Time</label>
+                  <div class="time-slots">
+                    <button class="time-slot" data-time="morning">
+                      <i class="fas fa-sun"></i>
+                      Morning<br><span>8-11 AM</span>
+                    </button>
+                    <button class="time-slot" data-time="afternoon">
+                      <i class="fas fa-sun"></i>
+                      Afternoon<br><span>12-3 PM</span>
+                    </button>
+                    <button class="time-slot" data-time="evening">
+                      <i class="fas fa-moon"></i>
+                      Evening<br><span>4-7 PM</span>
+                    </button>
+                  </div>
+                </div>
+                
+                <div class="contact-info">
+                  <div class="contact-row">
+                    <input type="text" placeholder="Your Name*" class="scheduler-input" required />
+                    <input type="tel" placeholder="Phone Number*" class="scheduler-input" required />
+                  </div>
+                  <textarea placeholder="Describe your issue (optional)" class="scheduler-textarea" rows="3"></textarea>
+                </div>
+                
+                <button class="schedule-submit-btn" id="scheduleSubmit">
+                  <i class="fas fa-calendar-check"></i>
+                  Book My Appointment
+                </button>
+                
+                <div class="scheduler-note">
+                  <p><i class="fas fa-info-circle"></i> We'll confirm your appointment within 30 minutes</p>
                 </div>
               </div>
             </div>
@@ -658,9 +706,62 @@
             </div>
           </div>
           <div class="about-image">
-            <div class="image-placeholder">
-              <i class="fas fa-user-tie"></i>
-              <span>Professional Photo of Forrest</span>
+            <div class="video-story-container">
+              <div class="video-placeholder">
+                <button class="play-button" id="playStoryVideo">
+                  <i class="fas fa-play"></i>
+                </button>
+                <div class="video-overlay">
+                  <h4>Our Story</h4>
+                  <p>Why we treat every customer like a neighbor</p>
+                </div>
+              </div>
+              <div class="story-highlights">
+                <div class="story-highlight">
+                  <i class="fas fa-home"></i>
+                  <span>Midwest Born & Raised</span>
+                </div>
+                <div class="story-highlight">
+                  <i class="fas fa-heart"></i>
+                  <span>Family Values</span>
+                </div>
+                <div class="story-highlight">
+                  <i class="fas fa-flag-usa"></i>
+                  <span>American Pride</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Story Modal -->
+        <div class="story-modal" id="storyModal">
+          <div class="story-modal-content">
+            <button class="story-close" id="storyClose">
+              <i class="fas fa-times"></i>
+            </button>
+            <div class="story-video-container">
+              <div class="story-video-placeholder">
+                <i class="fas fa-video"></i>
+                <h3>Heartland's Story</h3>
+                <p>Replace with your heartwarming video:</p>
+                <code>src="video/heartland-story.mp4"</code>
+              </div>
+            </div>
+            <div class="story-content">
+              <h3>Why We Do What We Do</h3>
+              <p>
+                "Growing up in the heartland, I learned that your word is your bond and your neighbors are your family. 
+                When I started Heartland Heating & Air, I wanted to bring those same values to every home and business we serve."
+              </p>
+              <p>
+                "Every technician on our team understands that when we walk into your home, we're not just fixing equipment – 
+                we're taking care of someone's family. That's why we always wear shoe covers, explain everything we're doing, 
+                and never leave a job until you're completely satisfied."
+              </p>
+              <div class="story-signature">
+                <span>- Forrest Landis, Founder</span>
+              </div>
             </div>
           </div>
         </div>
@@ -855,7 +956,63 @@
       </a>
     </div>
 
-    <!-- Main JavaScript -->
-    <script src="main.js"></script>
+    <!-- Interactive Chat Widget -->
+    <div class="chat-widget">
+      <div class="chat-toggle" id="chatToggle">
+        <i class="fas fa-comments"></i>
+        <span class="chat-badge">1</span>
+      </div>
+      
+      <div class="chat-popup" id="chatPopup">
+        <div class="chat-header">
+          <div class="chat-company">
+            <i class="fas fa-house-chimney-window"></i>
+            <span>Heartland Heating & Air</span>
+          </div>
+          <button class="chat-close" id="chatClose">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div class="chat-content">
+          <div class="chat-greeting">
+            <div class="greeting-avatar">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <div class="greeting-text">
+              <h4>Hi! How can we help you today?</h4>
+              <p>Choose an option below to get started:</p>
+            </div>
+          </div>
+          
+          <div class="chat-options">
+            <a href="#schedule" class="chat-option">
+              <i class="fas fa-calendar-check"></i>
+              <span>Schedule Service</span>
+            </a>
+            <a href="tel:+13175550123" class="chat-option">
+              <i class="fas fa-phone"></i>
+              <span>Call Now</span>
+            </a>
+            <a href="#contact" class="chat-option">
+              <i class="fas fa-envelope"></i>
+              <span>Send Message</span>
+            </a>
+            <a href="#testimonials" class="chat-option">
+              <i class="fas fa-star"></i>
+              <span>Leave Review</span>
+            </a>
+          </div>
+          
+          <div class="chat-hours">
+            <p><strong>Available 24/7</strong> for emergencies</p>
+            <p>Business hours: Mon-Fri 7AM-7PM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main JavaScript with ES6 Modules -->
+    <script src="main.js" type="module"></script>
   </body>
 </html>
