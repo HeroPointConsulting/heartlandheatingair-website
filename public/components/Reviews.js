@@ -1,11 +1,16 @@
 // Reviews Component - Testimonial Carousel with Google Rating
 // Clean, minimal implementation following Myers-Vanilla Pattern
 
+import { getFeaturedTestimonials, getRatingData } from '../data/testimonials.js';
+
 let currentSlide = 0;
 let autoScrollInterval = null;
 let isTransitioning = false;
 
 export function createReviews() {
+  const featuredTestimonials = getFeaturedTestimonials(12);
+  const ratingData = getRatingData();
+
   return `
     <section id="reviews" class="reviews-section">
       <div class="container">
@@ -17,48 +22,30 @@ export function createReviews() {
               <span>Google</span>
             </div>
             <div class="rating-display">
-              <span class="rating-number">4.9</span>
+              <span class="rating-number">${ratingData.rating}</span>
               <div class="rating-stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
+                ${generateStars(ratingData.rating)}
               </div>
             </div>
-            <span class="rating-subtitle">150+ verified reviews</span>
+            <span class="rating-subtitle">${ratingData.reviews_text}</span>
           </div>
           
           <!-- Testimonial Area -->
           <div class="testimonial-area">
             <div class="testimonial-wrapper">
-              <div class="testimonial-slide active">
-                <p>"Heartland fixed our furnace in the middle of a blizzard – within two hours of calling! Professional, knowledgeable, and fair pricing. We won't call anyone else."</p>
-                <span class="author">Sarah M., Indianapolis</span>
-              </div>
-              
-              <div class="testimonial-slide">
-                <p>"Outstanding service from start to finish. They installed our new AC system quickly and efficiently, cleaned up everything, and the price was very competitive. True Midwestern hospitality."</p>
-                <span class="author">Mike R., Carmel</span>
-              </div>
-              
-              <div class="testimonial-slide">
-                <p>"We've been using Heartland for our property management company for 3 years. They're reliable, honest, and always provide excellent service to our tenants. Highly recommend."</p>
-                <span class="author">Jennifer L., Fishers</span>
-              </div>
-              
-              <div class="testimonial-slide">
-                <p>"Emergency repair on Sunday morning - they actually answered and had someone here within an hour. The technician was courteous and got our heat working perfectly."</p>
-                <span class="author">Robert K., Westfield</span>
-              </div>
+              ${featuredTestimonials.map((testimonial, index) => `
+                <div class="testimonial-slide ${index === 0 ? 'active' : ''}">
+                  <p>"${testimonial.text}"</p>
+                  <span class="author">${testimonial.author_name}, ${testimonial.location}</span>
+                </div>
+              `).join('')}
             </div>
             
             <div class="testimonial-nav">
               <div class="nav-dots">
-                <button class="dot active" data-slide="0"></button>
-                <button class="dot" data-slide="1"></button>
-                <button class="dot" data-slide="2"></button>
-                <button class="dot" data-slide="3"></button>
+                ${featuredTestimonials.map((_, index) => `
+                  <button class="dot ${index === 0 ? 'active' : ''}" data-slide="${index}"></button>
+                `).join('')}
               </div>
             </div>
           </div>
@@ -74,6 +61,31 @@ export function createReviews() {
       </div>
     </section>
   `;
+}
+
+// Helper function to generate star ratings
+function generateStars(rating) {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 !== 0;
+  let starsHTML = '';
+
+  // Full stars
+  for (let i = 0; i < fullStars; i++) {
+    starsHTML += '<i class="fas fa-star"></i>';
+  }
+
+  // Half star
+  if (hasHalfStar) {
+    starsHTML += '<i class="fas fa-star-half-alt"></i>';
+  }
+
+  // Empty stars to make 5 total
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+  for (let i = 0; i < emptyStars; i++) {
+    starsHTML += '<i class="far fa-star"></i>';
+  }
+
+  return starsHTML;
 }
 
 export function initReviews() {
