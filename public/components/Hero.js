@@ -1,6 +1,3 @@
-// Hero Component - Myers-Vanilla Pattern
-// Slideshow functionality with video background for large screens
-
 let currentSlide = 0;
 let slideshowInterval = null;
 let touchStartX = 0;

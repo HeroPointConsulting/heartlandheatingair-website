@@ -1,6 +1,7 @@
 // Heartland Heating & Air - Main JavaScript
 // ES6 Module imports for components
 import { createHero, initHero } from './components/Hero.js';
+import { createReviews, initReviews } from './components/Reviews.js';
 
 // Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', function () {
@@ -35,6 +36,9 @@ function initializeApp() {
   // Load hero component
   loadHeroComponent();
 
+  // Load reviews component
+  loadReviewsComponent();
+
   // Initialize Calendly (if script is loaded)
   setTimeout(() => {
     initializeCalendly();
@@ -57,6 +61,22 @@ function loadHeroComponent() {
     }
   } catch (error) {
     console.error('Error loading hero component:', error);
+  }
+}
+
+// Load Reviews component - Myers-Vanilla Pattern
+function loadReviewsComponent() {
+  try {
+    const reviewsContainer = document.getElementById('reviews-component-container');
+    if (reviewsContainer) {
+      // Create reviews HTML and inject it
+      reviewsContainer.innerHTML = createReviews();
+
+      // Initialize reviews component interactivity
+      initReviews();
+    }
+  } catch (error) {
+    console.error('Error loading reviews component:', error);
   }
 }
 
@@ -367,3 +387,38 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+// Simple animation for testimonial cards
+document.addEventListener('DOMContentLoaded', function () {
+  const testimonialCards = document.querySelectorAll('.testimonial-card');
+  testimonialCards.forEach(card => {
+    card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+  });
+});
+
+// Add intersection observer for testimonial cards animation on scroll
+if ('IntersectionObserver' in window) {
+  const testimonialObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '50px'
+  });
+
+  // Observe testimonial cards when they're created
+  setTimeout(() => {
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    testimonialCards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      testimonialObserver.observe(card);
+    });
+  }, 100);
+}
+
+
