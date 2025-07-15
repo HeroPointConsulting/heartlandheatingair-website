@@ -4,6 +4,7 @@ import { createHero, initHero } from './components/Hero.js';
 import { createReviews, initReviews } from './components/Reviews.js';
 import { createServiceAreas, initServiceAreas } from './components/ServiceAreas.js';
 import { createWhyChoose, initWhyChoose } from './components/WhyChoose.js';
+import { TrustSignals } from './components/TrustSignals.js';
 import SchedulingWidget from './components/SchedulingWidget.js';
 import './components/Services.js';
 
@@ -47,6 +48,9 @@ function initializeApp() {
 
   // Load why choose component
   loadWhyChooseComponent();
+
+  // Load trust signals component
+  loadTrustSignalsComponent();
 
   // Initialize Calendly (if script is loaded)
   setTimeout(() => {
@@ -130,6 +134,19 @@ function loadWhyChooseComponent() {
     }
   } catch (error) {
     console.error('Error loading why choose component:', error);
+  }
+}
+
+// Load Trust Signals component - Function Pattern
+function loadTrustSignalsComponent() {
+  try {
+    const trustSignalsContainer = document.getElementById('trust-signals-component-container');
+    if (trustSignalsContainer) {
+      // Create trust signals HTML and inject it
+      trustSignalsContainer.innerHTML = TrustSignals();
+    }
+  } catch (error) {
+    console.error('Error loading trust signals component:', error);
   }
 }
 
