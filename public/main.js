@@ -3,6 +3,7 @@
 import { createHero, initHero } from './components/Hero.js';
 import { createReviews, initReviews } from './components/Reviews.js';
 import { createServiceAreas, initServiceAreas } from './components/ServiceAreas.js';
+import { createWhyChoose, initWhyChoose } from './components/WhyChoose.js';
 import './components/Services.js';
 
 // Initialize the app when DOM is loaded
@@ -42,6 +43,9 @@ function initializeApp() {
 
   // Load service areas component
   loadServiceAreasComponent();
+
+  // Load why choose component
+  loadWhyChooseComponent();
 
   // Initialize Calendly (if script is loaded)
   setTimeout(() => {
@@ -109,6 +113,22 @@ function loadServiceAreasComponent() {
     }
   } catch (error) {
     console.error('Error loading service areas component:', error);
+  }
+}
+
+// Load WhyChoose component - Myers-Vanilla Pattern
+function loadWhyChooseComponent() {
+  try {
+    const whyChooseContainer = document.getElementById('why-choose-component-container');
+    if (whyChooseContainer) {
+      // Create why choose HTML and inject it
+      whyChooseContainer.innerHTML = createWhyChoose();
+
+      // Initialize why choose component interactivity
+      initWhyChoose();
+    }
+  } catch (error) {
+    console.error('Error loading why choose component:', error);
   }
 }
 
