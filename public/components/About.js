@@ -37,7 +37,7 @@ export function createAboutComponent() {
                     <span><strong>NATE Certified</strong> • Industry-leading certification</span>
                   </div>
                   <div class="credential">
-                    <i class="fas fa-shield-check"></i>
+                    <i class="fas fa-shield-alt"></i>
                     <span><strong>Licensed & Insured</strong> • Complete protection</span>
                   </div>
                   <div class="credential">
