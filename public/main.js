@@ -4,6 +4,7 @@ import { createHero, initHero } from './components/Hero.js';
 import { createReviews, initReviews } from './components/Reviews.js';
 import { createServiceAreas, initServiceAreas } from './components/ServiceAreas.js';
 import { createWhyChoose, initWhyChoose } from './components/WhyChoose.js';
+import SchedulingWidget from './components/SchedulingWidget.js';
 import './components/Services.js';
 
 // Initialize the app when DOM is loaded
@@ -317,66 +318,42 @@ function initializeStoryModal() {
 
 // Enhanced Online Scheduler
 function initializeScheduler() {
-  const timeSlots = document.querySelectorAll('.time-slot');
-  const scheduleSubmit = document.getElementById('scheduleSubmit');
-  const serviceType = document.getElementById('serviceType');
+  // Initialize the new scheduling widget component
+  try {
+    // Clear any existing widget first
+    const existingWidget = document.getElementById('schedule-widget');
+    if (existingWidget) {
+      existingWidget.innerHTML = '';
+    }
 
-  // Handle time slot selection
-  timeSlots.forEach(slot => {
-    slot.addEventListener('click', () => {
-      // Remove selected class from all slots
-      timeSlots.forEach(s => s.classList.remove('selected'));
-      // Add selected class to clicked slot
-      slot.classList.add('selected');
-    });
-  });
+    const schedulingWidget = new SchedulingWidget();
+    console.log('Scheduling widget initialized successfully');
+  } catch (error) {
+    console.error('Error initializing scheduling widget:', error);
 
-  // Handle service type change
-  if (serviceType) {
-    serviceType.addEventListener('change', (e) => {
-      const selectedService = e.target.value;
-
-      // Auto-select emergency urgency for emergency service
-      if (selectedService === 'emergency') {
-        const emergencyRadio = document.querySelector('input[name="urgency"][value="emergency"]');
-        if (emergencyRadio) {
-          emergencyRadio.checked = true;
-        }
-      }
-    });
+    // Fallback to basic functionality if component fails
+    initializeBasicScheduler();
   }
+}
 
-  // Handle form submission
-  if (scheduleSubmit) {
-    scheduleSubmit.addEventListener('click', (e) => {
-      e.preventDefault();
-
-      // Get form data
-      const formData = {
-        serviceType: serviceType?.value || '',
-        urgency: document.querySelector('input[name="urgency"]:checked')?.value || '',
-        timeSlot: document.querySelector('.time-slot.selected')?.getAttribute('data-time') || '',
-        name: document.querySelector('input[placeholder="Your Name*"]')?.value || '',
-        phone: document.querySelector('input[placeholder="Phone Number*"]')?.value || '',
-        description: document.querySelector('.scheduler-textarea')?.value || ''
-      };
-
-      // Basic validation
-      if (!formData.serviceType || !formData.name || !formData.phone) {
-        alert('Please fill in all required fields');
-        return;
-      }
-
-      // Show success message
-      scheduleSubmit.innerHTML = '<i class="fas fa-check"></i> Appointment Requested!';
-      scheduleSubmit.style.background = '#10b981';
-      scheduleSubmit.disabled = true;
-
-      // In a real app, this would send the data to your booking system
-      setTimeout(() => {
-        alert('Thank you! We\'ll confirm your appointment within 30 minutes.');
-      }, 1000);
-    });
+// Fallback scheduler for basic functionality
+function initializeBasicScheduler() {
+  const scheduleWidget = document.getElementById('schedule-widget');
+  if (scheduleWidget) {
+    scheduleWidget.innerHTML = `
+      <div class="basic-scheduler-fallback">
+        <h3>Schedule Your Service</h3>
+        <p>For immediate assistance, please call us at <a href="tel:+13175550123">(317) 555-0123</a></p>
+        <div class="fallback-actions">
+          <a href="tel:+13175550123" class="btn btn-primary">
+            <i class="fas fa-phone"></i> Call Now
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <i class="fas fa-envelope"></i> Send Message
+          </a>
+        </div>
+      </div>
+    `;
   }
 }
 

@@ -1,0 +1,912 @@
+/* Schedule Widget Styles */
+#schedule.section {
+  position: relative;
+}
+
+#schedule.section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--heartland-red);
+  border-radius: 2px;
+}
+
+.schedule-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.schedule-header h2 {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.schedule-header p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+/* Tab Navigation */
+.schedule-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.tab-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 1.25rem 2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  min-width: 160px;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.tab-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.tab-btn.active {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: var(--heartland-red);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.tab-btn i {
+  font-size: 1.3rem;
+}
+
+/* Content Container */
+.schedule-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Call Us Tab */
+.call-content {
+  text-align: center;
+}
+
+.call-main {
+  margin-bottom: 3rem;
+}
+
+.call-main h3 {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.call-main p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.call-options {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.call-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 1.5rem 2.5rem;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 180px;
+  backdrop-filter: blur(10px);
+}
+
+.call-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.call-btn.primary {
+  background: var(--heartland-red);
+  border-color: var(--heartland-red);
+}
+
+.call-btn.primary:hover {
+  background: var(--heartland-red-hover);
+  border-color: var(--heartland-red-hover);
+}
+
+.call-btn i {
+  font-size: 1.8rem;
+}
+
+.call-btn span {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.call-btn small {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+.call-features {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.call-features .feature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.call-features .feature i {
+  font-size: 1.3rem;
+  color: var(--heartland-red);
+}
+
+/* Book Online Tab */
+.book-content {
+  text-align: center;
+}
+
+.book-content h3 {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.book-content p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+}
+
+.book-btn {
+  background: var(--heartland-red);
+  border: 2px solid var(--heartland-red);
+  color: white;
+  padding: 1.5rem 3rem;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  margin-bottom: 2.5rem;
+}
+
+.book-btn:hover {
+  background: var(--heartland-red-hover);
+  border-color: var(--heartland-red-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(190, 30, 45, 0.3);
+}
+
+.book-btn i {
+  font-size: 1.5rem;
+}
+
+.book-features {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.book-features .feature {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Quote Tab */
+.quote-content {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.quote-content h3 {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.quote-content p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.quote-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.quote-form input,
+.quote-form select,
+.quote-form textarea {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.quote-form select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  padding-right: 3rem;
+}
+
+.quote-form select option {
+  background: #1f2937;
+  color: white;
+  padding: 0.5rem;
+}
+
+.quote-form input:focus,
+.quote-form select:focus,
+.quote-form textarea:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.quote-form input::placeholder,
+.quote-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.quote-form input,
+.quote-form select {
+  flex: 1;
+}
+
+.quote-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.quote-submit {
+  background: var(--heartland-red);
+  border: 2px solid var(--heartland-red);
+  color: white;
+  padding: 1.25rem 2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  margin-top: 1rem;
+}
+
+.quote-submit:hover {
+  background: var(--heartland-red-hover);
+  border-color: var(--heartland-red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(190, 30, 45, 0.3);
+}
+
+  .quote-submit i {
+    font-size: 1.2rem;
+  }
+
+  /* Calendly Modal Styles */
+  .calendly-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    backdrop-filter: blur(10px);
+  }
+
+  .calendly-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .calendly-modal-content {
+    background: white;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    position: relative;
+  }
+
+  .calendly-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: #f8fafc;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .calendly-modal-header h3 {
+    margin: 0;
+    color: #1e3a8a;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .calendly-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #64748b;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+  }
+
+  .calendly-modal-close:hover {
+    background: #e5e7eb;
+    color: #374151;
+  }
+
+  .calendly-modal-body {
+    height: 600px;
+    min-height: 400px;
+  }
+
+  .calendly-embed-container {
+    height: 100%;
+    width: 100%;
+  }
+
+  .calendly-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #64748b;
+  }
+
+  .calendly-loading i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--heartland-red);
+  }
+
+  .calendly-loading p {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .calendly-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .calendly-error i {
+    font-size: 3rem;
+    color: #f59e0b;
+    margin-bottom: 1rem;
+  }
+
+  .calendly-error h4 {
+    font-size: 1.5rem;
+    color: #1e3a8a;
+    margin-bottom: 1rem;
+  }
+
+  .calendly-error p {
+    color: #64748b;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .calendly-error a {
+    color: var(--heartland-red);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .calendly-error a:hover {
+    text-decoration: underline;
+  }
+
+  .calendly-error-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .btn-close-modal {
+    background: #f3f4f6;
+    border: 2px solid #e5e7eb;
+    color: #374151;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+  }
+
+  .btn-close-modal:hover {
+    background: #e5e7eb;
+    border-color: #d1d5db;
+  }
+
+  .btn-call-now {
+    background: var(--heartland-red);
+    border: 2px solid var(--heartland-red);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-call-now:hover {
+    background: var(--heartland-red-hover);
+    border-color: var(--heartland-red-hover);
+  }
+
+  /* Booking Demo Styles */
+  .booking-demo {
+    height: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    overflow-y: auto;
+  }
+
+  .booking-demo-header {
+    text-align: center;
+    padding: 1rem;
+    background: #f0f9ff;
+    border-radius: 12px;
+    border: 2px solid #3b82f6;
+  }
+
+  .booking-demo-header h4 {
+    color: #1e40af;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+  }
+
+  .booking-demo-header p {
+    color: #1e40af;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .booking-demo-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    flex: 1;
+  }
+
+  .demo-calendar {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+  }
+
+  .demo-calendar h5 {
+    color: #1e3a8a;
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+  }
+
+  .demo-time-slots {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .demo-day {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .demo-day h6 {
+    color: #374151;
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .demo-time-slot {
+    background: white;
+    border: 2px solid #e5e7eb;
+    color: #374151;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .demo-time-slot:hover {
+    border-color: var(--heartland-red);
+    background: #fef2f2;
+    color: var(--heartland-red);
+  }
+
+  .demo-setup-info {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+  }
+
+  .demo-setup-info h5 {
+    color: #1e3a8a;
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+  }
+
+  .demo-setup-info ol {
+    color: #374151;
+    margin: 0 0 1.5rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .demo-setup-info li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .demo-setup-info code {
+    background: #f3f4f6;
+    color: #dc2626;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+
+  .demo-setup-info a {
+    color: var(--heartland-red);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .demo-setup-info a:hover {
+    text-decoration: underline;
+  }
+
+  .demo-actions {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .demo-btn-primary {
+    background: var(--heartland-red);
+    border: 2px solid var(--heartland-red);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .demo-btn-primary:hover {
+    background: var(--heartland-red-hover);
+    border-color: var(--heartland-red-hover);
+  }
+
+  .demo-btn-secondary {
+    background: white;
+    border: 2px solid #e5e7eb;
+    color: #374151;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .demo-btn-secondary:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+  }
+
+  /* Mobile Responsive */
+@media (max-width: 768px) {
+  .schedule-header h2 {
+    font-size: 2rem;
+  }
+  
+  .schedule-header p {
+    font-size: 1.1rem;
+  }
+  
+  .schedule-tabs {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .tab-btn {
+    min-width: 280px;
+    padding: 1rem 1.5rem;
+  }
+  
+  .call-options {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .call-btn {
+    min-width: 240px;
+  }
+  
+  .call-features {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .book-features {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .form-group {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .quote-content {
+    max-width: 100%;
+  }
+
+  /* Calendly Modal Mobile */
+  .calendly-modal-overlay {
+    padding: 1rem;
+  }
+
+  .calendly-modal-content {
+    max-width: 100%;
+    max-height: 95vh;
+  }
+
+  .calendly-modal-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .calendly-modal-header h3 {
+    font-size: 1.25rem;
+  }
+
+  .calendly-modal-body {
+    height: 500px;
+  }
+
+  .calendly-error-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  /* Booking Demo Mobile */
+  .booking-demo {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .booking-demo-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .demo-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .schedule-header {
+    margin-bottom: 2rem;
+  }
+  
+  .schedule-header h2 {
+    font-size: 1.75rem;
+  }
+  
+  .schedule-tabs {
+    margin-bottom: 2rem;
+  }
+  
+  .tab-btn {
+    min-width: 100%;
+    padding: 1rem;
+  }
+  
+  .call-main h3,
+  .book-content h3,
+  .quote-content h3 {
+    font-size: 1.5rem;
+  }
+  
+  .call-main p,
+  .book-content p,
+  .quote-content p {
+    font-size: 1rem;
+  }
+
+  /* Calendly Modal Mobile Small */
+  .calendly-modal-overlay {
+    padding: 0.5rem;
+  }
+
+  .calendly-modal-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .calendly-modal-header h3 {
+    font-size: 1.125rem;
+  }
+
+  .calendly-modal-body {
+    height: 400px;
+  }
+
+  .calendly-error {
+    padding: 1rem;
+  }
+
+  .calendly-error i {
+    font-size: 2rem;
+  }
+
+  .calendly-error h4 {
+    font-size: 1.25rem;
+  }
+
+  /* Booking Demo Mobile Small */
+  .booking-demo {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .booking-demo-header h4 {
+    font-size: 1.125rem;
+  }
+
+  .booking-demo-header p {
+    font-size: 0.875rem;
+  }
+
+  .demo-calendar,
+  .demo-setup-info {
+    padding: 1rem;
+  }
+
+  .demo-calendar h5,
+  .demo-setup-info h5 {
+    font-size: 1rem;
+  }
+
+  .demo-setup-info li {
+    font-size: 0.875rem;
+  }
+} 

@@ -49,6 +49,7 @@
     <link rel="stylesheet" href="components/Hero.css" />
     <link rel="stylesheet" href="components/ServiceAreas.css" />
     <link rel="stylesheet" href="components/WhyChoose.css" />
+    <link rel="stylesheet" href="components/SchedulingWidget.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -149,104 +150,8 @@
     <!-- Scheduling Widget -->
     <section id="schedule" class="section bg-heartland-blue text-white">
       <div class="container">
-        <div class="schedule-container">
-          <div class="schedule-content">
-            <h2>Book Your Service in 60 Seconds</h2>
-            <p>Choose your preferred time and service type. We'll confirm your appointment and send you a service professional who's ready to solve your comfort needs.</p>
-            <div class="schedule-benefits">
-              <div class="schedule-benefit">
-                <i class="fas fa-calendar-check"></i>
-                <span>No phone tag required</span>
-              </div>
-              <div class="schedule-benefit">
-                <i class="fas fa-user-tie"></i>
-                <span>Licensed & insured techs</span>
-              </div>
-              <div class="schedule-benefit">
-                <i class="fas fa-dollar-sign"></i>
-                <span>Upfront pricing</span>
-              </div>
-            </div>
-          </div>
-          <div class="schedule-widget">
-            <div class="scheduler-container">
-              <div class="scheduler-header">
-                <h3>Select Your Service & Time</h3>
-                <p>Book online 24/7 - No phone calls needed!</p>
-              </div>
-              
-              <div class="scheduler-form">
-                <div class="service-selection">
-                  <label>What service do you need?</label>
-                  <select id="serviceType" class="scheduler-input">
-                    <option value="">Select Service Type</option>
-                    <option value="furnace-repair">Furnace Repair</option>
-                    <option value="furnace-installation">Furnace Installation</option>
-                    <option value="ac-repair">AC Repair</option>
-                    <option value="ac-installation">AC Installation</option>
-                    <option value="maintenance">Maintenance Tune-up</option>
-                    <option value="air-quality">Indoor Air Quality</option>
-                    <option value="emergency">Emergency Service</option>
-                    <option value="quote">Free Estimate</option>
-                  </select>
-                </div>
-                
-                <div class="urgency-selection">
-                  <label>How urgent is this?</label>
-                  <div class="urgency-options">
-                    <label class="urgency-option">
-                      <input type="radio" name="urgency" value="emergency" />
-                      <span class="urgency-label emergency">Emergency (Same Day)</span>
-                    </label>
-                    <label class="urgency-option">
-                      <input type="radio" name="urgency" value="urgent" />
-                      <span class="urgency-label urgent">Urgent (1-2 Days)</span>
-                    </label>
-                    <label class="urgency-option">
-                      <input type="radio" name="urgency" value="routine" />
-                      <span class="urgency-label routine">Routine (3-7 Days)</span>
-                    </label>
-                  </div>
-                </div>
-                
-                <div class="time-selection">
-                  <label>Preferred Time</label>
-                  <div class="time-slots">
-                    <button class="time-slot" data-time="morning">
-                      <i class="fas fa-sun"></i>
-                      Morning<br><span>8-11 AM</span>
-                    </button>
-                    <button class="time-slot" data-time="afternoon">
-                      <i class="fas fa-sun"></i>
-                      Afternoon<br><span>12-3 PM</span>
-                    </button>
-                    <button class="time-slot" data-time="evening">
-                      <i class="fas fa-moon"></i>
-                      Evening<br><span>4-7 PM</span>
-                    </button>
-                  </div>
-                </div>
-                
-                <div class="contact-info">
-                  <div class="contact-row">
-                    <input type="text" placeholder="Your Name*" class="scheduler-input" required />
-                    <input type="tel" placeholder="Phone Number*" class="scheduler-input" required />
-                  </div>
-                  <textarea placeholder="Describe your issue (optional)" class="scheduler-textarea" rows="3"></textarea>
-                </div>
-                
-                <button class="schedule-submit-btn" id="scheduleSubmit">
-                  <i class="fas fa-calendar-check"></i>
-                  Book My Appointment
-                </button>
-                
-                <div class="scheduler-note">
-                  <p><i class="fas fa-info-circle"></i> We'll confirm your appointment within 30 minutes</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- Scheduling Widget Container -->
+        <div id="schedule-widget"></div>
       </div>
     </section>
 
