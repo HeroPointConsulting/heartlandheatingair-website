@@ -3,6 +3,7 @@
 import { createHero, initHero } from './components/Hero.js';
 import { createReviews, initReviews } from './components/Reviews.js';
 import { createServiceAreas, initServiceAreas } from './components/ServiceAreas.js';
+import './components/Services.js';
 
 // Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', function () {
@@ -33,6 +34,9 @@ function initializeApp() {
   // Load hero component
   loadHeroComponent();
 
+  // Load services component
+  loadServicesComponent();
+
   // Load reviews component
   loadReviewsComponent();
 
@@ -61,6 +65,18 @@ function loadHeroComponent() {
     }
   } catch (error) {
     console.error('Error loading hero component:', error);
+  }
+}
+
+// Load Services component - Auto-initializing Pattern
+function loadServicesComponent() {
+  try {
+    // Services component is auto-initializing, just ensure it's loaded
+    if (window.ServicesComponent) {
+      window.ServicesComponent.init();
+    }
+  } catch (error) {
+    console.error('Error loading services component:', error);
   }
 }
 

@@ -373,6 +373,18 @@ header {
 
 #services.section {
   padding: 3rem 0;
+  position: relative;
+}
+
+#services.section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--heartland-red);
+  border-radius: 2px;
 }
 
 .section-header {
