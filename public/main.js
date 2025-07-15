@@ -4,6 +4,7 @@ import { createHero, initHero } from './components/Hero.js';
 import { createReviews, initReviews } from './components/Reviews.js';
 import { createServiceAreas, initServiceAreas } from './components/ServiceAreas.js';
 import { createWhyChoose, initWhyChoose } from './components/WhyChoose.js';
+import { createAboutComponent, initAboutComponent } from './components/About.js';
 import { TrustSignals } from './components/TrustSignals.js';
 import SchedulingWidget from './components/SchedulingWidget.js';
 import './components/Services.js';
@@ -48,6 +49,9 @@ function initializeApp() {
 
   // Load why choose component
   loadWhyChooseComponent();
+
+  // Load about component
+  loadAboutComponent();
 
   // Load trust signals component
   loadTrustSignalsComponent();
@@ -134,6 +138,22 @@ function loadWhyChooseComponent() {
     }
   } catch (error) {
     console.error('Error loading why choose component:', error);
+  }
+}
+
+// Load About component - Myers-Vanilla Pattern
+function loadAboutComponent() {
+  try {
+    const aboutContainer = document.getElementById('about-component-container');
+    if (aboutContainer) {
+      // Create about HTML and inject it
+      aboutContainer.innerHTML = createAboutComponent();
+
+      // Initialize about component interactivity
+      initAboutComponent();
+    }
+  } catch (error) {
+    console.error('Error loading about component:', error);
   }
 }
 
