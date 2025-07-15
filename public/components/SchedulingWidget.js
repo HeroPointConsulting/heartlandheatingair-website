@@ -134,14 +134,10 @@ class SchedulingWidget {
     setTimeout(() => {
       const calendlyBtn = document.getElementById('openCalendly');
       if (calendlyBtn) {
-        console.log('Calendly button found, attaching event listener');
         calendlyBtn.addEventListener('click', (e) => {
           e.preventDefault();
-          console.log('Calendly button clicked');
           this.openCalendly();
         });
-      } else {
-        console.log('Calendly button not found');
       }
     }, 100);
 
@@ -172,7 +168,6 @@ class SchedulingWidget {
   }
 
   openCalendly() {
-    console.log('openCalendly method called');
     this.showCalendlyModal();
   }
 
@@ -226,13 +221,13 @@ class SchedulingWidget {
     this.loadCalendlyWidget();
   }
 
-    loadCalendlyWidget() {
+  loadCalendlyWidget() {
     const container = document.getElementById('calendly-embed-container');
-    
+
     // For demo purposes, show a preview of what the booking interface would look like
     // Replace this entire section with actual Calendly integration
     this.showBookingDemo();
-    
+
     /* 
     // PRODUCTION CODE: Uncomment this section when you have your actual Calendly URL
     if (typeof Calendly !== 'undefined') {
@@ -249,13 +244,10 @@ class SchedulingWidget {
           utm: {}
         });
         
-        console.log('Calendly widget loaded successfully');
       } catch (error) {
-        console.error('Error loading Calendly widget:', error);
         this.showCalendlyError();
       }
     } else {
-      console.log('Calendly not available, waiting for script to load');
       this.waitForCalendly();
     }
     */
@@ -347,15 +339,12 @@ class SchedulingWidget {
 
     const checkCalendly = () => {
       attempts++;
-      console.log(`Checking for Calendly (attempt ${attempts}/${maxAttempts})`);
 
       if (typeof Calendly !== 'undefined') {
-        console.log('Calendly loaded, loading widget');
         this.loadCalendlyWidget();
       } else if (attempts < maxAttempts) {
         setTimeout(checkCalendly, 500);
       } else {
-        console.log('Calendly failed to load after max attempts');
         this.showCalendlyError();
       }
     };
@@ -370,7 +359,7 @@ class SchedulingWidget {
     const data = Object.fromEntries(formData.entries());
 
     // Here you would normally send to your backend
-    console.log('Quote request:', data);
+    // Example: await fetch('/api/quote-request', { method: 'POST', body: formData });
 
     // Show success message
     const submitBtn = e.target.querySelector('.quote-submit');
