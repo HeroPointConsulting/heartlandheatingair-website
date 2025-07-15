@@ -1,6 +1,7 @@
 /* Component Imports */
 @import url('./components/Hero.css');
 @import url('./components/Reviews.css');
+@import url('./components/ServiceAreas.css');
 
 /* CSS Reset and Base Styles */
 * {

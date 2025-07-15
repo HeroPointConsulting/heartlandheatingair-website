@@ -6,16 +6,12 @@ import { createServiceAreas, initServiceAreas } from './components/ServiceAreas.
 
 // Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('Heartland Heating & Air app initialized');
-
   // Initialize all app features
   initializeApp();
 });
 
 // Main initialization function
 function initializeApp() {
-  console.log('Initializing Heartland Heating & Air app');
-
   // Initialize mobile menu
   initializeMobileMenu();
 
@@ -119,8 +115,6 @@ function initializeContactForm() {
         details: formData.get('details')
       };
 
-      console.log('Form submitted:', data);
-
       // Show success message
       showSuccessMessage('Thank you! We\'ll contact you within 24 hours.');
 
@@ -157,7 +151,6 @@ function showSuccessMessage(message) {
 // Mobile menu functionality (placeholder for future)
 function initializeMobileMenu() {
   // TODO: Add mobile hamburger menu functionality
-  console.log('Mobile menu initialized');
 }
 
 // Smooth scrolling for navigation links
@@ -185,8 +178,6 @@ function initializeSmoothScrolling() {
 function initializeCalendly() {
   // Check if Calendly script is loaded
   if (typeof Calendly !== 'undefined') {
-    console.log('Calendly widget ready');
-
     // Initialize inline widget
     const calendlyWidget = document.querySelector('.calendly-inline-widget');
     if (calendlyWidget) {
@@ -197,16 +188,12 @@ function initializeCalendly() {
         utm: {}
       });
     }
-  } else {
-    console.log('Calendly script not loaded yet');
   }
 }
 
 // Live chat initialization
 function initializeLiveChat() {
   // Tawk.to chat will initialize automatically from the script tag
-  console.log('Live chat initialized');
-
   // You can add custom chat behavior here if needed
   // For example, show/hide chat based on user behavior
 }
@@ -250,7 +237,6 @@ function initializeChatWidget() {
 
         // Track which option was clicked
         const optionText = option.querySelector('span').textContent;
-        console.log('Chat option clicked:', optionText);
       });
     });
   }
@@ -313,7 +299,6 @@ function initializeScheduler() {
   if (serviceType) {
     serviceType.addEventListener('change', (e) => {
       const selectedService = e.target.value;
-      console.log('Service selected:', selectedService);
 
       // Auto-select emergency urgency for emergency service
       if (selectedService === 'emergency') {
@@ -351,9 +336,6 @@ function initializeScheduler() {
       scheduleSubmit.style.background = '#10b981';
       scheduleSubmit.disabled = true;
 
-      // Log the appointment request
-      console.log('Appointment requested:', formData);
-
       // In a real app, this would send the data to your booking system
       setTimeout(() => {
         alert('Thank you! We\'ll confirm your appointment within 30 minutes.');
@@ -374,13 +356,12 @@ async function submitContactForm(data) {
       body: JSON.stringify(data)
     });
 
-    if (response.ok) {
-      console.log('Form submitted successfully');
-    } else {
-      console.error('Form submission failed');
+    if (!response.ok) {
+      throw new Error('Form submission failed');
     }
   } catch (error) {
-    console.error('Error submitting form:', error);
+    // Handle error appropriately - could show user feedback
+    throw error;
   }
 }
 
@@ -402,7 +383,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const buttons = document.querySelectorAll('.btn');
   buttons.forEach(button => {
     button.addEventListener('click', function () {
-      console.log('Button clicked:', this.textContent.trim());
       // TODO: Send to analytics service
     });
   });

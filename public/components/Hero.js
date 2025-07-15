@@ -85,8 +85,6 @@ export function initHero() {
 
   // Start slideshow
   startHeroSlideshow(slides, navButtons);
-
-  console.log(`Hero slideshow initialized with ${slides.length} slides and smooth transitions`);
 }
 
 function setupHeroEventListeners(slideshow, slides, navButtons) {
@@ -178,6 +176,4 @@ export function destroyHero() {
   currentSlide = 0;
   touchStartX = 0;
   touchEndX = 0;
-
-  console.log('Hero component destroyed');
 } 

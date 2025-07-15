@@ -7,174 +7,39 @@
 const fs = require('fs');
 const path = require('path');
 
-// Location data embedded directly in the script
-const locations = {
-  indianapolis: {
-    name: "Indianapolis",
-    state: "Indiana",
-    stateAbbr: "IN",
-    zipCodes: ["46201", "46202", "46203", "46204", "46205"],
-    coordinates: { lat: 39.7684, lng: -86.1581 },
-    population: "887,000",
-    nickname: "Circle City",
-    serviceRadius: "30 miles",
-    keyNeighborhoods: ["Downtown", "Broad Ripple", "Fountain Square", "Mass Ave", "Meridian-Kessler"],
-    localLandmarks: ["Indianapolis Motor Speedway", "Monument Circle", "White River State Park"]
-  },
-  carmel: {
-    name: "Carmel",
-    state: "Indiana", 
-    stateAbbr: "IN",
-    zipCodes: ["46032", "46033", "46074"],
-    coordinates: { lat: 39.9784, lng: -86.1180 },
-    population: "99,000",
-    nickname: "The Roundabout City",
-    serviceRadius: "25 miles",
-    keyNeighborhoods: ["Arts & Design District", "Village of WestClay", "Meridian Hills"],
-    localLandmarks: ["Carmel Arts & Design District", "Clay Terrace", "Monon Trail"]
-  },
-  fishers: {
-    name: "Fishers",
-    state: "Indiana",
-    stateAbbr: "IN", 
-    zipCodes: ["46037", "46038"],
-    coordinates: { lat: 39.9568, lng: -85.9685 },
-    population: "95,000",
-    nickname: "The Entrepreneurial City",
-    serviceRadius: "25 miles",
-    keyNeighborhoods: ["Geist", "Hamilton Southeastern", "Fishers Station"],
-    localLandmarks: ["Geist Reservoir", "Conner Prairie", "Fishers Event Center"]
-  },
-  westfield: {
-    name: "Westfield",
-    state: "Indiana",
-    stateAbbr: "IN",
-    zipCodes: ["46074"],
-    coordinates: { lat: 40.0431, lng: -86.1276 },
-    population: "45,000",
-    nickname: "Welcome Home",
-    serviceRadius: "20 miles",
-    keyNeighborhoods: ["Grand Park", "Chatham Hills", "Wood Valley"],
-    localLandmarks: ["Grand Park Sports Complex", "Westfield Washington Township"]
-  },
-  noblesville: {
-    name: "Noblesville",
-    state: "Indiana",
-    stateAbbr: "IN",
-    zipCodes: ["46060", "46061", "46062"],
-    coordinates: { lat: 40.0456, lng: -86.0086 },
-    population: "69,000",
-    nickname: "The Heart of Hamilton County",
-    serviceRadius: "25 miles",
-    keyNeighborhoods: ["Old Town", "Harbour Trees", "Pebble Brook"],
-    localLandmarks: ["Conner Prairie", "Ruoff Music Center", "White River"]
-  }
-};
+// Import data from centralized location file
+async function loadData() {
+    try {
+        const dataPath = path.join(__dirname, '..', 'public', 'data', 'locations.js');
+        const dataContent = fs.readFileSync(dataPath, 'utf8');
 
-const services = {
-  "hvac-repair": {
-    name: "HVAC Repair",
-    shortName: "HVAC Repair",
-    description: "Professional heating and cooling system repair services",
-    longTailKeywords: [
-      "emergency hvac repair",
-      "furnace repair",
-      "air conditioner repair", 
-      "heating system repair",
-      "cooling system repair",
-      "hvac technician",
-      "same day hvac repair"
-    ],
-    urgencyLevel: "emergency",
-    averagePrice: "$150-$400",
-    serviceTime: "Same day"
-  },
-  "furnace-installation": {
-    name: "Furnace Installation",
-    shortName: "Furnace Installation",
-    description: "Complete furnace installation and replacement services",
-    longTailKeywords: [
-      "new furnace installation",
-      "furnace replacement",
-      "high efficiency furnace",
-      "gas furnace installation",
-      "electric furnace installation",
-      "furnace upgrade"
-    ],
-    urgencyLevel: "planned",
-    averagePrice: "$3,000-$6,000",
-    serviceTime: "1-2 days"
-  },
-  "air-conditioning-service": {
-    name: "Air Conditioning Service",
-    shortName: "AC Service",
-    description: "Complete air conditioning installation, repair, and maintenance",
-    longTailKeywords: [
-      "ac installation",
-      "central air conditioning",
-      "air conditioner replacement",
-      "ac maintenance",
-      "cooling system service",
-      "ac unit repair"
-    ],
-    urgencyLevel: "seasonal",
-    averagePrice: "$200-$500",
-    serviceTime: "Same day"
-  },
-  "hvac-maintenance": {
-    name: "HVAC Maintenance",
-    shortName: "HVAC Maintenance", 
-    description: "Preventive maintenance to keep your HVAC system running efficiently",
-    longTailKeywords: [
-      "hvac tune up",
-      "seasonal maintenance",
-      "preventive maintenance",
-      "hvac inspection",
-      "system cleaning",
-      "maintenance plan"
-    ],
-    urgencyLevel: "routine",
-    averagePrice: "$150-$300",
-    serviceTime: "2-4 hours"
-  },
-  "duct-cleaning": {
-    name: "Duct Cleaning",
-    shortName: "Duct Cleaning",
-    description: "Professional air duct cleaning and sanitization services",
-    longTailKeywords: [
-      "air duct cleaning",
-      "ductwork cleaning",
-      "dryer vent cleaning",
-      "indoor air quality",
-      "duct sanitization",
-      "air quality improvement"
-    ],
-    urgencyLevel: "maintenance",
-    averagePrice: "$300-$600",
-    serviceTime: "3-5 hours"
-  }
-};
+        // Convert ES6 exports to CommonJS for Node.js
+        const moduleCode = dataContent
+            .replace(/export const/g, 'const')
+            .replace(/export \{[^}]*\};?/g, '');
 
-const businessInfo = {
-  name: "Heartland Heating & Air",
-  phone: "(317) 555-0123",
-  email: "info@heartlandheatingair.com",
-  address: "123 Main Street, Indianapolis, IN 46201",
-  hours: "24/7 Emergency Service",
-  established: "2015",
-  googleGuarantee: true,
-  certifications: ["EPA Certified", "NATE Certified", "BBB A+ Rating"],
-  emergencyService: true
-};
+        // Create a temporary module context
+        const moduleContext = { exports: {} };
+        const moduleFunction = new Function('exports', 'module', moduleCode + `
+      module.exports = { locations, services, businessInfo };
+    `);
+
+        moduleFunction(moduleContext.exports, moduleContext);
+        return moduleContext.exports;
+    } catch (error) {
+        process.stderr.write(`Error loading data: ${error.message}\n`);
+        process.exit(1);
+    }
+}
 
 // HTML Template for location-service pages
-function generateLocationServicePage(locationKey, serviceKey, location, service) {
-  const pageTitle = `${service.name} in ${location.name}, ${location.stateAbbr} | ${businessInfo.name}`;
-  const metaDescription = `Professional ${service.shortName.toLowerCase()} services in ${location.name}, ${location.state}. ${businessInfo.name} offers ${service.serviceTime.toLowerCase()} ${service.shortName.toLowerCase()} with ${businessInfo.certifications[0]}. Call ${businessInfo.phone}!`;
+function generateLocationServicePage(locationKey, serviceKey, location, service, businessInfo) {
+    const pageTitle = `${service.name} in ${location.name}, ${location.stateAbbr} | ${businessInfo.name}`;
+    const metaDescription = `Professional ${service.shortName.toLowerCase()} services in ${location.name}, ${location.state}. ${businessInfo.name} offers ${service.serviceTime.toLowerCase()} ${service.shortName.toLowerCase()} with ${businessInfo.certifications[0]}. Call ${businessInfo.phone}!`;
 
-  const canonicalUrl = `https://heartlandheatingair.com/locations/${locationKey}/${serviceKey}`;
+    const canonicalUrl = `https://heartlandheatingair.com/locations/${locationKey}/${serviceKey}`;
 
-  return `<!DOCTYPE html>
+    return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -613,55 +478,54 @@ function generateLocationServicePage(locationKey, serviceKey, location, service)
 }
 
 // Create directories and generate pages
-function generateAllPages() {
-  const publicDir = path.join(__dirname, '..', 'public');
-  const locationsDir = path.join(publicDir, 'locations');
+async function generateAllPages() {
+    const { locations, services, businessInfo } = await loadData();
+    const publicDir = path.join(__dirname, '..', 'public');
+    const locationsDir = path.join(publicDir, 'locations');
 
-  // Create locations directory if it doesn't exist
-  if (!fs.existsSync(locationsDir)) {
-    fs.mkdirSync(locationsDir, { recursive: true });
-  }
-
-  let generatedPages = 0;
-
-  // Generate pages for each location-service combination
-  Object.entries(locations).forEach(([locationKey, location]) => {
-    const locationDir = path.join(locationsDir, locationKey);
-
-    // Create location directory
-    if (!fs.existsSync(locationDir)) {
-      fs.mkdirSync(locationDir, { recursive: true });
+    // Create locations directory if it doesn't exist
+    if (!fs.existsSync(locationsDir)) {
+        fs.mkdirSync(locationsDir, { recursive: true });
     }
 
-    // Generate service pages for this location
-    Object.entries(services).forEach(([serviceKey, service]) => {
-      const pageContent = generateLocationServicePage(locationKey, serviceKey, location, service);
-      const filePath = path.join(locationDir, `${serviceKey}.html`);
+    let generatedPages = 0;
 
-      fs.writeFileSync(filePath, pageContent);
-      generatedPages++;
+    // Generate pages for each location-service combination
+    Object.entries(locations).forEach(([locationKey, location]) => {
+        const locationDir = path.join(locationsDir, locationKey);
 
-      console.log(`Generated: /locations/${locationKey}/${serviceKey}.html`);
+        // Create location directory
+        if (!fs.existsSync(locationDir)) {
+            fs.mkdirSync(locationDir, { recursive: true });
+        }
+
+        // Generate service pages for this location
+        Object.entries(services).forEach(([serviceKey, service]) => {
+            const pageContent = generateLocationServicePage(locationKey, serviceKey, location, service, businessInfo);
+            const filePath = path.join(locationDir, `${serviceKey}.html`);
+
+            fs.writeFileSync(filePath, pageContent);
+            generatedPages++;
+        });
     });
-  });
 
-  console.log(`\n✅ Generated ${generatedPages} location-service pages`);
-  console.log(`📁 Pages created in: ${locationsDir}`);
+    return { generatedPages, locationsDir };
 }
 
 // Generate sitemap
-function generateSitemap() {
-  const baseUrl = 'https://heartlandheatingair.com';
-  const sitemapEntries = [`${baseUrl}/`];
+async function generateSitemap() {
+    const { locations, services } = await loadData();
+    const baseUrl = 'https://heartlandheatingair.com';
+    const sitemapEntries = [`${baseUrl}/`];
 
-  // Add location-service pages
-  Object.keys(locations).forEach(locationKey => {
-    Object.keys(services).forEach(serviceKey => {
-      sitemapEntries.push(`${baseUrl}/locations/${locationKey}/${serviceKey}`);
+    // Add location-service pages
+    Object.keys(locations).forEach(locationKey => {
+        Object.keys(services).forEach(serviceKey => {
+            sitemapEntries.push(`${baseUrl}/locations/${locationKey}/${serviceKey}`);
+        });
     });
-  });
 
-  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+    const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${sitemapEntries.map(url => `  <url>
     <loc>${url}</loc>
@@ -671,16 +535,27 @@ ${sitemapEntries.map(url => `  <url>
   </url>`).join('\n')}
 </urlset>`;
 
-  fs.writeFileSync(path.join(__dirname, '..', 'public', 'sitemap.xml'), sitemapXml);
-  console.log(`📄 Generated sitemap.xml with ${sitemapEntries.length} URLs`);
+    fs.writeFileSync(path.join(__dirname, '..', 'public', 'sitemap.xml'), sitemapXml);
+    return sitemapEntries.length;
 }
 
 // Run the generator
 if (require.main === module) {
-  console.log('🚀 Starting Location Page Generator...\n');
-  generateAllPages();
-  generateSitemap();
-  console.log('\n🎉 Location SEO pages generated successfully!');
+    (async () => {
+        try {
+            const { generatedPages, locationsDir } = await generateAllPages();
+            const sitemapUrls = await generateSitemap();
+
+            // Success output
+            process.stdout.write(`✅ Generated ${generatedPages} location-service pages\n`);
+            process.stdout.write(`📁 Pages created in: ${locationsDir}\n`);
+            process.stdout.write(`📄 Generated sitemap.xml with ${sitemapUrls} URLs\n`);
+            process.stdout.write(`🎉 Location SEO pages generated successfully!\n`);
+        } catch (error) {
+            process.stderr.write(`Error generating pages: ${error.message}\n`);
+            process.exit(1);
+        }
+    })();
 }
 
-module.exports = { generateAllPages, generateSitemap }; 
+module.exports = { generateAllPages, generateSitemap, loadData }; 

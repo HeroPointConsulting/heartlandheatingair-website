@@ -58,6 +58,4 @@ export function initServiceAreas() {
       }
     });
   }
-
-  console.log('Service Areas component initialized');
 } 

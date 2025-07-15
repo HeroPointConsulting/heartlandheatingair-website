@@ -11,9 +11,15 @@
     "generate-seo": "node scripts/generate-location-pages.js",
     "seo-build": "npm run generate-seo && npm run build"
   },
-  "keywords": ["hvac", "heating", "air-conditioning", "website"],
+  "keywords": [
+    "hvac",
+    "heating",
+    "air-conditioning",
+    "website"
+  ],
   "author": "Heartland Heating & Air",
   "license": "MIT",
-  "devDependencies": {},
-  "dependencies": {}
-} 
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

@@ -91,7 +91,7 @@ class LocationRouter {
       this.updateSchemaMarkup(location, service);
 
     } catch (error) {
-      console.error('Error loading location page:', error);
+      // Handle error gracefully
       if (this.notFoundCallback) {
         this.notFoundCallback();
       }
@@ -302,8 +302,7 @@ router.addRoute('/', () => {
 });
 
 router.setNotFound(() => {
-  // 404 handler
-  console.log('Page not found');
+  // 404 handler - could redirect to home or show 404 page
 });
 
 export default router;
