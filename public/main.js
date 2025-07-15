@@ -2,6 +2,7 @@
 // ES6 Module imports for components
 import { createHero, initHero } from './components/Hero.js';
 import { createReviews, initReviews } from './components/Reviews.js';
+import { createServiceAreas, initServiceAreas } from './components/ServiceAreas.js';
 
 // Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', function () {
@@ -38,6 +39,9 @@ function initializeApp() {
 
   // Load reviews component
   loadReviewsComponent();
+
+  // Load service areas component
+  loadServiceAreasComponent();
 
   // Initialize Calendly (if script is loaded)
   setTimeout(() => {
@@ -77,6 +81,22 @@ function loadReviewsComponent() {
     }
   } catch (error) {
     console.error('Error loading reviews component:', error);
+  }
+}
+
+// Load Service Areas component - Myers-Vanilla Pattern  
+function loadServiceAreasComponent() {
+  try {
+    const serviceAreasContainer = document.getElementById('service-areas-component');
+    if (serviceAreasContainer) {
+      // Create service areas HTML and inject it
+      serviceAreasContainer.innerHTML = createServiceAreas();
+
+      // Initialize service areas component interactivity
+      initServiceAreas();
+    }
+  } catch (error) {
+    console.error('Error loading service areas component:', error);
   }
 }
 
