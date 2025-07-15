@@ -1,0 +1,159 @@
+// Location and Service Data for SEO Pages
+export const locations = {
+  indianapolis: {
+    name: "Indianapolis",
+    state: "Indiana",
+    stateAbbr: "IN",
+    zipCodes: ["46201", "46202", "46203", "46204", "46205"],
+    coordinates: { lat: 39.7684, lng: -86.1581 },
+    population: "887,000",
+    nickname: "Circle City",
+    serviceRadius: "30 miles",
+    keyNeighborhoods: ["Downtown", "Broad Ripple", "Fountain Square", "Mass Ave", "Meridian-Kessler"],
+    localLandmarks: ["Indianapolis Motor Speedway", "Monument Circle", "White River State Park"]
+  },
+  carmel: {
+    name: "Carmel",
+    state: "Indiana",
+    stateAbbr: "IN",
+    zipCodes: ["46032", "46033", "46074"],
+    coordinates: { lat: 39.9784, lng: -86.1180 },
+    population: "99,000",
+    nickname: "The Roundabout City",
+    serviceRadius: "25 miles",
+    keyNeighborhoods: ["Arts & Design District", "Village of WestClay", "Meridian Hills"],
+    localLandmarks: ["Carmel Arts & Design District", "Clay Terrace", "Monon Trail"]
+  },
+  fishers: {
+    name: "Fishers",
+    state: "Indiana",
+    stateAbbr: "IN",
+    zipCodes: ["46037", "46038"],
+    coordinates: { lat: 39.9568, lng: -85.9685 },
+    population: "95,000",
+    nickname: "The Entrepreneurial City",
+    serviceRadius: "25 miles",
+    keyNeighborhoods: ["Geist", "Hamilton Southeastern", "Fishers Station"],
+    localLandmarks: ["Geist Reservoir", "Conner Prairie", "Fishers Event Center"]
+  },
+  westfield: {
+    name: "Westfield",
+    state: "Indiana",
+    stateAbbr: "IN",
+    zipCodes: ["46074"],
+    coordinates: { lat: 40.0431, lng: -86.1276 },
+    population: "45,000",
+    nickname: "Welcome Home",
+    serviceRadius: "20 miles",
+    keyNeighborhoods: ["Grand Park", "Chatham Hills", "Wood Valley"],
+    localLandmarks: ["Grand Park Sports Complex", "Westfield Washington Township"]
+  },
+  noblesville: {
+    name: "Noblesville",
+    state: "Indiana",
+    stateAbbr: "IN",
+    zipCodes: ["46060", "46061", "46062"],
+    coordinates: { lat: 40.0456, lng: -86.0086 },
+    population: "69,000",
+    nickname: "The Heart of Hamilton County",
+    serviceRadius: "25 miles",
+    keyNeighborhoods: ["Old Town", "Harbour Trees", "Pebble Brook"],
+    localLandmarks: ["Conner Prairie", "Ruoff Music Center", "White River"]
+  }
+};
+
+export const services = {
+  "hvac-repair": {
+    name: "HVAC Repair",
+    shortName: "HVAC Repair",
+    description: "Professional heating and cooling system repair services",
+    longTailKeywords: [
+      "emergency hvac repair",
+      "furnace repair",
+      "air conditioner repair",
+      "heating system repair",
+      "cooling system repair",
+      "hvac technician",
+      "same day hvac repair"
+    ],
+    urgencyLevel: "emergency",
+    averagePrice: "$150-$400",
+    serviceTime: "Same day"
+  },
+  "furnace-installation": {
+    name: "Furnace Installation",
+    shortName: "Furnace Installation",
+    description: "Complete furnace installation and replacement services",
+    longTailKeywords: [
+      "new furnace installation",
+      "furnace replacement",
+      "high efficiency furnace",
+      "gas furnace installation",
+      "electric furnace installation",
+      "furnace upgrade"
+    ],
+    urgencyLevel: "planned",
+    averagePrice: "$3,000-$6,000",
+    serviceTime: "1-2 days"
+  },
+  "air-conditioning-service": {
+    name: "Air Conditioning Service",
+    shortName: "AC Service",
+    description: "Complete air conditioning installation, repair, and maintenance",
+    longTailKeywords: [
+      "ac installation",
+      "central air conditioning",
+      "air conditioner replacement",
+      "ac maintenance",
+      "cooling system service",
+      "ac unit repair"
+    ],
+    urgencyLevel: "seasonal",
+    averagePrice: "$200-$500",
+    serviceTime: "Same day"
+  },
+  "hvac-maintenance": {
+    name: "HVAC Maintenance",
+    shortName: "HVAC Maintenance",
+    description: "Preventive maintenance to keep your HVAC system running efficiently",
+    longTailKeywords: [
+      "hvac tune up",
+      "seasonal maintenance",
+      "preventive maintenance",
+      "hvac inspection",
+      "system cleaning",
+      "maintenance plan"
+    ],
+    urgencyLevel: "routine",
+    averagePrice: "$150-$300",
+    serviceTime: "2-4 hours"
+  },
+  "duct-cleaning": {
+    name: "Duct Cleaning",
+    shortName: "Duct Cleaning",
+    description: "Professional air duct cleaning and sanitization services",
+    longTailKeywords: [
+      "air duct cleaning",
+      "ductwork cleaning",
+      "dryer vent cleaning",
+      "indoor air quality",
+      "duct sanitization",
+      "air quality improvement"
+    ],
+    urgencyLevel: "maintenance",
+    averagePrice: "$300-$600",
+    serviceTime: "3-5 hours"
+  }
+};
+
+export const businessInfo = {
+  name: "Heartland Heating & Air",
+  phone: "(317) 555-0123",
+  email: "info@heartlandheatingair.com",
+  address: "123 Main Street, Indianapolis, IN 46201",
+  hours: "24/7 Emergency Service",
+  established: "2015",
+  googleGuarantee: true,
+  certifications: ["EPA Certified", "NATE Certified", "BBB A+ Rating"],
+  emergencyService: true
+}; 
