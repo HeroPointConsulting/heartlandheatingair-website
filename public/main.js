@@ -1,6 +1,7 @@
 // Heartland Heating & Air - Main JavaScript
 // ES6 Module imports for components
 import Navbar from './components/Navbar.js';
+import Footer from './components/Footer.js';
 import { createHero, initHero } from './components/Hero.js';
 import { createReviews, initReviews } from './components/Reviews.js';
 import { createServiceAreas, initServiceAreas } from './components/ServiceAreas.js';
@@ -64,6 +65,9 @@ function initializeApp() {
   // Load trust signals component
   loadTrustSignalsComponent();
 
+  // Load footer component
+  loadFooterComponent();
+
   // Initialize Calendly (if script is loaded)
   setTimeout(() => {
     initializeCalendly();
@@ -81,7 +85,7 @@ function loadNavbarComponent() {
       // Create navbar instance and inject it
       const navbar = new Navbar();
       navbarContainer.innerHTML = navbar.render();
-      
+
       // Initialize navbar interactivity
       navbar.attachEventListeners();
     }
@@ -205,6 +209,26 @@ function loadTrustSignalsComponent() {
     }
   } catch (error) {
     console.error('Error loading trust signals component:', error);
+  }
+}
+
+// Load Footer component - Class-based Pattern
+function loadFooterComponent() {
+  try {
+    const footerContainer = document.querySelector('footer');
+    if (footerContainer) {
+      // Create footer instance and inject it
+      const footer = new Footer();
+      footerContainer.outerHTML = footer.render();
+      
+      // Initialize footer interactivity after a short delay to ensure DOM is ready
+      setTimeout(() => {
+        const newFooter = new Footer();
+        newFooter.attachEventListeners();
+      }, 100);
+    }
+  } catch (error) {
+    console.error('Error loading footer component:', error);
   }
 }
 

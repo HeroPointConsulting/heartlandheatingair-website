@@ -8,6 +8,7 @@
 @import url('./components/TrustSignals.css');
 @import url('./components/About.css');
 @import url('./components/Contact.css');
+@import url('./components/Footer.css');
 
 /* CSS Reset and Base Styles */
 * {
@@ -86,146 +87,9 @@ body {
   margin-right: auto;
 }
 
-/* Footer */
-footer {
-  background-color: var(--gray-900);
-  color: var(--white);
-  padding: 3rem 0 1rem;
-}
 
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
 
-.footer-main {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
 
-.footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.footer-description {
-  color: var(--gray-300);
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
-
-.footer-contact {
-  color: var(--gray-300);
-}
-
-.footer-contact p {
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.footer-contact i {
-  color: var(--heartland-red);
-  width: 16px;
-}
-
-.footer-section h3 {
-  color: var(--white);
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid var(--heartland-red);
-  padding-bottom: 0.5rem;
-}
-
-.footer-section ul {
-  list-style: none;
-}
-
-.footer-section li {
-  margin-bottom: 0.5rem;
-}
-
-.footer-section a {
-  color: var(--gray-300);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-section a:hover {
-  color: var(--heartland-red);
-}
-
-.social-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.social-link {
-  color: var(--gray-300);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: color 0.3s ease;
-}
-
-.footer-hours h4 {
-  color: var(--white);
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  margin-top: 1rem;
-}
-
-.footer-hours p {
-  color: var(--gray-300);
-  font-size: 0.875rem;
-  line-height: 1.5;
-}
-
-.footer-bottom {
-  border-top: 1px solid var(--gray-700);
-  padding-top: 1.5rem;
-  text-align: center;
-  color: var(--gray-400);
-  font-size: 0.875rem;
-}
-
-.footer-legal {
-  margin-bottom: 1rem;
-}
-
-.legal-links {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
-}
-
-.legal-links a {
-  color: var(--gray-400);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.legal-links a:hover {
-  color: var(--heartland-red);
-}
-
-.footer-credentials {
-  color: var(--gray-400);
-  font-size: 0.75rem;
-}
 
 /* Emergency Float Button */
 .emergency-float {
@@ -461,22 +325,7 @@ footer {
   }
 }
 
-@media (min-width: 768px) {
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: left;
-  }
-  
-  .footer-legal {
-    margin-bottom: 0;
-  }
-  
-  .legal-links {
-    justify-content: flex-end;
-  }
-}
+
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
