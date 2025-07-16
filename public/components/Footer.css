@@ -43,6 +43,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
 .logo-text-container {
@@ -56,13 +57,16 @@
   font-weight: 800;
   color: var(--white);
   letter-spacing: 0.1em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  filter: brightness(0) invert(1);
 }
 
 .logo-tagline {
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--gray-300);
   letter-spacing: 0.05em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  filter: brightness(0) invert(1);
 }
 
 .plus-symbol {
@@ -294,6 +298,19 @@
   font-size: 0.75rem;
 }
 
+.agency-credit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.agency-credit p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .footer-agency a {
   color: var(--gray-500);
   text-decoration: none;
@@ -302,6 +319,19 @@
 
 .footer-agency a:hover {
   color: var(--heartland-red);
+}
+
+.hpc-logo-img {
+  height: 18px;
+  width: auto;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  filter: brightness(0) invert(1);
+  vertical-align: middle;
+}
+
+.hpc-logo-img:hover {
+  opacity: 1;
 }
 
 /* Responsive Design */
@@ -402,6 +432,14 @@
   
   .footer-agency {
     text-align: center;
+  }
+  
+  .agency-credit p {
+    gap: 0.4rem;
+  }
+  
+  .hpc-logo-img {
+    height: 16px;
   }
 }
 

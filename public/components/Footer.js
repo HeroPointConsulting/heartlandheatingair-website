@@ -30,12 +30,6 @@ export default class Footer {
                   <p><i class="fas fa-envelope"></i> info@heartlandheatingair.com</p>
                   <p><i class="fas fa-map-marker-alt"></i> Indianapolis, IN & Surrounding Areas</p>
                 </div>
-                <div class="footer-trust-badges">
-                  <span class="trust-badge"><i class="fas fa-shield-alt"></i> Licensed</span>
-                  <span class="trust-badge"><i class="fas fa-certificate"></i> Bonded</span>
-                  <span class="trust-badge"><i class="fas fa-lock"></i> Insured</span>
-                  <span class="trust-badge google-guaranteed"><i class="fab fa-google"></i> Google Guaranteed</span>
-                </div>
               </div>
               
               <!-- Services Section -->
@@ -114,7 +108,9 @@ export default class Footer {
             
             <!-- Agency Credits -->
             <div class="footer-agency">
-              <p>Website by <a href="https://heropointconsulting.com" target="_blank" rel="noopener">Hero Point Consulting</a></p>
+              <div class="agency-credit">
+                <p>Website by <a href="https://heropointconsulting.com" target="_blank" rel="noopener">Hero Point Consulting</a> <img src="img/hpc_design.png" alt="Hero Point Consulting Design Logo" class="hpc-logo-img"></p>
+              </div>
             </div>
           </div>
         </div>
