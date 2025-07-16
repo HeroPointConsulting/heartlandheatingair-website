@@ -100,8 +100,8 @@ class LocationRouter {
 
   // Update page meta tags
   updatePageMeta(location, service) {
-    const pageTitle = `${service.name} in ${location.name}, ${location.stateAbbr} | Heartland Heating & Air`;
-    const metaDescription = `Professional ${service.shortName.toLowerCase()} services in ${location.name}, ${location.state}. Heartland Heating & Air offers ${service.serviceTime.toLowerCase()} ${service.shortName.toLowerCase()} with EPA certification. Call (317) 555-0123!`;
+    const pageTitle = `${service.name} in ${location.name}, ${location.stateAbbr} | Heartland Heating + Air`;
+    const metaDescription = `Professional ${service.shortName.toLowerCase()} services in ${location.name}, ${location.state}. Heartland Heating + Air offers ${service.serviceTime.toLowerCase()} ${service.shortName.toLowerCase()} with EPA certification. Call (317) 555-0123!`;
 
     document.title = pageTitle;
 
@@ -136,7 +136,7 @@ class LocationRouter {
             <h1>${service.name} in ${location.name}, ${location.state}</h1>
             <p class="hero-subtitle">
               Professional ${service.shortName.toLowerCase()} services for ${location.name} residents and businesses. 
-              Heartland Heating & Air provides ${service.serviceTime.toLowerCase()} service with EPA certification.
+              Heartland Heating + Air provides ${service.serviceTime.toLowerCase()} service with EPA certification.
             </p>
             
             <div class="hero-features">
@@ -201,7 +201,7 @@ class LocationRouter {
       <!-- Why Choose Us -->
       <section class="why-choose">
         <div class="container">
-          <h2>Why Choose Heartland Heating & Air for ${service.name} in ${location.name}?</h2>
+          <h2>Why Choose Heartland Heating + Air for ${service.name} in ${location.name}?</h2>
           
           <div class="benefits-grid">
             <div class="benefit">
@@ -232,7 +232,7 @@ class LocationRouter {
       <section class="cta-section">
         <div class="container">
           <h2>Ready for Professional ${service.name} in ${location.name}?</h2>
-          <p>Contact Heartland Heating & Air today for fast, reliable ${service.shortName.toLowerCase()} service in ${location.name}, ${location.state}.</p>
+          <p>Contact Heartland Heating + Air today for fast, reliable ${service.shortName.toLowerCase()} service in ${location.name}, ${location.state}.</p>
           
           <div class="cta-buttons">
             <a href="tel:(317) 555-0123" class="btn btn-primary btn-large">
@@ -259,7 +259,7 @@ class LocationRouter {
     const schema = {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "name": "Heartland Heating & Air",
+      "name": "Heartland Heating + Air",
       "description": `${service.description} in ${location.name}, ${location.state}`,
       "telephone": "(317) 555-0123",
       "email": "info@heartlandheatingair.com",

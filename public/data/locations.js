@@ -147,7 +147,7 @@ export const services = {
 };
 
 export const businessInfo = {
-  name: "Heartland Heating & Air",
+  name: "Heartland Heating + Air",
   phone: "(317) 555-0123",
   email: "info@heartlandheatingair.com",
   address: "123 Main Street, Indianapolis, IN 46201",

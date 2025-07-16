@@ -131,7 +131,7 @@ function generateLocationServicePage(locationKey, serviceKey, location, service,
         <div class="nav-container">
             <a href="/" class="nav-logo">
                 <i class="fas fa-snowflake"></i>
-                Heartland Heating & Air
+                Heartland Heating + Air
             </a>
             
             <ul class="nav-menu">

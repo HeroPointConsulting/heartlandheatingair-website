@@ -1,7 +1,7 @@
 {
   "name": "heartland-heating-air",
   "version": "1.0.0",
-  "description": "Heartland Heating & Air HVAC company website",
+  "description": "Heartland Heating + Air HVAC company website",
   "main": "public/index.html",
   "scripts": {
     "dev": "cd public && live-server --port=3000 --open=/index.html",
@@ -17,7 +17,7 @@
     "air-conditioning",
     "website"
   ],
-  "author": "Heartland Heating & Air",
+  "author": "Heartland Heating + Air",
   "license": "MIT",
   "devDependencies": {
     "live-server": "^1.2.2"

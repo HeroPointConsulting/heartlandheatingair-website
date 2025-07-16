@@ -15,7 +15,7 @@ export function createAboutComponent() {
           <div class="about-story">
             <div class="story-content">
               <p class="story-lead">
-                <strong>Born and raised in America's heartland,</strong> I founded Heartland Heating & Air on the values that built this nation: hard work, honest dealing, and treating every customer like family.
+                <strong>Born and raised in America's heartland,</strong> I founded Heartland Heating + Air on the values that built this nation: hard work, honest dealing, and treating every customer like family.
               </p>
               
               <p>
@@ -95,7 +95,7 @@ export function createAboutComponent() {
             <h3>Why We Do What We Do</h3>
             <blockquote>
               "Growing up in the heartland, I learned that your word is your bond and your neighbors are your family. 
-              When I started Heartland Heating & Air, I wanted to bring those same values to every home and business we serve."
+              When I started Heartland Heating + Air, I wanted to bring those same values to every home and business we serve."
             </blockquote>
             <div class="story-signature">
               <span>- Forrest Landis, Founder</span>

@@ -1,4 +1,4 @@
-// WhyChoose Component for Heartland Heating & Air
+// WhyChoose Component for Heartland Heating + Air
 // Trust signals and value propositions section
 
 export function createWhyChoose() {

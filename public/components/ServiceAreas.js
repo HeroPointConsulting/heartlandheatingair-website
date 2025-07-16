@@ -21,7 +21,7 @@ export function createServiceAreas() {
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
-                title="Heartland Heating & Air Service Area Map">
+                title="Heartland Heating + Air Service Area Map">
               </iframe>
               <div class="map-overlay">
                 <div class="service-radius">

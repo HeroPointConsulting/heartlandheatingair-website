@@ -176,7 +176,7 @@ function createContactComponent() {
                   <label class="consent-checkbox">
                     <input type="checkbox" name="consent" required />
                     <span class="checkbox-custom"></span>
-                    <span class="consent-text">I agree to receive text messages and calls from Heartland Heating & Air regarding my service request.</span>
+                    <span class="consent-text">I agree to receive text messages and calls from Heartland Heating + Air regarding my service request.</span>
                   </label>
                 </div>
                 

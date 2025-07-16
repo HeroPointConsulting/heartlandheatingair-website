@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Test</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="components/Hero.css" />
+    <link rel="stylesheet" href="components/Navbar.css" />
+    <link rel="stylesheet" href="components/Footer.css" />
+</head>
+<body>
+    <div id="hero-component-container"></div>
+    
+    <script type="module">
+        import { createHero, initHero } from './components/Hero.js';
+        import Navbar from './components/Navbar.js';
+        import Footer from './components/Footer.js';
+        
+        // Test Hero component
+        const heroContainer = document.getElementById('hero-component-container');
+        if (heroContainer) {
+            heroContainer.innerHTML = createHero();
+            initHero();
+            console.log('Hero component loaded');
+        }
+        
+        // Test Navbar component
+        const navbar = new Navbar();
+        document.body.insertAdjacentHTML('afterbegin', navbar.render());
+        navbar.attachEventListeners();
+        console.log('Navbar component loaded');
+        
+        // Test Footer component
+        const footer = new Footer();
+        document.body.insertAdjacentHTML('beforeend', footer.render());
+        footer.attachEventListeners();
+        console.log('Footer component loaded');
+    </script>
+</body>
+</html> 

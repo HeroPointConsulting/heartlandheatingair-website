@@ -1,0 +1,207 @@
+// Layout Template System for Static Pages
+
+const layoutTemplate = {
+  // Simplified Navbar HTML
+  navbar: function (basePath = '') {
+    return `
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a href="/" class="logo-link">
+            <img src="${basePath}/img/hha_heart.png" alt="Heartland Heating + Air" class="logo">
+            <span class="brand-name">Heartland Heating + Air</span>
+          </a>
+        </div>
+        <div class="navbar-menu">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/#services" class="nav-link">Services</a>
+          <a href="/#contact" class="nav-link">Contact</a>
+          <a href="tel:(317) 555-0123" class="nav-link phone">(317) 555-0123</a>
+        </div>
+      </div>
+    </nav>
+  `;
+  },
+
+  // Footer HTML
+  footer: function (basePath = '') {
+    return `
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <img src="${basePath}/img/hha_heart.png" alt="Heartland Heating + Air" class="footer-logo">
+            <p>Professional HVAC services in the heart of the Midwest</p>
+          </div>
+          <div class="footer-contact">
+            <h3>Contact Us</h3>
+            <p><a href="tel:(317) 555-0123">(317) 555-0123</a></p>
+            <p><a href="mailto:info@heartlandheatingair.com">info@heartlandheatingair.com</a></p>
+          </div>
+          <div class="footer-services">
+            <h3>Services</h3>
+            <ul>
+              <li><a href="/services/hvac-repair.html">HVAC Repair</a></li>
+              <li><a href="/services/furnace-installation.html">Furnace Installation</a></li>
+              <li><a href="/services/air-conditioning-service.html">AC Service</a></li>
+              <li><a href="/services/hvac-maintenance.html">Maintenance</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Heartland Heating + Air. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  `;
+  },
+
+  // Layout CSS (inline styles for performance)
+  css: `
+    /* Layout Styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #333; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    /* Navbar Styles */
+    .navbar { background: #f8f9fa; color: #333; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid #dc2626; }
+    .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+    .navbar-brand { display: flex; align-items: center; }
+    .logo-link { display: flex; align-items: center; text-decoration: none; color: #1e3c72; }
+    .logo { height: 50px; width: auto; margin-right: 15px; }
+    .brand-name { font-weight: 600; font-size: 1.1rem; }
+    .navbar-menu { display: flex; align-items: center; gap: 2rem; }
+    .nav-link { color: #1e3c72; text-decoration: none; font-weight: 500; transition: opacity 0.3s; }
+    .nav-link:hover { opacity: 0.8; }
+    .nav-link.phone { font-weight: 600; color: #fbbf24; }
+    
+    /* Footer Styles */
+    .footer { background: #1e3c72; color: white; padding: 3rem 0 1rem; margin-top: 4rem; }
+    .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+    .footer-brand { display: flex; flex-direction: column; align-items: flex-start; }
+    .footer-logo { height: 60px; width: auto; margin-bottom: 1rem; }
+    .footer-brand p { opacity: 0.9; }
+    .footer-contact h3, .footer-services h3 { margin-bottom: 1rem; color: #fbbf24; }
+    .footer-contact a, .footer-services a { color: white; text-decoration: none; opacity: 0.9; }
+    .footer-contact a:hover, .footer-services a:hover { opacity: 1; }
+    .footer-services ul { list-style: none; }
+    .footer-services li { margin-bottom: 0.5rem; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; text-align: center; opacity: 0.8; }
+    
+    /* Page Content Styles */
+    .hero { background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 60px 0; text-align: center; }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; }
+    .hero p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
+    .btn { display: inline-block; padding: 12px 24px; background: white; color: #dc2626; text-decoration: none; border-radius: 5px; font-weight: 600; margin: 0 10px; }
+    .btn:hover { background: #f1f5f9; }
+    .service-info { padding: 60px 0; background: white; }
+    .service-info h2 { color: #1e3c72; margin-bottom: 1.5rem; font-size: 2rem; text-align: center; }
+    .service-list { list-style: none; max-width: 600px; margin: 0 auto; }
+    .service-list li { padding: 0.75rem 0; padding-left: 2rem; position: relative; border-bottom: 1px solid #f1f5f9; }
+    .service-list li:last-child { border-bottom: none; }
+    .service-list li:before { content: "✓"; color: #dc2626; font-weight: bold; position: absolute; left: 0; }
+    .service-area { padding: 40px 0; background: #f8f9fa; text-align: center; }
+    .service-area h3 { color: #1e3c72; margin-bottom: 1rem; font-size: 1.5rem; }
+    .cta { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 60px 0; text-align: center; }
+    .cta h3 { font-size: 2rem; margin-bottom: 1rem; }
+    .cta p { margin-bottom: 2rem; opacity: 0.9; }
+    .cta-note { opacity: 0.8; font-style: italic; font-size: 0.9rem; margin-top: 2rem; }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar .container { flex-direction: column; gap: 1rem; }
+      .navbar-menu { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+      .footer-content { grid-template-columns: 1fr; text-align: center; }
+      .footer-brand { align-items: center; }
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1.1rem; }
+      .service-info h2 { font-size: 1.8rem; }
+      .cta h3 { font-size: 1.8rem; }
+      .btn { display: block; margin: 10px auto; max-width: 250px; }
+    }
+    
+    @media (max-width: 480px) {
+      .hero { padding: 60px 0 40px; }
+      .hero h1 { font-size: 1.8rem; }
+      .service-list li { padding-left: 1.5rem; }
+      .navbar-menu { flex-direction: column; gap: 0.5rem; }
+    }
+  `,
+
+  // Generate complete page with layout
+  generatePage: function (content, title, description, canonicalUrl, basePath = '') {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    <meta name="description" content="${description}">
+    <link rel="canonical" href="${canonicalUrl}">
+    
+    <!-- Local SEO Meta Tags -->
+    <meta name="geo.region" content="US-IN">
+    <meta name="geo.placename" content="Indiana">
+    <meta name="geo.position" content="39.7684;-86.1581">
+    <meta name="ICBM" content="39.7684, -86.1581">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="${title}">
+    <meta property="og:description" content="${description}">
+    <meta property="og:url" content="${canonicalUrl}">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Schema.org Local Business JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Heartland Heating + Air",
+      "image": "https://heartlandheatingair.com/img/hha_heart.png",
+      "description": "Professional HVAC services in the heart of the Midwest",
+      "telephone": "(317) 555-0123",
+      "email": "info@heartlandheatingair.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Indianapolis",
+        "addressRegion": "IN",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 39.7684,
+        "longitude": -86.1581
+      },
+      "openingHours": "Mo-Su 00:00-23:59",
+      "priceRange": "$150-$6,000",
+      "serviceArea": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": 39.7684,
+          "longitude": -86.1581
+        },
+        "geoRadius": "30 miles"
+      }
+    }
+    </script>
+    
+    <!-- Layout CSS -->
+    <style>${this.css}</style>
+</head>
+<body>
+    <!-- Navigation -->
+    ${this.navbar(basePath)}
+
+    <!-- Page Content -->
+    ${content}
+
+    <!-- Footer -->
+    ${this.footer(basePath)}
+</body>
+</html>`;
+  }
+};
+
+module.exports = layoutTemplate; 

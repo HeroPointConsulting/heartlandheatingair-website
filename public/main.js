@@ -1,4 +1,4 @@
-// Heartland Heating & Air - Main JavaScript
+// Heartland Heating + Air - Main JavaScript
 // ES6 Module imports for components
 import Navbar from './components/Navbar.js';
 import Footer from './components/Footer.js';
@@ -10,6 +10,8 @@ import { createAboutComponent, initAboutComponent } from './components/About.js'
 import { createContactComponent } from './components/Contact.js';
 import { TrustSignals } from './components/TrustSignals.js';
 import SchedulingWidget from './components/SchedulingWidget.js';
+import { createServicePage, initServicePage } from './components/ServicePage.js';
+import { LocationPage } from './components/LocationPage.js';
 import './components/Services.js';
 
 // Initialize the app when DOM is loaded
@@ -67,6 +69,10 @@ function initializeApp() {
 
   // Load footer component
   loadFooterComponent();
+
+  // Initialize service and location pages if needed
+  initializeServicePages();
+  initializeLocationPages();
 
   // Initialize Calendly (if script is loaded)
   setTimeout(() => {
@@ -220,7 +226,7 @@ function loadFooterComponent() {
       // Create footer instance and inject it
       const footer = new Footer();
       footerContainer.outerHTML = footer.render();
-      
+
       // Initialize footer interactivity after a short delay to ensure DOM is ready
       setTimeout(() => {
         const newFooter = new Footer();
@@ -540,6 +546,253 @@ if ('IntersectionObserver' in window) {
       testimonialObserver.observe(card);
     });
   }, 100);
+}
+
+// Initialize Service Pages
+function initializeServicePages() {
+  try {
+    // Service pages are now handled by service.html and service-page.js
+    // This function is kept for backward compatibility but doesn't need to do anything
+    // on the main page since service pages are separate
+  } catch (error) {
+    console.error('Error initializing service pages:', error);
+  }
+}
+
+// Initialize Location Pages
+function initializeLocationPages() {
+  try {
+    const locationPageContainer = document.getElementById('location-page-container');
+    if (locationPageContainer) {
+      // Get location and service data from URL
+      const pathParts = window.location.pathname.split('/');
+      const locationSlug = pathParts[pathParts.length - 2];
+      const serviceSlug = pathParts[pathParts.length - 1].replace('.html', '');
+
+      const locationData = getLocationData(locationSlug);
+      const serviceData = getServiceData(serviceSlug);
+
+      if (locationData && serviceData) {
+        const locationPage = new LocationPage(locationData, serviceData);
+      }
+    }
+  } catch (error) {
+    console.error('Error initializing location pages:', error);
+  }
+}
+
+// Helper function to get service data
+function getServiceData(serviceSlug) {
+  const services = {
+    'ac-repair': {
+      name: 'AC Repair & Replacement',
+      description: 'Professional AC repair and replacement services',
+      longTailKeywords: [
+        'emergency ac repair',
+        'air conditioner repair',
+        'ac unit replacement',
+        'central air repair',
+        'ac maintenance',
+        'ac installation',
+        'same day ac repair'
+      ],
+      serviceTime: 'Same day',
+      averagePrice: '$150-$400'
+    },
+    'furnace-installation': {
+      name: 'Furnace Installation',
+      description: 'Complete furnace installation and replacement services',
+      longTailKeywords: [
+        'new furnace installation',
+        'furnace replacement',
+        'high efficiency furnace',
+        'gas furnace installation',
+        'electric furnace installation',
+        'furnace upgrade'
+      ],
+      serviceTime: '1-2 days',
+      averagePrice: '$3,000-$6,000'
+    },
+    'emergency-service': {
+      name: 'Emergency HVAC Service',
+      description: '24/7 emergency HVAC repair and service',
+      longTailKeywords: [
+        'emergency hvac repair',
+        '24 hour hvac service',
+        'emergency furnace repair',
+        'emergency ac repair',
+        'same day hvac service',
+        'emergency hvac technician'
+      ],
+      serviceTime: 'Same day',
+      averagePrice: '$200-$500'
+    },
+    'commercial-hvac': {
+      name: 'Commercial HVAC',
+      description: 'Professional commercial HVAC services',
+      longTailKeywords: [
+        'commercial hvac repair',
+        'commercial hvac installation',
+        'commercial hvac maintenance',
+        'business hvac service',
+        'commercial air conditioning',
+        'commercial heating'
+      ],
+      serviceTime: 'Same day',
+      averagePrice: '$300-$800'
+    },
+    'indoor-air-quality': {
+      name: 'Indoor Air Quality',
+      description: 'Complete indoor air quality solutions',
+      longTailKeywords: [
+        'air purification',
+        'air filtration',
+        'indoor air quality testing',
+        'air duct cleaning',
+        'humidity control',
+        'air quality improvement'
+      ],
+      serviceTime: 'Same day',
+      averagePrice: '$200-$600'
+    },
+    'maintenance-plans': {
+      name: 'HVAC Maintenance Plans',
+      description: 'Comprehensive HVAC maintenance and service plans',
+      longTailKeywords: [
+        'hvac maintenance plan',
+        'preventive maintenance',
+        'hvac tune up',
+        'seasonal maintenance',
+        'maintenance agreement',
+        'hvac service plan'
+      ],
+      serviceTime: 'Scheduled',
+      averagePrice: '$150-$300'
+    },
+    // Location page service mappings
+    'hvac-repair': {
+      name: 'HVAC Repair',
+      description: 'Professional heating and cooling system repair services',
+      longTailKeywords: [
+        'emergency hvac repair',
+        'furnace repair',
+        'air conditioner repair',
+        'heating system repair',
+        'cooling system repair',
+        'hvac technician',
+        'same day hvac repair'
+      ],
+      serviceTime: 'Same day',
+      averagePrice: '$150-$400'
+    },
+    'air-conditioning-service': {
+      name: 'Air Conditioning Service',
+      description: 'Complete air conditioning installation, repair, and maintenance',
+      longTailKeywords: [
+        'ac installation',
+        'central air conditioning',
+        'air conditioner replacement',
+        'ac maintenance',
+        'cooling system service',
+        'ac unit repair'
+      ],
+      serviceTime: 'Same day',
+      averagePrice: '$200-$500'
+    },
+    'hvac-maintenance': {
+      name: 'HVAC Maintenance',
+      description: 'Preventive maintenance to keep your HVAC system running efficiently',
+      longTailKeywords: [
+        'hvac tune up',
+        'seasonal maintenance',
+        'preventive maintenance',
+        'hvac inspection',
+        'system cleaning',
+        'maintenance plan'
+      ],
+      serviceTime: '2-4 hours',
+      averagePrice: '$150-$300'
+    },
+    'duct-cleaning': {
+      name: 'Duct Cleaning',
+      description: 'Professional air duct cleaning and sanitization services',
+      longTailKeywords: [
+        'air duct cleaning',
+        'ductwork cleaning',
+        'dryer vent cleaning',
+        'indoor air quality',
+        'duct sanitization',
+        'air quality improvement'
+      ],
+      serviceTime: '3-5 hours',
+      averagePrice: '$300-$600'
+    }
+  };
+
+  return services[serviceSlug] || null;
+}
+
+// Helper function to get location data
+function getLocationData(locationSlug) {
+  const locations = {
+    'indianapolis': {
+      name: 'Indianapolis',
+      state: 'Indiana',
+      stateAbbr: 'IN',
+      zipCodes: ['46201', '46202', '46203', '46204', '46205'],
+      population: '887,000',
+      nickname: 'Circle City',
+      serviceRadius: '30 miles',
+      keyNeighborhoods: ['Downtown', 'Broad Ripple', 'Fountain Square', 'Mass Ave', 'Meridian-Kessler'],
+      localLandmarks: ['Indianapolis Motor Speedway', 'Monument Circle', 'White River State Park']
+    },
+    'carmel': {
+      name: 'Carmel',
+      state: 'Indiana',
+      stateAbbr: 'IN',
+      zipCodes: ['46032', '46033', '46074'],
+      population: '99,000',
+      nickname: 'The Roundabout City',
+      serviceRadius: '25 miles',
+      keyNeighborhoods: ['Arts & Design District', 'Village of WestClay', 'Meridian Hills'],
+      localLandmarks: ['Carmel Arts & Design District', 'Clay Terrace', 'Monon Trail']
+    },
+    'fishers': {
+      name: 'Fishers',
+      state: 'Indiana',
+      stateAbbr: 'IN',
+      zipCodes: ['46037', '46038'],
+      population: '95,000',
+      nickname: 'The Entrepreneurial City',
+      serviceRadius: '25 miles',
+      keyNeighborhoods: ['Geist', 'Hamilton Southeastern', 'Fishers Station'],
+      localLandmarks: ['Geist Reservoir', 'Conner Prairie', 'Fishers Event Center']
+    },
+    'westfield': {
+      name: 'Westfield',
+      state: 'Indiana',
+      stateAbbr: 'IN',
+      zipCodes: ['46074'],
+      population: '45,000',
+      nickname: 'Welcome Home',
+      serviceRadius: '20 miles',
+      keyNeighborhoods: ['Grand Park', 'Chatham Hills', 'Wood Valley'],
+      localLandmarks: ['Grand Park Sports Complex', 'Westfield Washington Township']
+    },
+    'noblesville': {
+      name: 'Noblesville',
+      state: 'Indiana',
+      stateAbbr: 'IN',
+      zipCodes: ['46060', '46061', '46062'],
+      population: '69,000',
+      nickname: 'The Heart of Hamilton County',
+      serviceRadius: '25 miles',
+      keyNeighborhoods: ['Old Town', 'Harbour Trees', 'Pebble Brook'],
+      localLandmarks: ['Conner Prairie', 'Ruoff Music Center', 'White River']
+    }
+  };
+
+  return locations[locationSlug] || null;
 }
 
 

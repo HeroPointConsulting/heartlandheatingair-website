@@ -24,7 +24,7 @@ class Navbar {
           <div class="logo-section">
             <a href="/" class="logo-link">
               <div class="logo-heart-container">
-                <img src="img/hha_heart.png" alt="Heartland Heating & Air Heart Logo" class="logo-heart">
+                <img src="img/hha_heart.png" alt="Heartland Heating + Air Heart Logo" class="logo-heart">
               </div>
               <div class="logo-text-container">
                 <span class="logo-text">HEARTLAND</span>
@@ -49,26 +49,30 @@ class Navbar {
               <div class="dropdown-content">
                 <div class="dropdown-section">
                   <h4>Residential Services</h4>
-                  <a href="services/furnace-installation.html">
+                  <a href="service.html?service=emergency-service">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Emergency Service
+                  </a>
+                  <a href="service.html?service=furnace-installation">
                     <i class="fas fa-fire-burner"></i>
                     Furnace Installation
                   </a>
-                  <a href="services/ac-repair.html">
+                  <a href="service.html?service=ac-repair">
                     <i class="fas fa-snowflake"></i>
                     AC Repair & Replacement
                   </a>
-                  <a href="services/maintenance-plans.html">
+                  <a href="service.html?service=maintenance-plans">
                     <i class="fas fa-calendar-check"></i>
                     Maintenance Plans
                   </a>
-                  <a href="services/indoor-air-quality.html">
+                  <a href="service.html?service=indoor-air-quality">
                     <i class="fas fa-wind"></i>
                     Indoor Air Quality
                   </a>
                 </div>
                 <div class="dropdown-section">
                   <h4>Commercial Services</h4>
-                  <a href="services/commercial-hvac.html">
+                  <a href="service.html?service=commercial-hvac">
                     <i class="fas fa-building"></i>
                     Commercial HVAC
                   </a>
@@ -175,19 +179,28 @@ class Navbar {
           e.preventDefault();
           const href = dropdownLink.getAttribute('href');
           const targetId = href.substring(1);
-          const targetElement = document.getElementById(targetId);
 
-          if (targetElement) {
-            targetElement.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
+          // Check if we're on the main page or a service page
+          const isOnMainPage = window.location.pathname === '/' || window.location.pathname === '/index.html';
 
-            // Close mobile menu
-            this.isMenuOpen = false;
-            navMenu.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
+          if (isOnMainPage) {
+            // On main page, scroll to section
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          } else {
+            // On service page, navigate to main page and scroll to section
+            window.location.href = `/${href}`;
           }
+
+          // Close mobile menu
+          this.isMenuOpen = false;
+          navMenu.classList.remove('active');
+          mobileMenuToggle.classList.remove('active');
         }
       });
     });

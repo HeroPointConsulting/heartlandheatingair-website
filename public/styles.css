@@ -8,6 +8,8 @@
 @import url('./components/TrustSignals.css');
 @import url('./components/About.css');
 @import url('./components/Contact.css');
+@import url('./components/ServicePage.css');
+@import url('./components/LocationPage.css');
 @import url('./components/Footer.css');
 
 /* CSS Reset and Base Styles */

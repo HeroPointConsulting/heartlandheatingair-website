@@ -1,10 +1,10 @@
-// Services Component for Heartland Heating & Air
+// Services Component for Heartland Heating + Air
 // Essential HVAC Services section with grid layout
 
 function createServicesComponent() {
   const services = [
     {
-      id: 'emergency',
+      id: 'emergency-service',
       icon: 'fas fa-phone',
       title: 'Emergency',
       description: '24/7 rapid response for urgent heating and cooling issues',
@@ -17,62 +17,62 @@ function createServicesComponent() {
       isEmergency: true
     },
     {
-      id: 'furnace',
+      id: 'furnace-installation',
       icon: 'fas fa-fire',
       title: 'Furnace Services',
       description: 'Installation, repair, and maintenance of high-efficiency heating systems',
       highlight: '24/7 Emergency',
       action: {
-        text: 'Schedule Service',
-        href: '#schedule',
+        text: 'Learn More',
+        href: 'service.html?service=furnace-installation',
         className: 'btn-compact btn-primary-vibrant'
       }
     },
     {
-      id: 'ac',
+      id: 'ac-repair',
       icon: 'fas fa-snowflake',
       title: 'AC Services',
       description: 'Complete air conditioning repair, replacement, and maintenance',
       highlight: 'Same Day',
       action: {
-        text: 'Schedule Service',
-        href: '#schedule',
+        text: 'Learn More',
+        href: 'service.html?service=ac-repair',
         className: 'btn-compact btn-primary-vibrant'
       }
     },
     {
-      id: 'air-quality',
+      id: 'indoor-air-quality',
       icon: 'fas fa-wind',
       title: 'Air Quality',
       description: 'Advanced purification and ventilation for healthier indoor air',
       highlight: 'Whole Home',
       action: {
-        text: 'Schedule Service',
-        href: '#schedule',
+        text: 'Learn More',
+        href: 'service.html?service=indoor-air-quality',
         className: 'btn-compact btn-primary-vibrant'
       }
     },
     {
-      id: 'maintenance',
+      id: 'maintenance-plans',
       icon: 'fas fa-tools',
       title: 'Maintenance',
       description: 'Preventive care plans to extend equipment life and efficiency',
       highlight: 'Priority Service',
       action: {
-        text: 'Schedule Service',
-        href: '#schedule',
+        text: 'Learn More',
+        href: 'service.html?service=maintenance-plans',
         className: 'btn-compact btn-primary-vibrant'
       }
     },
     {
-      id: 'commercial',
+      id: 'commercial-hvac',
       icon: 'fas fa-building',
       title: 'Commercial',
       description: 'Reliable HVAC solutions for properties and businesses',
       highlight: 'Expert Install',
       action: {
-        text: 'Get Quote',
-        href: '#contact',
+        text: 'Learn More',
+        href: 'service.html?service=commercial-hvac',
         className: 'btn-compact btn-primary-vibrant'
       }
     }
@@ -87,15 +87,15 @@ function createServicesComponent() {
         </div>
         <div class="services-grid-compact">
           ${services.map(service => `
-            <div class="service-card-compact ${service.isEmergency ? 'emergency' : ''}">
+            <a href="${service.action.href}" class="service-card-compact ${service.isEmergency ? 'emergency' : ''}" style="text-decoration: none; color: inherit;">
               <div class="service-icon-compact">
                 <i class="${service.icon}"></i>
               </div>
               <h3>${service.title}</h3>
               <p>${service.description}</p>
               <div class="service-highlight">${service.highlight}</div>
-              <a href="${service.action.href}" class="${service.action.className}">${service.action.text}</a>
-            </div>
+              <span class="${service.action.className}" onclick="event.stopPropagation();">${service.action.text}</span>
+            </a>
           `).join('')}
         </div>
       </div>

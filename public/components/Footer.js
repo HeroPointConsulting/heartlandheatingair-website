@@ -15,7 +15,7 @@ export default class Footer {
               <div class="footer-section footer-brand">
                 <div class="footer-logo">
                   <div class="logo-heart-container">
-                    <img src="img/hha_heart.png" alt="Heartland Heating & Air Heart Logo" class="logo-heart">
+                    <img src="img/hha_heart.png" alt="Heartland Heating + Air Heart Logo" class="logo-heart">
                   </div>
                   <div class="logo-text-container">
                     <span class="logo-text">HEARTLAND</span>
@@ -93,7 +93,7 @@ export default class Footer {
             <!-- Footer Bottom -->
             <div class="footer-bottom">
               <div class="footer-legal">
-                <p>&copy; ${this.currentYear} Heartland Heating & Air. All rights reserved.</p>
+                <p>&copy; ${this.currentYear} Heartland Heating + Air. All rights reserved.</p>
                 <div class="legal-links">
                   <a href="/privacy">Privacy Policy</a>
                   <a href="/terms">Terms of Service</a>
