@@ -5,6 +5,7 @@ import { createReviews, initReviews } from './components/Reviews.js';
 import { createServiceAreas, initServiceAreas } from './components/ServiceAreas.js';
 import { createWhyChoose, initWhyChoose } from './components/WhyChoose.js';
 import { createAboutComponent, initAboutComponent } from './components/About.js';
+import { createContactComponent } from './components/Contact.js';
 import { TrustSignals } from './components/TrustSignals.js';
 import SchedulingWidget from './components/SchedulingWidget.js';
 import './components/Services.js';
@@ -52,6 +53,9 @@ function initializeApp() {
 
   // Load about component
   loadAboutComponent();
+
+  // Load contact component
+  loadContactComponent();
 
   // Load trust signals component
   loadTrustSignalsComponent();
@@ -157,6 +161,19 @@ function loadAboutComponent() {
   }
 }
 
+// Load Contact component - Function Pattern
+function loadContactComponent() {
+  try {
+    const contactContainer = document.getElementById('contact-component-container');
+    if (contactContainer) {
+      // Create contact HTML and inject it
+      contactContainer.innerHTML = createContactComponent();
+    }
+  } catch (error) {
+    console.error('Error loading contact component:', error);
+  }
+}
+
 // Load Trust Signals component - Function Pattern
 function loadTrustSignalsComponent() {
   try {
@@ -172,33 +189,40 @@ function loadTrustSignalsComponent() {
 
 // Contact form handling
 function initializeContactForm() {
-  const contactForm = document.querySelector('.contact-form');
+  // Wait for the contact component to be loaded
+  setTimeout(() => {
+    const contactForm = document.querySelector('.modern-form');
 
-  if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-      e.preventDefault();
+    if (contactForm) {
+      contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-      // Get form data
-      const formData = new FormData(contactForm);
-      const data = {
-        name: formData.get('name'),
-        phone: formData.get('phone'),
-        email: formData.get('email'),
-        service: formData.get('service'),
-        preferred_time: formData.get('preferred_time'),
-        details: formData.get('details')
-      };
+        // Get form data
+        const formData = new FormData(contactForm);
+        const data = {
+          name: formData.get('name'),
+          phone: formData.get('phone'),
+          email: formData.get('email'),
+          customer_type: formData.get('customer_type'),
+          service: formData.get('service'),
+          project_scope: formData.get('project_scope'),
+          timeline: formData.get('timeline'),
+          preferred_time: formData.get('preferred_time'),
+          details: formData.get('details'),
+          consent: formData.get('consent')
+        };
 
-      // Show success message
-      showSuccessMessage('Thank you! We\'ll contact you within 24 hours.');
+        // Show success message
+        showSuccessMessage('Thank you! We\'ll contact you within 24 hours.');
 
-      // Reset form
-      contactForm.reset();
+        // Reset form
+        contactForm.reset();
 
-      // TODO: Send data to your backend/email service
-      // submitContactForm(data);
-    });
-  }
+        // TODO: Send data to your backend/email service
+        // submitContactForm(data);
+      });
+    }
+  }, 100);
 }
 
 // Show success message
@@ -213,8 +237,10 @@ function showSuccessMessage(message) {
     `;
 
   // Insert after contact form
-  const contactForm = document.querySelector('.contact-form');
-  contactForm.parentNode.insertBefore(successDiv, contactForm.nextSibling);
+  const contactForm = document.querySelector('.modern-form');
+  if (contactForm) {
+    contactForm.parentNode.insertBefore(successDiv, contactForm.nextSibling);
+  }
 
   // Remove message after 5 seconds
   setTimeout(() => {
