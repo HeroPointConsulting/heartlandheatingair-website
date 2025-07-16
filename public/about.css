@@ -100,41 +100,41 @@
     text-align: center;
 }
 
-/* Override ServiceAreas and TrustSignals styles for About page */
+/* About page specific stat styles */
 .about-hero .stat {
-    display: block !important;
-    align-items: unset !important;
-    gap: unset !important;
-    padding: 0 !important;
-    background: none !important;
-    border-radius: 0 !important;
-    border-left: none !important;
+    display: block;
+    align-items: unset;
+    gap: unset;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    border-left: none;
 }
 
 .about-hero .stat-number {
-    font-size: 2rem !important;
-    font-weight: 900 !important;
-    color: white !important;
-    margin-right: 0 !important;
-    background: none !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    display: block !important;
-    margin-bottom: 0.25rem !important;
+    font-size: 2rem;
+    font-weight: 900;
+    color: white;
+    margin-right: 0;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    display: block;
+    margin-bottom: 0.25rem;
 }
 
 .about-hero .stat-label {
-    font-size: 0.75rem !important;
-    font-weight: 600 !important;
-    color: rgba(255, 255, 255, 0.8) !important;
-    background: none !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.5px !important;
-    line-height: 1.2 !important;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
 }
 
 /* Founder Story Section */

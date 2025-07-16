@@ -47,6 +47,12 @@
     <!-- External CSS -->
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="components/Navbar.css" />
+    <link rel="stylesheet" href="components/Footer.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Component CSS (loaded last to avoid conflicts) -->
     <link rel="stylesheet" href="components/Hero.css" />
     <link rel="stylesheet" href="components/ServiceAreas.css" />
     <link rel="stylesheet" href="components/Services.css" />
@@ -55,46 +61,55 @@
     <link rel="stylesheet" href="components/TrustSignals.css" />
     <link rel="stylesheet" href="components/About.css" />
     <link rel="stylesheet" href="components/Contact.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   </head>
   <body>
     <!-- Navbar Component Container -->
     <div id="navbar-component-container"></div>
 
     <!-- Hero Component -->
-    <div id="hero-component-container"></div>
+    <section class="section">
+      <div id="hero-component-container"></div>
+    </section>
 
     <!-- Trust Signals Component -->
-    <div id="trust-signals-component-container"></div>
+    <section class="section" style="border-bottom: 3px solid var(--heartland-blue);">
+      <div id="trust-signals-component-container"></div>
+    </section>
 
     <!-- Services Component -->
-    <div id="services-component-container"></div>
+    <section class="section" style="border-bottom: 3px solid var(--heartland-red);">
+      <div id="services-component-container"></div>
+    </section>
 
     <!-- About Component -->
-    <div id="about-component-container"></div>
+    <section class="section" style="border-bottom: 3px solid var(--heartland-blue);">
+      <div id="about-component-container"></div>
+    </section>
 
     <!-- Reviews Component Container -->
-    <div id="reviews-component-container"></div>
+    <section class="section" style="border-bottom: 3px solid var(--heartland-red);">
+      <div id="reviews-component-container"></div>
+    </section>
 
     <!-- Why Choose Heartland Component -->
-    <div id="why-choose-component-container"></div>
+    <section class="section" style="border-bottom: 3px solid var(--heartland-blue);">
+      <div id="why-choose-component-container"></div>
+    </section>
 
     <!-- Service Areas Component -->
-    <div id="service-areas-component"></div>
+    <section class="section" style="border-bottom: 3px solid var(--heartland-red);">
+      <div id="service-areas-component"></div>
+    </section>
 
     <!-- Scheduling Widget -->
-    <section id="schedule" class="section bg-heartland-blue text-white">
+    <section id="schedule" class="section bg-heartland-blue text-white" style="padding: 2rem 0;">
       <div class="container">
         <!-- Scheduling Widget Container -->
         <div id="schedule-widget"></div>
       </div>
     </section>
 
-    <!-- Contact Component -->
-    <div id="contact-component-container"></div>
+
 
     <!-- Footer Component Container -->
     <footer></footer>

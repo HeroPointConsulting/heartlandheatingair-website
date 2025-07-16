@@ -18,11 +18,16 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="components/Navbar.css">
-    <link rel="stylesheet" href="components/Footer.css">
-    <link rel="stylesheet" href="about.css">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="components/Navbar.css" />
+    <link rel="stylesheet" href="components/Footer.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Page-specific CSS (loaded last to avoid conflicts) -->
+    <link rel="stylesheet" href="about.css" />
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -49,7 +54,7 @@
 </head>
 <body>
     <!-- Navigation will be loaded here -->
-    <div id="navbar-container"></div>
+    <div id="navbar-component-container"></div>
 
     <!-- Hero Section -->
     <section class="about-hero">
@@ -439,10 +444,10 @@
         </div>
     </div>
 
-    <!-- Footer will be loaded here -->
-    <div id="footer-container"></div>
+    <!-- Footer Component Container -->
+    <footer></footer>
 
     <!-- Scripts -->
-    <script type="module" src="about.js"></script>
+    <script src="main.js" type="module"></script>
 </body>
 </html> 

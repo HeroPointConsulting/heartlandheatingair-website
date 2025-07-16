@@ -1,29 +1,9 @@
 /* Service Areas - Streamlined with Embedded Map */
-/* Embracing Ma (negative space) - structured simplicity */
 
-/* Main Section Borders */
+/* Service Areas Section */
 #service-areas {
-  position: relative;
-}
-
-#service-areas::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--heartland-red);
-}
-
-#service-areas::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--heartland-blue);
+  /* Section borders handled by main styles.css */
+  padding: 3rem 0;
 }
 
 /* Service Area Content Layout */

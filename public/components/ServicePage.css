@@ -197,6 +197,7 @@
 .emergency-cta {
   position: sticky;
   top: 100px;
+  border-radius: 10px;
 }
 
 .emergency-card {

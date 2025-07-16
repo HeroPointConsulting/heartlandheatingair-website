@@ -1,17 +1,6 @@
 /* Schedule Widget Styles */
 #schedule.section {
-  position: relative;
-}
-
-#schedule.section::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background-color: var(--heartland-red);
-  border-radius: 2px;
+  /* Section borders handled by main styles.css */
 }
 
 .schedule-header {

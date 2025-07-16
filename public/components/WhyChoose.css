@@ -1,6 +1,11 @@
 /* WhyChoose Component Styles */
 /* Trust signals and value propositions section */
 
+/* Why Choose Section */
+.section.bg-white {
+  padding: 3rem 0;
+}
+
 .why-choose-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -22,25 +27,9 @@
 
 
 
-.why-choose-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--heartland-red);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
 .why-choose-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.why-choose-card:hover::before {
-  transform: scaleX(1);
 }
 
 
@@ -158,8 +147,7 @@
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .why-choose-card,
-  .why-icon,
-  .why-choose-card::before {
+  .why-icon {
     transition: none;
   }
   

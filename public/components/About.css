@@ -2,17 +2,6 @@
 .about-section {
   background: #f8fafc;
   padding: 2.5rem 0;
-  position: relative;
-}
-
-.about-section::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--heartland-red);
 }
 
 .about-intro {

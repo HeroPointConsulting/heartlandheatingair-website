@@ -82,8 +82,24 @@ class Navbar {
             
             <a href="#service-areas" class="nav-link">Service Areas</a>
             <a href="/about.html" class="nav-link">About</a>
-            <a href="#contact" class="nav-link">Contact</a>
+            <a href="/contact.html" class="nav-link">Contact</a>
           </nav>
+
+          <!-- Trust Badges -->
+          <div class="navbar-trust-badges">
+            <div class="navbar-trust-badge">
+              <i class="fas fa-star" style="color: #fbbf24;"></i>
+              <span>4.9 Stars</span>
+            </div>
+            <div class="navbar-trust-badge">
+              <i class="fas fa-certificate"></i>
+              <span>NATE Certified</span>
+            </div>
+            <div class="navbar-trust-badge">
+              <i class="fas fa-shield-alt"></i>
+              <span>Licensed & Insured</span>
+            </div>
+          </div>
 
           <!-- Header CTA Buttons removed - available in Hero section -->
         </div>
@@ -167,19 +183,34 @@ class Navbar {
       });
     });
 
-    // Smooth scrolling for anchor links
+    // Handle anchor links (sections on current page or navigation to homepage)
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach(link => {
       link.addEventListener('click', (e) => {
-        const targetId = link.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
+        const href = link.getAttribute('href');
+        const targetId = href.substring(1);
 
-        if (targetElement) {
+        // Check if we're on the main page
+        const isOnMainPage = window.location.pathname === '/' || window.location.pathname === '/index.html';
+
+        if (isOnMainPage) {
+          // On main page, scroll to section
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            e.preventDefault();
+            // Add offset for sticky header
+            const headerHeight = document.querySelector('.main-header')?.offsetHeight || 0;
+            const targetPosition = targetElement.offsetTop - headerHeight - 20; // 20px extra buffer
+
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        } else {
+          // On other pages, navigate to main page with section anchor
           e.preventDefault();
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          window.location.href = `/${href}`;
         }
       });
     });

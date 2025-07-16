@@ -1,5 +1,10 @@
 /* Services Component Styles - Heartland Heating + Air */
 
+/* Services Section */
+#services.section {
+  padding: 3rem 0;
+}
+
 /* Services Grid - Compact Modern Design */
 .services-grid-compact {
   display: grid;
@@ -239,7 +244,6 @@
 .cta-note {
   font-size: 0.875rem;
   color: var(--gray-600);
-  margin: 0;
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {

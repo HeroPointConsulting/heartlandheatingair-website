@@ -99,11 +99,11 @@ function createServicesComponent() {
           `).join('')}
         </div>
         <div class="services-cta text-center">
-          <a href="#schedule" class="btn btn-primary btn-large">
-            <i class="fas fa-calendar-check"></i>
-            Schedule Service
-          </a>
-          <p class="cta-note">Free estimates on new installations</p>
+        <a href="#schedule" class="btn btn-primary btn-large">
+        <i class="fas fa-calendar-check"></i>
+        Schedule Service
+        </a>
+        <p class="cta-note">Free estimates on new installations</p>
         </div>
       </div>
     </section>

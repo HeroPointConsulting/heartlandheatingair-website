@@ -18,6 +18,9 @@ import './components/Services.js';
 document.addEventListener('DOMContentLoaded', function () {
   // Initialize all app features
   initializeApp();
+
+  // Initialize page-specific functionality
+  initializePageSpecificFeatures();
 });
 
 // Main initialization function
@@ -64,8 +67,7 @@ function initializeApp() {
   // Load service areas component
   loadServiceAreasComponent();
 
-  // Load contact component
-  loadContactComponent();
+
 
   // Load footer component
   loadFooterComponent();
@@ -86,7 +88,14 @@ function initializeApp() {
 // Load Navbar component - Class-based Pattern
 function loadNavbarComponent() {
   try {
-    const navbarContainer = document.getElementById('navbar-component-container');
+    // Try the standard container ID first
+    let navbarContainer = document.getElementById('navbar-component-container');
+
+    // Fallback to the about page container ID
+    if (!navbarContainer) {
+      navbarContainer = document.getElementById('navbar-container');
+    }
+
     if (navbarContainer) {
       // Create navbar instance and inject it
       const navbar = new Navbar();
@@ -192,18 +201,7 @@ function loadAboutComponent() {
   }
 }
 
-// Load Contact component - Function Pattern
-function loadContactComponent() {
-  try {
-    const contactContainer = document.getElementById('contact-component-container');
-    if (contactContainer) {
-      // Create contact HTML and inject it
-      contactContainer.innerHTML = createContactComponent();
-    }
-  } catch (error) {
-    console.error('Error loading contact component:', error);
-  }
-}
+
 
 // Load Trust Signals component - Function Pattern
 function loadTrustSignalsComponent() {
@@ -793,6 +791,289 @@ function getLocationData(locationSlug) {
   };
 
   return locations[locationSlug] || null;
+}
+
+// Page-specific functionality
+function initializePageSpecificFeatures() {
+  // Check if we're on a service page
+  if (window.location.pathname.includes('service.html')) {
+    initializeServicePageFeatures();
+  }
+
+  // Check if we're on the about page
+  if (window.location.pathname.includes('about.html')) {
+    initializeAboutPageFeatures();
+  }
+}
+
+// Service page specific functionality
+function initializeServicePageFeatures() {
+  // Get service slug from URL
+  const serviceSlug = getServiceSlugFromURL();
+
+  // Load service page content
+  loadServicePageContent(serviceSlug);
+
+  // Load other components (conditionally for emergency service)
+  if (serviceSlug !== 'emergency-service') {
+    loadTrustSignalsComponent();
+    loadContactComponent();
+  }
+
+  // Only initialize contact form and scheduler for non-emergency services
+  if (serviceSlug !== 'emergency-service') {
+    initializeContactForm();
+    initializeScheduler();
+  }
+
+  // Initialize Calendly (only for non-emergency services)
+  if (serviceSlug !== 'emergency-service') {
+    setTimeout(() => {
+      initializeCalendly();
+    }, 1000);
+  }
+
+  // Hide scheduling and contact sections for emergency service
+  if (serviceSlug === 'emergency-service') {
+    hideEmergencySections();
+  }
+
+  // Hide schedule section for commercial HVAC (keep contact/quote section)
+  if (serviceSlug === 'commercial-hvac') {
+    hideScheduleSectionForCommercial();
+  }
+}
+
+// About page specific functionality
+function initializeAboutPageFeatures() {
+  // Initialize video modal
+  initVideoModal();
+
+  // Handle navigation links
+  handleNavigation();
+}
+
+// Get service slug from URL
+function getServiceSlugFromURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const service = urlParams.get('service');
+
+  if (service) {
+    return service;
+  }
+
+  // Fallback: try to get from path
+  const path = window.location.pathname;
+  const pathParts = path.split('/');
+  const lastPart = pathParts[pathParts.length - 1];
+
+  if (lastPart && lastPart !== 'service.html') {
+    return lastPart.replace('.html', '');
+  }
+
+  // Default to AC repair if no service specified
+  return 'ac-repair';
+}
+
+// Load Service Page Content
+function loadServicePageContent(serviceSlug) {
+  try {
+    const serviceContainer = document.getElementById('service-page-container');
+    if (serviceContainer) {
+      const serviceContent = createServicePage(serviceSlug);
+      serviceContainer.innerHTML = serviceContent;
+
+      // Update page title and meta description
+      updatePageMeta(serviceSlug);
+
+      // Initialize service page functionality
+      initServicePage();
+    }
+  } catch (error) {
+    console.error('Error loading service page content:', error);
+  }
+}
+
+// Update page meta information
+function updatePageMeta(serviceSlug) {
+  import('./data/services.js').then(({ getServiceBySlug }) => {
+    const service = getServiceBySlug(serviceSlug);
+    if (service) {
+      // Update title
+      document.title = `${service.title} Indianapolis | Heartland Heating + Air`;
+
+      // Update meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', service.description);
+      }
+
+      // Update canonical URL
+      const canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) {
+        canonical.setAttribute('href', `https://heartlandheatingair.com/service?service=${serviceSlug}`);
+      }
+    }
+  }).catch(error => {
+    console.error('Error updating page meta:', error);
+  });
+}
+
+// Load Contact component
+function loadContactComponent() {
+  try {
+    const contactContainer = document.getElementById('contact-component-container');
+    if (contactContainer) {
+      contactContainer.innerHTML = createContactComponent();
+    }
+  } catch (error) {
+    console.error('Error loading contact component:', error);
+  }
+}
+
+// Hide scheduling and contact sections for emergency service
+function hideEmergencySections() {
+  // Hide the schedule section
+  const scheduleSection = document.getElementById('schedule');
+  if (scheduleSection) {
+    scheduleSection.style.display = 'none';
+  }
+
+  // Hide the contact component container
+  const contactContainer = document.getElementById('contact-component-container');
+  if (contactContainer) {
+    contactContainer.style.display = 'none';
+  }
+
+  // Hide the trust signals component container
+  const trustContainer = document.getElementById('trust-signals-component-container');
+  if (trustContainer) {
+    trustContainer.style.display = 'none';
+  }
+
+  // Update chat widget options for emergency service
+  updateChatWidgetForEmergency();
+}
+
+// Update chat widget to focus on emergency options
+function updateChatWidgetForEmergency() {
+  const chatOptions = document.querySelectorAll('.chat-option');
+  if (chatOptions.length > 0) {
+    // Hide schedule and contact options
+    chatOptions.forEach((option, index) => {
+      if (index === 0 || index === 2) { // Schedule and Send Message options
+        option.style.display = 'none';
+      }
+    });
+
+    // Update greeting text
+    const greetingText = document.querySelector('.greeting-text h4');
+    if (greetingText) {
+      greetingText.textContent = 'Emergency HVAC Service';
+    }
+
+    const greetingDesc = document.querySelector('.greeting-text p');
+    if (greetingDesc) {
+      greetingDesc.textContent = 'Need immediate help? Call or text us now:';
+    }
+  }
+}
+
+// Hide schedule section for commercial HVAC (keep contact/quote section)
+function hideScheduleSectionForCommercial() {
+  const scheduleSection = document.getElementById('schedule');
+  if (scheduleSection) {
+    scheduleSection.style.display = 'none';
+  }
+
+  // Update chat widget for commercial service
+  updateChatWidgetForCommercial();
+}
+
+// Update chat widget to show "Get Quote" for commercial service
+function updateChatWidgetForCommercial() {
+  const chatOptions = document.querySelectorAll('.chat-option');
+  if (chatOptions.length > 0) {
+    // Update the schedule option to show "Get Quote"
+    const scheduleOption = chatOptions[0];
+    if (scheduleOption) {
+      const icon = scheduleOption.querySelector('i');
+      const text = scheduleOption.querySelector('span');
+      if (icon) icon.className = 'fas fa-file-invoice';
+      if (text) text.textContent = 'Get Quote';
+      scheduleOption.href = '#contact';
+    }
+  }
+}
+
+// Initialize video modal for about page
+function initVideoModal() {
+  const playButton = document.getElementById('playStoryVideo');
+  const storyModal = document.getElementById('storyModal');
+  const closeButton = document.getElementById('storyClose');
+  const video = document.getElementById('storyVideo');
+
+  if (playButton && storyModal) {
+    playButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      storyModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  if (closeButton && storyModal) {
+    closeButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      storyModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
+  }
+
+  // Close modal when clicking outside
+  if (storyModal) {
+    storyModal.addEventListener('click', (e) => {
+      if (e.target === storyModal) {
+        storyModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        if (video) {
+          video.pause();
+          video.currentTime = 0;
+        }
+      }
+    });
+  }
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && storyModal && storyModal.classList.contains('active')) {
+      storyModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+      }
+    }
+  });
+}
+
+// Handle navigation for about page
+function handleNavigation() {
+  // Handle internal links that should go to homepage sections
+  const internalLinks = document.querySelectorAll('a[href^="#"]');
+  internalLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href !== '#') {
+        e.preventDefault();
+        // Navigate to homepage with section anchor
+        window.location.href = `/${href}`;
+      }
+    });
+  });
 }
 
 
