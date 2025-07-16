@@ -1,5 +1,6 @@
 // Heartland Heating & Air - Main JavaScript
 // ES6 Module imports for components
+import Navbar from './components/Navbar.js';
 import { createHero, initHero } from './components/Hero.js';
 import { createReviews, initReviews } from './components/Reviews.js';
 import { createServiceAreas, initServiceAreas } from './components/ServiceAreas.js';
@@ -18,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Main initialization function
 function initializeApp() {
+  // Load navbar component first
+  loadNavbarComponent();
+
   // Initialize mobile menu
   initializeMobileMenu();
 
@@ -67,6 +71,23 @@ function initializeApp() {
 
   // Initialize live chat
   initializeLiveChat();
+}
+
+// Load Navbar component - Class-based Pattern
+function loadNavbarComponent() {
+  try {
+    const navbarContainer = document.getElementById('navbar-component-container');
+    if (navbarContainer) {
+      // Create navbar instance and inject it
+      const navbar = new Navbar();
+      navbarContainer.innerHTML = navbar.render();
+      
+      // Initialize navbar interactivity
+      navbar.attachEventListeners();
+    }
+  } catch (error) {
+    console.error('Error loading navbar component:', error);
+  }
 }
 
 // Load Hero component - Myers-Vanilla Pattern
