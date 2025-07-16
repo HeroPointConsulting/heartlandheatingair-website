@@ -182,7 +182,7 @@
 .hero-subtitle {
   font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   font-weight: 600;
-  color: var(--heartland-red);
+  color: var(--white);
   margin: 0;
   opacity: 1;
   letter-spacing: 0.02em;

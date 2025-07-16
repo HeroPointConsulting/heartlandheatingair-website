@@ -53,9 +53,13 @@ export function createReviews() {
         
         <div class="reviews-cta">
           <a href="#schedule" class="cta-button">Schedule Service</a>
-          <a href="https://g.page/r/CQfKjB6VHxWXEB0/review" target="_blank" class="more-reviews-button">
+          <a href="https://g.page/r/CQfKjB6VHxWXEB0/review" target="_blank" rel="noopener" class="more-reviews-button">
             <i class="fab fa-google"></i>
-            More Reviews
+            Read All Reviews
+          </a>
+          <a href="https://g.page/r/CQfKjB6VHxWXEB0/review" target="_blank" rel="noopener" class="leave-review-button">
+            <i class="fas fa-star"></i>
+            Leave a Review
           </a>
         </div>
       </div>

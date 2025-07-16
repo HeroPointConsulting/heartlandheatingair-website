@@ -19,7 +19,7 @@ export function createAboutComponent() {
               </p>
               
               <p>
-                With 20+ years of experience and NATE certification, I believe in American-made equipment and standing behind every job with our satisfaction guarantee.
+                With 20+ years of experience and NATE certification, I believe in American-made equipment and standing behind every job with our satisfaction guarantee. We serve the entire Midwest region, from single-family homes to multi-property portfolios and commercial projects.
               </p>
 
               <button class="story-video-btn" id="playStoryVideo">
@@ -47,6 +47,10 @@ export function createAboutComponent() {
                   <div class="credential">
                     <i class="fas fa-flag-usa"></i>
                     <span><strong>American Equipment</strong> • Carrier • Trane • Lennox</span>
+                  </div>
+                  <div class="credential">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span><strong>Midwest Regional</strong> • Multi-state service coverage</span>
                   </div>
                 </div>
               </div>

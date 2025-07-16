@@ -244,6 +244,32 @@
   font-size: 1.125rem;
 }
 
+.leave-review-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: var(--heartland-blue);
+  color: white;
+  text-decoration: none;
+  border: 2px solid var(--heartland-blue);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.leave-review-button:hover {
+  background: var(--heartland-red);
+  border-color: var(--heartland-red);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.2);
+}
+
+.leave-review-button i {
+  font-size: 1.125rem;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .reviews-section {
@@ -300,7 +326,8 @@
   }
   
   .cta-button,
-  .more-reviews-button {
+  .more-reviews-button,
+  .leave-review-button {
     width: 100%;
     text-align: center;
     justify-content: center;

@@ -81,8 +81,7 @@ class Navbar {
             </div>
             
             <a href="#service-areas" class="nav-link">Service Areas</a>
-            <a href="#reviews" class="nav-link">Reviews</a>
-            <a href="#about" class="nav-link">About</a>
+            <a href="/about.html" class="nav-link">About</a>
             <a href="#contact" class="nav-link">Contact</a>
           </nav>
 
