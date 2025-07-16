@@ -87,6 +87,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+  filter: none; /* Ensure no inversion on navbar logo */
 }
 
 /* Fallback styling if heart image doesn't load */
@@ -126,6 +127,7 @@
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   white-space: nowrap; /* Prevent text wrapping */
+  filter: none; /* Ensure no inversion on navbar logo text */
 }
 
 .logo-tagline {
@@ -139,6 +141,7 @@
   margin-top: -2px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   white-space: nowrap; /* Prevent text wrapping */
+  filter: none; /* Ensure no inversion on navbar logo tagline */
 }
 
 .plus-symbol {

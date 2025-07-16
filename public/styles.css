@@ -131,22 +131,24 @@ body {
 .chat-toggle {
   width: 60px;
   height: 60px;
-  background: var(--heartland-blue);
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--white);
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(15, 46, 109, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   position: relative;
 }
 
 .chat-toggle:hover {
-  background: var(--heartland-blue-hover);
+  background: rgba(0, 0, 0, 0.3);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(15, 46, 109, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 .chat-toggle i {
@@ -168,6 +170,7 @@ body {
   font-size: 12px;
   font-weight: 600;
   animation: pulse 2s infinite;
+  border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .chat-popup {
@@ -311,6 +314,10 @@ body {
   .emergency-float {
     display: none; /* Hide on mobile - use sticky bottom bar instead */
   }
+  
+  .chat-widget {
+    bottom: 80px; /* Position above mobile call bar */
+  }
 }
 
 @media (max-width: 640px) {
@@ -320,7 +327,7 @@ body {
   }
   
   .chat-widget {
-    bottom: 15px;
+    bottom: 80px; /* Position above mobile call bar */
     right: 15px;
   }
 }

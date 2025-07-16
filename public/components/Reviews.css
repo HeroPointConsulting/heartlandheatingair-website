@@ -132,6 +132,7 @@
   left: 0;
   width: 100%;
   padding: 1rem;
+  padding-bottom: 1.5rem; /* Extra bottom padding for content */
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -246,7 +247,7 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .reviews-section {
-    padding: 2.5rem 0;
+    padding: 2.5rem 0 6rem 0; /* Add extra bottom padding for mobile call bar */
   }
   
   .reviews-grid {
@@ -279,7 +280,9 @@
   }
   
   .testimonial-wrapper {
-    min-height: 160px;
+    min-height: 200px; /* Increased for longer testimonials */
+    margin-bottom: 100px; /* Add space for mobile call bar */
+    padding-bottom: 1rem; /* Extra padding at bottom */
   }
   
   .testimonial-slide p {
@@ -301,5 +304,23 @@
     width: 100%;
     text-align: center;
     justify-content: center;
+  }
+}
+
+/* Extra small mobile adjustments */
+@media (max-width: 480px) {
+  .testimonial-wrapper {
+    min-height: 220px; /* Even more height for very small screens */
+    margin-bottom: 120px; /* More space for mobile call bar */
+  }
+  
+  .testimonial-slide {
+    padding: 0.75rem;
+    padding-bottom: 2rem; /* More bottom padding on small screens */
+  }
+  
+  .testimonial-slide p {
+    font-size: 0.95rem; /* Slightly smaller text on very small screens */
+    line-height: 1.5;
   }
 } 

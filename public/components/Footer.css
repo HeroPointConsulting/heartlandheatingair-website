@@ -39,7 +39,7 @@
   justify-content: center;
 }
 
-.logo-heart {
+.footer .logo-heart {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -52,7 +52,7 @@
   gap: 0.25rem;
 }
 
-.logo-text {
+.footer .logo-text {
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--white);
@@ -61,12 +61,13 @@
   filter: brightness(0) invert(1);
 }
 
-.logo-tagline {
+.footer .logo-tagline {
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   filter: brightness(0) invert(1);
+  color: var(--white);
 }
 
 .plus-symbol {
@@ -349,7 +350,7 @@
 
 @media (max-width: 768px) {
   .footer {
-    padding: 2rem 0 1rem;
+    padding: 2rem 0 6rem; /* Increased bottom padding for mobile call bar */
   }
   
   .footer-main {
@@ -432,6 +433,7 @@
   
   .footer-agency {
     text-align: center;
+    margin-bottom: 1rem; /* Extra space for agency credit */
   }
   
   .agency-credit p {

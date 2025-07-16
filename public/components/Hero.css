@@ -431,9 +431,6 @@
 
 @media (max-width: 768px) {
   .floating-emergency {
-    bottom: 1.5rem;
-    right: 1.5rem;
-    padding: 0.875rem 1.25rem;
-    font-size: 0.8rem;
+    display: none; /* Hide on mobile - use sticky bottom bar instead */
   }
 } 
