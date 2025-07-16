@@ -71,8 +71,8 @@ function createServicesComponent() {
       description: 'Reliable HVAC solutions for properties and businesses',
       highlight: 'Expert Install',
       action: {
-        text: 'Schedule Service',
-        href: '#schedule',
+        text: 'Get Quote',
+        href: '#contact',
         className: 'btn-compact btn-primary-vibrant'
       }
     }

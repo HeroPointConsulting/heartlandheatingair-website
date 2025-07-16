@@ -144,19 +144,34 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.5rem 0;
+  padding: 0.75rem 1rem;
+  background: #f8fafc;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 280px;
+}
+
+.credential:hover {
+  background: #f1f5f9;
+  border-color: #dc2626;
+  transform: translateY(-1px);
 }
 
 .credential i {
   color: #dc2626;
-  font-size: 1.1rem;
-  width: 1.5rem;
+  font-size: 1.25rem;
+  width: 1.75rem;
+  height: 1.75rem;
   text-align: center;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 1.5rem;
+  min-width: 1.75rem;
+  background: rgba(220, 38, 38, 0.1);
+  border-radius: 0.375rem;
 }
 
 .credential span {
