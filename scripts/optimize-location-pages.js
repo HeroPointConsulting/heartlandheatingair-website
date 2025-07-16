@@ -1,25 +1,218 @@
-<!DOCTYPE html>
+const fs = require('fs');
+const path = require('path');
+
+// Location data with coordinates and service areas
+const locations = {
+  indianapolis: {
+    name: 'Indianapolis',
+    coords: '39.7684;-86.1581',
+    zipCodes: ['46201', '46202', '46203', '46204', '46205', '46206', '46207', '46208', '46209', '46210', '46211', '46212', '46213', '46214', '46215', '46216', '46217', '46218', '46219', '46220', '46221', '46222', '46223', '46224', '46225', '46226', '46227', '46228', '46229', '46230', '46231', '46234', '46235', '46236', '46237', '46239', '46240', '46241', '46242', '46244', '46247', '46249', '46250', '46251', '46253', '46254', '46255', '46256', '46259', '46260', '46262', '46268', '46277', '46278', '46280', '46282', '46283', '46285', '46290', '46291', '46295', '46296', '46298'],
+    areas: {
+      'Downtown Indianapolis': '46201, 46202, 46203, 46204, 46205',
+      'North Side': 'Broad Ripple, Meridian-Kessler, Butler-Tarkington',
+      'East Side': 'Irvington, Lawrence, Warren Township',
+      'South Side': 'Fountain Square, Garfield Park, Beech Grove',
+      'West Side': 'Speedway, Pike Township, Wayne Township',
+      'Suburbs': 'Carmel, Fishers, Noblesville, Westfield, Greenwood'
+    },
+    radius: '30 miles'
+  },
+  carmel: {
+    name: 'Carmel',
+    coords: '39.9784;-86.1180',
+    zipCodes: ['46032', '46033', '46074'],
+    areas: {
+      'Arts & Design District': '46032',
+      'Village of WestClay': '46033',
+      'Meridian Hills': '46074',
+      'Surrounding Areas': 'Noblesville, Westfield, Fishers'
+    },
+    radius: '25 miles'
+  },
+  fishers: {
+    name: 'Fishers',
+    coords: '39.9567;-85.9550',
+    zipCodes: ['46037', '46038', '46040'],
+    areas: {
+      'Downtown Fishers': '46038',
+      'Geist Reservoir': '46037',
+      'Northeast Fishers': '46040',
+      'Surrounding Areas': 'Noblesville, Carmel, Indianapolis'
+    },
+    radius: '25 miles'
+  },
+  noblesville: {
+    name: 'Noblesville',
+    coords: '40.0456;-86.0086',
+    zipCodes: ['46060', '46061', '46062'],
+    areas: {
+      'Historic Downtown': '46060',
+      'North Noblesville': '46061',
+      'East Noblesville': '46062',
+      'Surrounding Areas': 'Carmel, Fishers, Westfield'
+    },
+    radius: '25 miles'
+  },
+  westfield: {
+    name: 'Westfield',
+    coords: '40.0428;-86.1275',
+    zipCodes: ['46074', '46075'],
+    areas: {
+      'Grand Park': '46074',
+      'Downtown Westfield': '46075',
+      'Surrounding Areas': 'Carmel, Noblesville, Indianapolis'
+    },
+    radius: '25 miles'
+  }
+};
+
+// Service configurations
+const services = {
+  'air-conditioning-service': {
+    title: 'Air Conditioning Service',
+    shortTitle: 'AC Service',
+    description: 'Professional air conditioning service',
+    longDescription: '24/7 Emergency AC Repair Near Me • American-Made Equipment • Same-Day Service',
+    features: [
+      '24/7 emergency AC repair available',
+      'EPA Certified, NATE Certified technicians',
+      'Google Guaranteed service protection',
+      'Same-day service for urgent repairs',
+      'American-made equipment specialists',
+      'Transparent pricing starting at $200-$500',
+      'Veteran-owned and operated',
+      'Free estimates on new installations'
+    ],
+    pricing: '$200-$500',
+    serviceTime: 'same-day service',
+    image: 'slideshow-2.png',
+    altImage: 'Professional AC service technician working'
+  },
+  'furnace-installation': {
+    title: 'Furnace Installation',
+    shortTitle: 'Furnace Installation',
+    description: 'Professional furnace installation services',
+    longDescription: 'American-Made Furnace Installation • Expert Technicians • 1-2 Day Service',
+    features: [
+      '24/7 emergency service available',
+      'EPA Certified, NATE Certified technicians',
+      'Google Guaranteed service protection',
+      '1-2 days installation service',
+      'American-made equipment specialists',
+      'Transparent pricing starting at $3,000-$6,000',
+      'Veteran-owned and operated',
+      'Free estimates and financing options'
+    ],
+    pricing: '$3,000-$6,000',
+    serviceTime: '1-2 days service',
+    image: 'slideshow-3.png',
+    altImage: 'Professional furnace installation technician'
+  },
+  'hvac-repair': {
+    title: 'HVAC Repair',
+    shortTitle: 'HVAC Repair',
+    description: 'Professional HVAC repair services',
+    longDescription: '24/7 Emergency HVAC Repair • Same-Day Service • American-Made Equipment',
+    features: [
+      '24/7 emergency HVAC repair available',
+      'EPA Certified, NATE Certified technicians',
+      'Google Guaranteed service protection',
+      'Same-day service for urgent repairs',
+      'American-made equipment specialists',
+      'Transparent pricing starting at $150-$400',
+      'Veteran-owned and operated',
+      'Diagnostic services included'
+    ],
+    pricing: '$150-$400',
+    serviceTime: 'same-day service',
+    image: 'slideshow-1.png',
+    altImage: 'Professional HVAC repair technician'
+  },
+  'hvac-maintenance': {
+    title: 'HVAC Maintenance',
+    shortTitle: 'HVAC Maintenance',
+    description: 'Professional HVAC maintenance services',
+    longDescription: 'Preventive HVAC Maintenance • American-Made Equipment • Certified Technicians',
+    features: [
+      'Scheduled maintenance programs',
+      'EPA Certified, NATE Certified technicians',
+      'Google Guaranteed service protection',
+      'Preventive maintenance plans',
+      'American-made equipment specialists',
+      'Transparent pricing starting at $100-$300',
+      'Veteran-owned and operated',
+      'Energy efficiency optimization'
+    ],
+    pricing: '$100-$300',
+    serviceTime: 'scheduled service',
+    image: 'slideshow-4.png',
+    altImage: 'Professional HVAC maintenance technician'
+  },
+  'duct-cleaning': {
+    title: 'Duct Cleaning',
+    shortTitle: 'Duct Cleaning',
+    description: 'Professional duct cleaning services',
+    longDescription: 'Professional Duct Cleaning • Improved Air Quality • American-Made Equipment',
+    features: [
+      'Professional duct cleaning service',
+      'EPA Certified, NATE Certified technicians',
+      'Google Guaranteed service protection',
+      'Same-day service available',
+      'American-made equipment specialists',
+      'Transparent pricing starting at $300-$800',
+      'Veteran-owned and operated',
+      'Air quality improvement guaranteed'
+    ],
+    pricing: '$300-$800',
+    serviceTime: 'same-day service',
+    image: 'slideshow-2.png',
+    altImage: 'Professional duct cleaning technician'
+  }
+};
+
+function generateLocationPage(locationKey, serviceKey) {
+  const location = locations[locationKey];
+  const service = services[serviceKey];
+
+  const title = `${service.title} ${location.name} IN | 24/7 ${service.shortTitle} Near Me | Heartland Heating + Air`;
+  const description = `Professional ${service.description.toLowerCase()} in ${location.name}, IN. 24/7 emergency ${service.shortTitle.toLowerCase()}, ${service.serviceTime}, American-made equipment. Call (317) 555-0123 for immediate assistance.`;
+
+  const areaGrid = Object.entries(location.areas).map(([areaName, areaInfo]) =>
+    `<div class="area-item">
+      <div class="area-icon">📍</div>
+      <div class="area-content">
+        <h4>${areaName}</h4>
+        <p>${areaInfo}</p>
+      </div>
+    </div>`
+  ).join('\n                ');
+
+  const featuresList = service.features.map(feature =>
+    `<li>${feature}</li>`
+  ).join('\n                        ');
+
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Air Conditioning Service Westfield IN | 24/7 AC Service Near Me | Heartland Heating + Air</title>
-    <meta name="description" content="Professional professional air conditioning service in Westfield, IN. 24/7 emergency ac service, same-day service, American-made equipment. Call (317) 555-0123 for immediate assistance.">
-    <link rel="canonical" href="https://heartlandheatingair.com/locations/westfield/air-conditioning-service">
+    <title>${title}</title>
+    <meta name="description" content="${description}">
+    <link rel="canonical" href="https://heartlandheatingair.com/locations/${locationKey}/${serviceKey}">
     
     <!-- Local SEO Meta Tags -->
     <meta name="geo.region" content="US-IN">
-    <meta name="geo.placename" content="Westfield, Indiana">
-    <meta name="geo.position" content="40.0428;-86.1275">
-    <meta name="ICBM" content="40.0428, -86.1275">
+    <meta name="geo.placename" content="${location.name}, Indiana">
+    <meta name="geo.position" content="${location.coords}">
+    <meta name="ICBM" content="${location.coords.replace(';', ', ')}">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Air Conditioning Service Westfield IN | 24/7 AC Service Near Me | Heartland Heating + Air">
-    <meta property="og:description" content="Professional professional air conditioning service in Westfield, IN. 24/7 emergency ac service, same-day service, American-made equipment. Call (317) 555-0123 for immediate assistance.">
-    <meta property="og:url" content="https://heartlandheatingair.com/locations/westfield/air-conditioning-service">
+    <meta property="og:title" content="${title}">
+    <meta property="og:description" content="${description}">
+    <meta property="og:url" content="https://heartlandheatingair.com/locations/${locationKey}/${serviceKey}">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
-    <meta property="og:image" content="https://heartlandheatingair.com/img/slideshow-2.png">
+    <meta property="og:image" content="https://heartlandheatingair.com/img/${service.image}">
     
     <!-- Schema.org Local Business JSON-LD -->
     <script type="application/ld+json">
@@ -28,30 +221,30 @@
       "@type": "LocalBusiness",
       "name": "Heartland Heating + Air",
       "image": "https://heartlandheatingair.com/img/hha_heart.png",
-      "description": "Professional HVAC services in the heart of the Midwest - American-made equipment, veteran-owned, serving Westfield and surrounding areas",
+      "description": "Professional HVAC services in the heart of the Midwest - American-made equipment, veteran-owned, serving ${location.name} and surrounding areas",
       "telephone": "(317) 555-0123",
       "email": "info@heartlandheatingair.com",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Westfield",
+        "addressLocality": "${location.name}",
         "addressRegion": "IN",
         "addressCountry": "US"
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 40.0428,
-        "longitude": -86.1275
+        "latitude": ${location.coords.split(';')[0]},
+        "longitude": ${location.coords.split(';')[1]}
       },
       "openingHours": "Mo-Su 00:00-23:59",
-      "priceRange": "$200-$500",
+      "priceRange": "${service.pricing}",
       "serviceArea": {
         "@type": "GeoCircle",
         "geoMidpoint": {
           "@type": "GeoCoordinates",
-          "latitude": 40.0428,
-          "longitude": -86.1275
+          "latitude": ${location.coords.split(';')[0]},
+          "longitude": ${location.coords.split(';')[1]}
         },
-        "geoRadius": "25 miles"
+        "geoRadius": "${location.radius}"
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -61,8 +254,8 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Air Conditioning Service",
-              "description": "Professional ac service in Westfield"
+              "name": "${service.title}",
+              "description": "Professional ${service.shortTitle.toLowerCase()} in ${location.name}"
             }
           }
         ]
@@ -140,7 +333,7 @@
     
     /* Page Content Styles */
     .hero { background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 60px 0; text-align: center; position: relative; overflow: hidden; }
-    .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('../../img/slideshow-2.png') center/cover; opacity: 0.1; }
+    .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('../../img/${service.image}') center/cover; opacity: 0.1; }
     .hero .container { position: relative; z-index: 2; }
     .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; }
     .hero p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
@@ -269,8 +462,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Air Conditioning Service Westfield IN</h1>
-            <p>24/7 Emergency AC Repair Near Me • American-Made Equipment • Same-Day Service</p>
+            <h1>${service.title} ${location.name} IN</h1>
+            <p>${service.longDescription}</p>
             <a href="tel:(317) 555-0123" class="btn emergency">
                 Call (317) 555-0123
             </a>
@@ -283,22 +476,15 @@
     <!-- Service Info -->
     <section class="service-info">
         <div class="container">
-            <h2>Professional Air Conditioning Service in Westfield</h2>
+            <h2>Professional ${service.title} in ${location.name}</h2>
             <div class="service-grid">
                 <div>
                     <ul class="service-list">
-                        <li>24/7 emergency AC repair available</li>
-                        <li>EPA Certified, NATE Certified technicians</li>
-                        <li>Google Guaranteed service protection</li>
-                        <li>Same-day service for urgent repairs</li>
-                        <li>American-made equipment specialists</li>
-                        <li>Transparent pricing starting at $200-$500</li>
-                        <li>Veteran-owned and operated</li>
-                        <li>Free estimates on new installations</li>
+                        ${featuresList}
                     </ul>
                 </div>
                 <div class="service-image">
-                    <img src="../../img/slideshow-2.png" alt="Professional AC service technician working in Westfield">
+                    <img src="../../img/${service.image}" alt="${service.altImage} in ${location.name}">
                 </div>
             </div>
         </div>
@@ -307,15 +493,15 @@
     <!-- Trust Signals -->
     <section class="trust-signals">
         <div class="container">
-            <h3>Why Choose Heartland Heating + Air in Westfield?</h3>
+            <h3>Why Choose Heartland Heating + Air in ${location.name}?</h3>
             <div class="trust-grid">
                 <div class="trust-item">
                     <h4>🇺🇸 American Pride</h4>
                     <p>Patriotic values, American-made equipment, veteran-owned business</p>
                 </div>
                 <div class="trust-item">
-                    <h4>⚡ Same-Day Service</h4>
-                    <p>Emergency service when you need it most - no waiting</p>
+                    <h4>⚡ ${service.serviceTime.includes('same') ? 'Same-Day Service' : 'Fast Service'}</h4>
+                    <p>${service.serviceTime.includes('same') ? 'Emergency service when you need it most - no waiting' : 'Professional service with minimal disruption'}</p>
                 </div>
                 <div class="trust-item">
                     <h4>🛡️ Google Guaranteed</h4>
@@ -332,30 +518,10 @@
     <!-- Service Area -->
     <section class="service-area">
         <div class="container">
-            <h3>Westfield Service Areas</h3>
-            <p>We proudly serve Westfield and surrounding communities within 25 miles.</p>
+            <h3>${location.name} Service Areas</h3>
+            <p>We proudly serve ${location.name} and surrounding communities within ${location.radius}.</p>
             <div class="area-grid">
-                <div class="area-item">
-      <div class="area-icon">📍</div>
-      <div class="area-content">
-        <h4>Grand Park</h4>
-        <p>46074</p>
-      </div>
-    </div>
-                <div class="area-item">
-      <div class="area-icon">📍</div>
-      <div class="area-content">
-        <h4>Downtown Westfield</h4>
-        <p>46075</p>
-      </div>
-    </div>
-                <div class="area-item">
-      <div class="area-icon">📍</div>
-      <div class="area-content">
-        <h4>Surrounding Areas</h4>
-        <p>Carmel, Noblesville, Indianapolis</p>
-      </div>
-    </div>
+                ${areaGrid}
             </div>
         </div>
     </section>
@@ -363,15 +529,15 @@
     <!-- CTA -->
     <section class="cta">
         <div class="container">
-            <h3>Need AC Service in Westfield?</h3>
-            <p>Contact Heartland Heating + Air today for reliable, efficient ac service with American pride.</p>
+            <h3>Need ${service.shortTitle} in ${location.name}?</h3>
+            <p>Contact Heartland Heating + Air today for reliable, efficient ${service.shortTitle.toLowerCase()} with American pride.</p>
             <a href="tel:(317) 555-0123" class="btn emergency">
                 Call (317) 555-0123
             </a>
             <a href="/#contact" class="btn">
                 Get Free Quote
             </a>
-            <p class="cta-note">Serving Westfield and surrounding areas within 25 miles • 24/7 Emergency Service Available</p>
+            <p class="cta-note">Serving ${location.name} and surrounding areas within ${location.radius} • 24/7 Emergency Service Available</p>
         </div>
     </section>
 
@@ -408,4 +574,40 @@
     </footer>
   
 </body>
-</html>
+</html>`;
+}
+
+// Generate all location pages
+function generateAllLocationPages() {
+  const locationsDir = path.join(__dirname, '../public/locations');
+
+  Object.keys(locations).forEach(locationKey => {
+    const locationDir = path.join(locationsDir, locationKey);
+
+    if (!fs.existsSync(locationDir)) {
+      fs.mkdirSync(locationDir, { recursive: true });
+    }
+
+    Object.keys(services).forEach(serviceKey => {
+      const filePath = path.join(locationDir, `${serviceKey}.html`);
+      const content = generateLocationPage(locationKey, serviceKey);
+
+      fs.writeFileSync(filePath, content);
+      console.log(`Generated: ${locationKey}/${serviceKey}.html`);
+    });
+  });
+
+  console.log('\n✅ All location pages have been optimized with:');
+  console.log('• Long-tail SEO optimization');
+  console.log('• Patriotic positioning elements');
+  console.log('• Compact, modern design');
+  console.log('• Local imagery integration');
+  console.log('• Enhanced trust signals');
+  console.log('• Improved service area information');
+  console.log('• Completely redesigned area items with icons and better styling');
+  console.log('• Fixed footer links to point to correct service pages');
+  console.log('• Logo and brand name now link to main page only');
+}
+
+// Run the script
+generateAllLocationPages(); 

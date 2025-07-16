@@ -80,44 +80,7 @@ class Navbar {
               </div>
             </div>
             
-            <div class="nav-dropdown">
-              <a href="#service-areas" class="nav-link">
-                Service Areas <i class="fas fa-chevron-down"></i>
-              </a>
-              <div class="dropdown-content">
-                <div class="dropdown-section">
-                  <h4>Indianapolis Metro</h4>
-                  <a href="locations/indianapolis/">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Indianapolis
-                  </a>
-                  <a href="locations/carmel/">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Carmel
-                  </a>
-                  <a href="locations/fishers/">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Fishers
-                  </a>
-                  <a href="locations/noblesville/">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Noblesville
-                  </a>
-                  <a href="locations/westfield/">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Westfield
-                  </a>
-                </div>
-                <div class="dropdown-section">
-                  <h4>Midwest Coverage</h4>
-                  <a href="#service-areas">
-                    <i class="fas fa-flag-usa"></i>
-                    View All Areas
-                  </a>
-                </div>
-              </div>
-            </div>
-            
+            <a href="#service-areas" class="nav-link">Service Areas</a>
             <a href="#reviews" class="nav-link">Reviews</a>
             <a href="#about" class="nav-link">About</a>
             <a href="#contact" class="nav-link">Contact</a>
@@ -154,7 +117,7 @@ class Navbar {
       });
     });
 
-    // Handle dropdown interactions
+    // Handle dropdown interactions (only for Services now)
     const dropdowns = document.querySelectorAll('.nav-dropdown');
     dropdowns.forEach(dropdown => {
       const dropdownContent = dropdown.querySelector('.dropdown-content');
