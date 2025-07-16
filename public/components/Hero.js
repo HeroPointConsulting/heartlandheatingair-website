@@ -40,30 +40,33 @@ export function createHero() {
         <div class="hero-overlay"></div>
       </div>
       
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1 class="hero-headline">
-            Comfort You Can Count On
-          </h1>
-          <p class="hero-subtitle">
-            American-Made, Midwestern Craftsmanship
-          </p>
-          <p class="hero-tagline">
-            24/7 Emergency Service • Licensed & Insured • Google Guaranteed
-          </p>
-        </div>
-        
-        <div class="hero-actions">
-          <a href="#schedule" class="btn btn-primary btn-hero">
-            Schedule Service
-          </a>
-          <a href="tel:+13175550123" class="btn btn-secondary btn-hero">
-            Emergency: (317) 555-0123
-          </a>
-        </div>
-        
-        <div class="hero-location">
-          <span>Serving Indianapolis & Surrounding Areas</span>
+      <div class="hero-layout">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1 class="hero-headline">
+              Comfort You Can Count On
+            </h1>
+            <div class="hero-meta">
+              <p class="hero-subtitle">
+                American-Made, Midwestern Craftsmanship
+              </p>
+              <p class="hero-tagline">
+                24/7 Emergency Service • Licensed & Insured<br>Google Guaranteed
+              </p>
+            </div>
+          </div>
+          
+          <div class="hero-actions">
+            <a href="tel:+13175550123" class="btn btn-secondary btn-hero">
+              Call Now: (317) 555-0123
+            </a>
+            <a href="#services" class="btn btn-outline btn-hero">
+              Residential & Commercial
+            </a>
+            <div class="hero-location">
+              <span>Serving Indianapolis & Surrounding Areas</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
