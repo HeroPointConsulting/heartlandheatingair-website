@@ -1,8 +1,8 @@
 export function createAboutComponent() {
   return `
-    <section id="about" class="section about-section">
+    <section id="about" class="section about-section bg-light">
       <div class="container">
-        <div class="about-intro">
+        <div class="about-intro text-center">
           <div class="section-badge">
             <i class="fas fa-flag-usa"></i>
             <span>American Values</span>
@@ -21,6 +21,21 @@ export function createAboutComponent() {
               <p>
                 With 20+ years of experience and NATE certification, I believe in American-made equipment and standing behind every job with our satisfaction guarantee. We serve the entire Midwest region, from single-family homes to multi-property portfolios and commercial projects.
               </p>
+
+              <div class="about-values">
+                <div class="value-item">
+                  <i class="fas fa-flag-usa"></i>
+                  <span>Patriotic Pride</span>
+                </div>
+                <div class="value-item">
+                  <i class="fas fa-handshake"></i>
+                  <span>Neighborly Service</span>
+                </div>
+                <div class="value-item">
+                  <i class="fas fa-award"></i>
+                  <span>American Craftsmanship</span>
+                </div>
+              </div>
 
               <button class="story-video-btn" id="playStoryVideo">
                 <i class="fas fa-play"></i>

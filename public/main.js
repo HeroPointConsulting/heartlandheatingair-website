@@ -46,26 +46,26 @@ function initializeApp() {
   // Load hero component
   loadHeroComponent();
 
+  // Load trust signals component
+  loadTrustSignalsComponent();
+
   // Load services component
   loadServicesComponent();
-
-  // Load reviews component
-  loadReviewsComponent();
-
-  // Load service areas component
-  loadServiceAreasComponent();
-
-  // Load why choose component
-  loadWhyChooseComponent();
 
   // Load about component
   loadAboutComponent();
 
+  // Load reviews component
+  loadReviewsComponent();
+
+  // Load why choose component
+  loadWhyChooseComponent();
+
+  // Load service areas component
+  loadServiceAreasComponent();
+
   // Load contact component
   loadContactComponent();
-
-  // Load trust signals component
-  loadTrustSignalsComponent();
 
   // Load footer component
   loadFooterComponent();

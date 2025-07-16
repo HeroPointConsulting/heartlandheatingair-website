@@ -47,6 +47,13 @@ export function TrustSignals() {
             <div class="stat-label">Satisfaction Guaranteed</div>
           </div>
         </div>
+        <div class="trust-cta">
+          <a href="tel:+13175550123" class="btn btn-primary btn-large">
+            <i class="fas fa-phone"></i>
+            Call Now: (317) 555-0123
+          </a>
+          <span class="cta-note">24/7 Emergency Service Available</span>
+        </div>
       </div>
     </section>
   `;
