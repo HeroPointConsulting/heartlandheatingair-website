@@ -230,7 +230,7 @@ footer {
 /* Emergency Float Button */
 .emergency-float {
   position: fixed;
-  bottom: 100px;
+  bottom: 20px;
   right: 20px;
   z-index: 1000;
 }
@@ -259,7 +259,7 @@ footer {
 /* Chat Widget */
 .chat-widget {
   position: fixed;
-  bottom: 20px;
+  bottom: 100px;
   right: 20px;
   z-index: 1000;
 }
@@ -443,15 +443,16 @@ footer {
 }
 
 /* Responsive Design */
+@media (max-width: 768px) {
+  .emergency-float {
+    display: none; /* Hide on mobile - use sticky bottom bar instead */
+  }
+}
+
 @media (max-width: 640px) {
   .chat-popup {
     width: 280px;
     right: -10px;
-  }
-  
-  .emergency-float {
-    bottom: 80px;
-    right: 15px;
   }
   
   .chat-widget {

@@ -114,6 +114,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 0; /* Allow text to shrink properly */
 }
 
 .logo-text {
@@ -124,6 +125,7 @@
   letter-spacing: -0.5px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .logo-tagline {
@@ -136,6 +138,7 @@
   line-height: 1.0;
   margin-top: -2px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .plus-symbol {
@@ -407,6 +410,10 @@
     font-size: 18px;
   }
 
+  .nav-link i {
+    display: none; /* Hide down arrows on mobile */
+  }
+
   .dropdown-content {
     position: static;
     width: 100%;
@@ -447,10 +454,12 @@
 
   .logo-text {
     font-size: 24px;
+    white-space: nowrap; /* Maintain alignment */
   }
 
   .logo-tagline {
     font-size: 12px;
+    white-space: nowrap; /* Maintain alignment */
   }
 }
 
@@ -469,12 +478,14 @@
   .logo-text {
     font-size: 20px;
     line-height: 1.0;
+    white-space: nowrap; /* Maintain alignment */
   }
 
   .logo-tagline {
     font-size: 14px;
     letter-spacing: 0.3px;
     line-height: 1.0;
+    white-space: nowrap; /* Maintain alignment */
   }
 
   .plus-symbol {

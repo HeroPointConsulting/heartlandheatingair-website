@@ -67,14 +67,10 @@ class Navbar {
                   </a>
                 </div>
                 <div class="dropdown-section">
-                  <h4>Commercial & Emergency</h4>
+                  <h4>Commercial Services</h4>
                   <a href="services/commercial-hvac.html">
                     <i class="fas fa-building"></i>
                     Commercial HVAC
-                  </a>
-                  <a href="services/emergency-service.html">
-                    <i class="fas fa-phone-volume"></i>
-                    24/7 Emergency
                   </a>
                 </div>
               </div>
@@ -158,13 +154,41 @@ class Navbar {
     const dropdowns = document.querySelectorAll('.nav-dropdown');
     dropdowns.forEach(dropdown => {
       const dropdownContent = dropdown.querySelector('.dropdown-content');
+      const dropdownLink = dropdown.querySelector('.nav-link');
 
+      // Desktop: hover interactions
       dropdown.addEventListener('mouseenter', () => {
-        dropdownContent.classList.add('show');
+        if (window.innerWidth > 768) {
+          dropdownContent.classList.add('show');
+        }
       });
 
       dropdown.addEventListener('mouseleave', () => {
-        dropdownContent.classList.remove('show');
+        if (window.innerWidth > 768) {
+          dropdownContent.classList.remove('show');
+        }
+      });
+
+      // Mobile: navigate directly to section
+      dropdownLink.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          const href = dropdownLink.getAttribute('href');
+          const targetId = href.substring(1);
+          const targetElement = document.getElementById(targetId);
+
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+
+            // Close mobile menu
+            this.isMenuOpen = false;
+            navMenu.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+          }
+        }
       });
     });
 
