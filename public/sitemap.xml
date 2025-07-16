@@ -2,157 +2,175 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://heartlandheatingair.com/</loc>
-    <lastmod>2025-07-15T15:35:22.789Z</lastmod>
+    <lastmod>2025-01-15T15:35:22.789Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/indianapolis/hvac-repair</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/about</loc>
+    <lastmod>2025-01-15T15:35:22.789Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://heartlandheatingair.com/contact</loc>
+    <lastmod>2025-01-15T15:35:22.789Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://heartlandheatingair.com/service</loc>
+    <lastmod>2025-01-15T15:35:22.789Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/indianapolis/furnace-installation</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/carmel-air-conditioning-service</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/indianapolis/air-conditioning-service</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/carmel-duct-cleaning</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/indianapolis/hvac-maintenance</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/carmel-furnace-installation</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/indianapolis/duct-cleaning</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/carmel-hvac-maintenance</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/carmel/hvac-repair</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/carmel-hvac-repair</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/carmel/furnace-installation</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/fishers-air-conditioning-service</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/carmel/air-conditioning-service</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/fishers-duct-cleaning</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/carmel/hvac-maintenance</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/fishers-furnace-installation</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/carmel/duct-cleaning</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/fishers-hvac-maintenance</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/fishers/hvac-repair</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/fishers-hvac-repair</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/fishers/furnace-installation</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/indianapolis-air-conditioning-service</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/fishers/air-conditioning-service</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/indianapolis-duct-cleaning</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/fishers/hvac-maintenance</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/indianapolis-furnace-installation</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/fishers/duct-cleaning</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/indianapolis-hvac-maintenance</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/westfield/hvac-repair</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/indianapolis-hvac-repair</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/westfield/furnace-installation</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/noblesville-air-conditioning-service</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/westfield/air-conditioning-service</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/noblesville-duct-cleaning</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/westfield/hvac-maintenance</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/noblesville-furnace-installation</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/westfield/duct-cleaning</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/noblesville-hvac-maintenance</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/noblesville/hvac-repair</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/noblesville-hvac-repair</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/noblesville/furnace-installation</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/westfield-air-conditioning-service</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/noblesville/air-conditioning-service</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/westfield-duct-cleaning</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/noblesville/hvac-maintenance</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/westfield-furnace-installation</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://heartlandheatingair.com/locations/noblesville/duct-cleaning</loc>
-    <lastmod>2025-07-15T15:35:22.790Z</lastmod>
+    <loc>https://heartlandheatingair.com/westfield-hvac-maintenance</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://heartlandheatingair.com/westfield-hvac-repair</loc>
+    <lastmod>2025-01-15T15:35:22.790Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
