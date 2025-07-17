@@ -12,6 +12,7 @@ import SchedulingWidget from './components/SchedulingWidget.js';
 import { createServicePage, initServicePage } from './components/ServicePage.js';
 import { LocationPage } from './components/LocationPage.js';
 import { createFloatingButtons } from './components/FloatingButtons.js';
+import { createContactComponent, initContactForm } from './components/Contact.js';
 import './components/Services.js';
 
 // Initialize the app when DOM is loaded
@@ -64,7 +65,8 @@ function initializeApp() {
   // Load service areas component
   loadServiceAreasComponent();
 
-
+  // Load contact component
+  loadContactComponent();
 
   // Load footer component
   loadFooterComponent();
@@ -195,6 +197,22 @@ function loadWhyChooseComponent() {
     }
   } catch (error) {
     console.error('Error loading why choose component:', error);
+  }
+}
+
+// Load Contact component - Myers-Vanilla Pattern
+function loadContactComponent() {
+  try {
+    const contactContainer = document.getElementById('contact-component-container');
+    if (contactContainer) {
+      // Create contact HTML and inject it
+      contactContainer.innerHTML = createContactComponent();
+
+      // Initialize contact component interactivity
+      initContactForm();
+    }
+  } catch (error) {
+    console.error('Error loading contact component:', error);
   }
 }
 

@@ -76,15 +76,17 @@ function createContactComponent() {
                 </div>
               </div>
               
-              <form class="modern-form" action="#" method="POST">
+              <form class="modern-form" id="contactForm" novalidate>
                 <div class="form-grid">
                   <div class="form-field">
                     <label for="name">Your Name*</label>
                     <input type="text" id="name" name="name" required />
+                    <div class="error-message" id="name-error"></div>
                   </div>
                   <div class="form-field">
                     <label for="phone">Phone Number*</label>
                     <input type="tel" id="phone" name="phone" required />
+                    <div class="error-message" id="phone-error"></div>
                   </div>
                 </div>
                 
@@ -92,6 +94,7 @@ function createContactComponent() {
                   <div class="form-field">
                     <label for="email">Email Address</label>
                     <input type="email" id="email" name="email" />
+                    <div class="error-message" id="email-error"></div>
                   </div>
                   <div class="form-field">
                     <label for="customer_type">I Am A*</label>
@@ -105,6 +108,7 @@ function createContactComponent() {
                       <option>General Contractor</option>
                       <option>Other</option>
                     </select>
+                    <div class="error-message" id="customer_type-error"></div>
                   </div>
                 </div>
                 
@@ -125,6 +129,7 @@ function createContactComponent() {
                       <option>Custom Project Consultation</option>
                       <option>Free Estimate</option>
                     </select>
+                    <div class="error-message" id="service-error"></div>
                   </div>
                   <div class="form-field">
                     <label for="project_scope">Project Scope</label>
@@ -178,11 +183,16 @@ function createContactComponent() {
                     <span class="checkbox-custom"></span>
                     <span class="consent-text">I agree to receive text messages and calls from Heartland Heating + Air regarding my service request.</span>
                   </label>
+                  <div class="error-message" id="consent-error"></div>
                 </div>
                 
-                <button type="submit" class="submit-btn">
+                <button type="submit" class="submit-btn" id="submitBtn">
                   <i class="fas fa-paper-plane"></i>
-                  Get My Custom Quote
+                  <span class="submit-text">Get My Custom Quote</span>
+                  <span class="submit-loading" style="display: none;">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    Sending...
+                  </span>
                 </button>
               </form>
             </div>
@@ -193,4 +203,257 @@ function createContactComponent() {
   `;
 }
 
-export { createContactComponent }; 
+// Initialize contact form functionality
+function initContactForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  form.addEventListener('submit', handleContactSubmit);
+  
+  // Add real-time validation
+  const requiredFields = ['name', 'phone', 'customer_type', 'service'];
+  requiredFields.forEach(fieldName => {
+    const field = form.querySelector(`[name="${fieldName}"]`);
+    if (field) {
+      field.addEventListener('blur', () => validateField(field));
+      field.addEventListener('input', () => clearFieldError(field));
+    }
+  });
+
+  // Handle consent checkbox
+  const consentCheckbox = form.querySelector('input[name="consent"]');
+  if (consentCheckbox) {
+    consentCheckbox.addEventListener('change', () => clearFieldError(consentCheckbox));
+  }
+}
+
+// Handle form submission
+async function handleContactSubmit(e) {
+  e.preventDefault();
+  
+  const form = e.target;
+  const submitBtn = document.getElementById('submitBtn');
+  const submitText = submitBtn.querySelector('.submit-text');
+  const submitLoading = submitBtn.querySelector('.submit-loading');
+  
+  // Clear previous errors
+  clearAllErrors();
+  
+  // Validate form
+  if (!validateForm(form)) {
+    return;
+  }
+  
+  // Show loading state
+  submitBtn.disabled = true;
+  submitText.style.display = 'none';
+  submitLoading.style.display = 'inline';
+  
+  try {
+    // Collect form data
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    
+    // Send to backend
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      // Show success message
+      showSuccessMessage(result.message);
+      form.reset();
+    } else {
+      // Show error message
+      showErrorMessage(result.message || 'An error occurred. Please try again.');
+    }
+    
+  } catch (error) {
+    console.error('Form submission error:', error);
+    showErrorMessage('Network error. Please check your connection and try again.');
+  } finally {
+    // Reset button state
+    submitBtn.disabled = false;
+    submitText.style.display = 'inline';
+    submitLoading.style.display = 'none';
+  }
+}
+
+// Validate individual field
+function validateField(field) {
+  const fieldName = field.name;
+  const value = field.value.trim();
+  const errorElement = document.getElementById(`${fieldName}-error`);
+  
+  if (!errorElement) return true;
+  
+  let isValid = true;
+  let errorMessage = '';
+  
+  // Required field validation
+  if (field.hasAttribute('required') && !value) {
+    isValid = false;
+    errorMessage = 'This field is required.';
+  }
+  
+  // Email validation
+  if (fieldName === 'email' && value && !isValidEmail(value)) {
+    isValid = false;
+    errorMessage = 'Please enter a valid email address.';
+  }
+  
+  // Phone validation
+  if (fieldName === 'phone' && value && !isValidPhone(value)) {
+    isValid = false;
+    errorMessage = 'Please enter a valid phone number.';
+  }
+  
+  // Consent validation
+  if (fieldName === 'consent' && !field.checked) {
+    isValid = false;
+    errorMessage = 'You must agree to receive communications from us.';
+  }
+  
+  if (!isValid) {
+    showFieldError(field, errorMessage);
+  } else {
+    clearFieldError(field);
+  }
+  
+  return isValid;
+}
+
+// Validate entire form
+function validateForm(form) {
+  const requiredFields = ['name', 'phone', 'customer_type', 'service'];
+  let isValid = true;
+  
+  // Validate required fields
+  requiredFields.forEach(fieldName => {
+    const field = form.querySelector(`[name="${fieldName}"]`);
+    if (field && !validateField(field)) {
+      isValid = false;
+    }
+  });
+  
+  // Validate consent
+  const consentCheckbox = form.querySelector('input[name="consent"]');
+  if (consentCheckbox && !validateField(consentCheckbox)) {
+    isValid = false;
+  }
+  
+  return isValid;
+}
+
+// Show field error
+function showFieldError(field, message) {
+  const fieldName = field.name;
+  const errorElement = document.getElementById(`${fieldName}-error`);
+  if (errorElement) {
+    errorElement.textContent = message;
+    errorElement.style.display = 'block';
+    field.classList.add('error');
+  }
+}
+
+// Clear field error
+function clearFieldError(field) {
+  const fieldName = field.name;
+  const errorElement = document.getElementById(`${fieldName}-error`);
+  if (errorElement) {
+    errorElement.textContent = '';
+    errorElement.style.display = 'none';
+    field.classList.remove('error');
+  }
+}
+
+// Clear all errors
+function clearAllErrors() {
+  const errorElements = document.querySelectorAll('.error-message');
+  errorElements.forEach(element => {
+    element.textContent = '';
+    element.style.display = 'none';
+  });
+  
+  const errorFields = document.querySelectorAll('.form-field input.error, .form-field select.error');
+  errorFields.forEach(field => {
+    field.classList.remove('error');
+  });
+}
+
+// Show success message
+function showSuccessMessage(message) {
+  // Create success message element
+  const successDiv = document.createElement('div');
+  successDiv.className = 'form-success';
+  successDiv.innerHTML = `
+    <div class="success-content">
+      <i class="fas fa-check-circle"></i>
+      <h3>Thank You!</h3>
+      <p>${message}</p>
+      <p>We'll contact you within 2 hours during business hours.</p>
+    </div>
+  `;
+  
+  // Insert after form
+  const form = document.getElementById('contactForm');
+  form.parentNode.insertBefore(successDiv, form.nextSibling);
+  
+  // Scroll to success message
+  successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  
+  // Remove after 10 seconds
+  setTimeout(() => {
+    if (successDiv.parentNode) {
+      successDiv.parentNode.removeChild(successDiv);
+    }
+  }, 10000);
+}
+
+// Show error message
+function showErrorMessage(message) {
+  // Create error message element
+  const errorDiv = document.createElement('div');
+  errorDiv.className = 'form-error';
+  errorDiv.innerHTML = `
+    <div class="error-content">
+      <i class="fas fa-exclamation-triangle"></i>
+      <h3>Oops!</h3>
+      <p>${message}</p>
+      <p>Please try again or call us directly at <a href="tel:+13175550123">(317) 555-0123</a></p>
+    </div>
+  `;
+  
+  // Insert after form
+  const form = document.getElementById('contactForm');
+  form.parentNode.insertBefore(errorDiv, form.nextSibling);
+  
+  // Scroll to error message
+  errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  
+  // Remove after 8 seconds
+  setTimeout(() => {
+    if (errorDiv.parentNode) {
+      errorDiv.parentNode.removeChild(errorDiv);
+    }
+  }, 8000);
+}
+
+// Validation helpers
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+function isValidPhone(phone) {
+  const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+  return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+}
+
+export { createContactComponent, initContactForm }; 

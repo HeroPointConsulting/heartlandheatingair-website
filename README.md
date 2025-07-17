@@ -28,6 +28,21 @@ This project implements a comprehensive long-tail SEO strategy for Heartland Hea
 npm install
 ```
 
+### Email Setup (Required for Contact Forms)
+
+Before running the application, you need to set up email functionality:
+
+1. **Copy the environment template:**
+
+   ```bash
+   cp env.example .env
+   ```
+
+2. **Follow the email setup guide:**
+   - See `EMAIL_SETUP.md` for detailed instructions
+   - Configure Gmail App Password
+   - Set up environment variables
+
 ### Development
 
 ```bash
@@ -58,12 +73,18 @@ heartland-heating-air/
 │   └── sitemap.xml        # Auto-generated sitemap
 ├── scripts/
 │   └── generate-location-pages.js  # Main SEO generator
+├── server.js              # Express server for form handling
+├── email-config.js        # Nodemailer configuration
+├── env.example           # Environment variables template
+├── EMAIL_SETUP.md        # Email setup instructions
 └── SEO-LOCATION-GUIDE.md  # Implementation documentation
 ```
 
 ## 🔧 Technical Stack
 
 - **Frontend**: Vanilla JavaScript, HTML5, CSS3
+- **Backend**: Node.js, Express
+- **Email**: Nodemailer with Gmail SMTP
 - **Build Tool**: Live Server
 - **SEO**: Static site generation with schema markup
 - **Hosting**: Static file hosting (Netlify, Vercel, etc.)

@@ -354,24 +354,118 @@ class SchedulingWidget {
 
 
 
-  handleQuoteSubmit(e) {
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
+  async handleQuoteSubmit(e) {
+    e.preventDefault();
 
-    // Here you would normally send to your backend
-    // Example: await fetch('/api/quote-request', { method: 'POST', body: formData });
-
-    // Show success message
-    const submitBtn = e.target.querySelector('.quote-submit');
+    const form = e.target;
+    const submitBtn = form.querySelector('.quote-submit');
     const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-check"></i> Request Sent!';
-    submitBtn.style.background = '#10b981';
 
+    // Show loading state
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    submitBtn.disabled = true;
+
+    try {
+      // Collect form data
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      // Send to backend
+      const response = await fetch('/api/quote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Show success message
+        submitBtn.innerHTML = '<i class="fas fa-check"></i> Request Sent!';
+        submitBtn.style.background = '#10b981';
+        form.reset();
+
+        // Show success notification
+        this.showQuoteSuccess(result.message);
+      } else {
+        // Show error message
+        submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
+        submitBtn.style.background = '#ef4444';
+        this.showQuoteError(result.message || 'An error occurred. Please try again.');
+      }
+
+    } catch (error) {
+      console.error('Quote submission error:', error);
+      submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
+      submitBtn.style.background = '#ef4444';
+      this.showQuoteError('Network error. Please check your connection and try again.');
+    }
+
+    // Reset button after delay
     setTimeout(() => {
       submitBtn.innerHTML = originalText;
       submitBtn.style.background = '';
-      e.target.reset();
+      submitBtn.disabled = false;
     }, 3000);
+  }
+
+  showQuoteSuccess(message) {
+    // Create success notification
+    const notification = document.createElement('div');
+    notification.className = 'quote-notification success';
+    notification.innerHTML = `
+      <div class="notification-content">
+        <i class="fas fa-check-circle"></i>
+        <div>
+          <h4>Quote Request Sent!</h4>
+          <p>${message}</p>
+        </div>
+        <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    `;
+
+    // Add to page
+    document.body.appendChild(notification);
+
+    // Remove after 5 seconds
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 5000);
+  }
+
+  showQuoteError(message) {
+    // Create error notification
+    const notification = document.createElement('div');
+    notification.className = 'quote-notification error';
+    notification.innerHTML = `
+      <div class="notification-content">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div>
+          <h4>Oops!</h4>
+          <p>${message}</p>
+          <p>Please try again or call us directly at <a href="tel:+13175550123">(317) 555-0123</a></p>
+        </div>
+        <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    `;
+
+    // Add to page
+    document.body.appendChild(notification);
+
+    // Remove after 8 seconds
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 8000);
   }
 }
 
