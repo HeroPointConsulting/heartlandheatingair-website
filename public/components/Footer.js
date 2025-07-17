@@ -95,8 +95,8 @@ export default class Footer {
               <div class="footer-legal">
                 <p>&copy; ${this.currentYear} Heartland Heating + Air. All rights reserved.</p>
                 <div class="legal-links">
-                  <a href="/privacy">Privacy Policy</a>
-                  <a href="/terms">Terms of Service</a>
+                  <a href="/privacy.html">Privacy Policy</a>
+                  <a href="/terms.html">Terms of Service</a>
                   <a href="/warranty">Warranty</a>
                 </div>
               </div>
