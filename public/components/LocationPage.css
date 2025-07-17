@@ -112,7 +112,7 @@
 }
 
 .emergency-cta {
-  background: #fffbe6; /* or your preferred yellow */
+  background: var(--heartland-red);
   padding: 2.5rem 0;
   text-align: center;
 }
