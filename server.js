@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { sendEmails, verifyConnection } = require('./email-config');
+const { sendEmails, sendJobApplicationEmails, verifyConnection } = require('./email-config');
 require('dotenv').config();
 
 // reCAPTCHA verification function
@@ -188,6 +188,83 @@ app.post('/api/quote', async (req, res) => {
   }
 });
 
+// Job application submission endpoint
+app.post('/api/job-application', async (req, res) => {
+  try {
+    const formData = req.body;
+
+    // Verify reCAPTCHA
+    const recaptchaValid = await verifyRecaptcha(formData.recaptchaResponse);
+    if (!recaptchaValid) {
+      return res.status(400).json({
+        success: false,
+        message: 'reCAPTCHA verification failed. Please try again.'
+      });
+    }
+
+    // Validate required fields
+    const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'position'];
+    const missingFields = requiredFields.filter(field => !formData[field]);
+
+    if (missingFields.length > 0) {
+      return res.status(400).json({
+        success: false,
+        message: `Missing required fields: ${missingFields.join(', ')}`
+      });
+    }
+
+    // Sanitize data
+    const sanitizedData = {
+      firstName: formData.firstName.trim(),
+      lastName: formData.lastName.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      position: formData.position,
+      address: formData.address ? formData.address.trim() : '',
+      city: formData.city ? formData.city.trim() : '',
+      state: formData.state ? formData.state.trim() : '',
+      zipCode: formData.zipCode ? formData.zipCode.trim() : '',
+      previousExperience: formData.previousExperience ? formData.previousExperience.trim() : '',
+      availableStartDate: formData.availableStartDate || '',
+      salaryExpectation: formData.salaryExpectation ? formData.salaryExpectation.trim() : '',
+      certifications: formData.certifications ? formData.certifications.trim() : '',
+      referralSource: formData.referralSource || ''
+    };
+
+    // Validate email format
+    if (!isValidEmail(sanitizedData.email)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid email format'
+      });
+    }
+
+    // Send emails
+    const emailResult = await sendJobApplicationEmails(sanitizedData);
+
+    if (emailResult.success) {
+      res.json({
+        success: true,
+        message: 'Thank you for your application! We\'ve received your information and will contact you within 3-5 business days if we\'d like to move forward with your candidacy.',
+        emailResults: emailResult.results
+      });
+    } else {
+      console.error('Job application email sending failed:', emailResult.error);
+      res.status(500).json({
+        success: false,
+        message: 'We received your application but had trouble sending confirmation emails. We\'ll still review your application and contact you soon!'
+      });
+    }
+
+  } catch (error) {
+    console.error('Job application error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'An error occurred while processing your application. Please try again or contact us directly.'
+    });
+  }
+});
+
 // Email configuration test endpoint
 app.get('/api/test-email', async (req, res) => {
   try {
@@ -228,30 +305,35 @@ function isValidEmail(email) {
 
 // Catch-all route to serve appropriate HTML files for SPA routing
 app.get('*', (req, res) => {
-  const path = req.path;
-  console.log(`Server received request for path: ${path}`);
+  const reqPath = req.path;
+  console.log(`Server received request for path: ${reqPath}`);
 
   // Handle careers routes - serve careers.html for any /careers/* path
-  if (path.startsWith('/careers')) {
-    console.log(`Serving careers.html for path: ${path}`);
-    res.sendFile(path.join(__dirname, 'public', 'careers.html'));
+  if (reqPath.startsWith('/careers')) {
+    console.log(`Serving careers.html for path: ${reqPath}`);
+    res.sendFile(path.join(__dirname, 'public', 'careers.html'), (err) => {
+      if (err) {
+        console.error('Error sending careers.html:', err);
+        res.status(500).send('Error loading careers page');
+      }
+    });
   }
   // Handle other specific pages
-  else if (path.startsWith('/about')) {
-    console.log(`Serving about.html for path: ${path}`);
+  else if (reqPath.startsWith('/about')) {
+    console.log(`Serving about.html for path: ${reqPath}`);
     res.sendFile(path.join(__dirname, 'public', 'about.html'));
   }
-  else if (path.startsWith('/contact')) {
-    console.log(`Serving contact.html for path: ${path}`);
+  else if (reqPath.startsWith('/contact')) {
+    console.log(`Serving contact.html for path: ${reqPath}`);
     res.sendFile(path.join(__dirname, 'public', 'contact.html'));
   }
-  else if (path.startsWith('/service')) {
-    console.log(`Serving service.html for path: ${path}`);
+  else if (reqPath.startsWith('/service')) {
+    console.log(`Serving service.html for path: ${reqPath}`);
     res.sendFile(path.join(__dirname, 'public', 'service.html'));
   }
   // Default to index.html for all other routes
   else {
-    console.log(`Serving index.html for path: ${path}`);
+    console.log(`Serving index.html for path: ${reqPath}`);
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
   }
 });
@@ -268,9 +350,10 @@ app.listen(PORT, async () => {
     console.log('⚠️  Email configuration not found. Please set up your .env file.');
   }
 
-  console.log('📝 Contact form endpoints:');
+  console.log('📝 Form endpoints:');
   console.log(`   POST /api/contact - Main contact form`);
   console.log(`   POST /api/quote - Quote request form`);
+  console.log(`   POST /api/job-application - Job application form`);
   console.log(`   GET /api/health - Health check`);
   console.log(`   GET /api/test-email - Test email configuration`);
 }); 

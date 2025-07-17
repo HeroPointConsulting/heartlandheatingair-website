@@ -1,35 +1,6 @@
-import { getJobBySlug } from '../data/careers.js';
-
-// Utility to generate slug from a job title
-function slugify(title) {
-  return title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-}
-
-export function createJobDetailPage(slug) {
-  const job = getJobBySlug(slug);
-
-  if (!job) {
-    return `
-      <div class="job-not-found">
-        <div class="job-not-found-container text-center">
-          <h1>Position Not Found</h1>
-          <p>The career opportunity you're looking for doesn't exist.</p>
-          <a href="/careers" data-route="/careers" class="job-back-link">Back to Careers</a>
-        </div>
-      </div>
-    `;
-  }
-
-  const requirementsHtml = job.requirements.map(req => `
-    <li class="job-requirement-item"><i class="fas fa-check"></i>${req}</li>
-  `).join('');
-
-  const responsibilitiesHtml = job.responsibilities.map(resp => `
-    <li class="job-responsibility-item"><i class="fas fa-check"></i>${resp}</li>
-  `).join('');
-
+export function createGeneralApplicationPage() {
   return `
-    <div class="job-detail-page">
+    <div class="general-application-page">
       <!-- Navigation -->
       <div class="job-detail-nav">
         <a href="/careers" data-route="/careers" class="job-back-link">
@@ -41,45 +12,19 @@ export function createJobDetailPage(slug) {
       <!-- Hero Section -->
       <section class="job-hero">
         <div class="job-hero-container">
-          <h1 class="job-hero-title">${job.title}</h1>
-          <p class="job-hero-description">${job.description}</p>
-
-          <div class="job-hero-meta">
-            <div class="job-hero-info">
-              <span class="job-hero-type"><i class="fas fa-briefcase"></i> ${job.type}</span>
-              <span class="job-hero-dept"><i class="fas fa-building"></i> ${job.department}</span>
-              <span class="job-hero-salary"><i class="fas fa-dollar-sign"></i> ${job.salary}</span>
-              <span class="job-hero-location"><i class="fas fa-map-marker-alt"></i> ${job.location}</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Job Details Section -->
-      <section class="job-details-section">
-        <div class="job-details-container">
-          <div class="job-details-grid">
-            <div class="job-requirements">
-              <h3 class="job-details-subtitle">Requirements</h3>
-              <ul>
-                ${job.requirements.map(req => `<li><i class="fas fa-check"></i>${req}</li>`).join('')}
-              </ul>
-            </div>
-            <div class="job-responsibilities">
-              <h3 class="job-details-subtitle">Responsibilities</h3>
-              <ul>
-                ${job.responsibilities.map(resp => `<li><i class="fas fa-check"></i>${resp}</li>`).join('')}
-              </ul>
-            </div>
-          </div>
+          <h1 class="job-hero-title">General Application</h1>
+          <p class="job-hero-description">
+            Don't see the perfect position for you? We're always looking for talented individuals to join our team. 
+            Submit your resume and we'll keep you in mind for future opportunities.
+          </p>
         </div>
       </section>
 
       <!-- Application Form Section -->
       <section class="job-apply-section" id="apply">
         <div class="job-apply-container">
-          <h2 class="job-apply-title">Apply for ${job.title}</h2>
-          <form id="job-application-form" class="job-apply-form">
+          <h2 class="job-apply-title">Submit Your Resume</h2>
+          <form id="general-application-form" class="job-apply-form">
             <!-- Personal Information -->
             <div class="job-form-grid">
               <div class="job-field">
@@ -121,8 +66,27 @@ export function createJobDetailPage(slug) {
               <h3 class="job-form-section-title">Professional Information</h3>
               
               <div class="job-field">
-                <label class="job-input-label" for="previousExperience">Previous HVAC Experience</label>
-                <textarea name="previousExperience" id="previousExperience" rows="4" placeholder="Describe your previous experience in the HVAC industry..."></textarea>
+                <label class="job-input-label" for="desiredPosition">Desired Position/Department</label>
+                <select name="desiredPosition" id="desiredPosition">
+                  <option value="">Select a position</option>
+                  <option value="hvac-technician">HVAC Service Technician</option>
+                  <option value="hvac-installer">HVAC Installer</option>
+                  <option value="maintenance-technician">Maintenance Technician</option>
+                  <option value="customer-service">Customer Service Representative</option>
+                  <option value="sales-representative">Sales Representative</option>
+                  <option value="office-administrator">Office Administrator</option>
+                  <option value="other">Other (specify below)</option>
+                </select>
+              </div>
+
+              <div class="job-field">
+                <label class="job-input-label" for="otherPosition">Other Position (if selected above)</label>
+                <input type="text" name="otherPosition" id="otherPosition" placeholder="Please specify..." />
+              </div>
+
+              <div class="job-field">
+                <label class="job-input-label" for="previousExperience">Previous Experience</label>
+                <textarea name="previousExperience" id="previousExperience" rows="4" placeholder="Describe your previous work experience, especially in HVAC or related fields..."></textarea>
               </div>
 
               <div class="job-form-grid">
@@ -138,11 +102,11 @@ export function createJobDetailPage(slug) {
 
               <div class="job-field">
                 <label class="job-input-label" for="certifications">Certifications & Licenses</label>
-                <textarea name="certifications" id="certifications" rows="3" placeholder="List any HVAC certifications, EPA licenses, or other relevant credentials..."></textarea>
+                <textarea name="certifications" id="certifications" rows="3" placeholder="List any relevant certifications, licenses, or credentials..."></textarea>
               </div>
 
               <div class="job-field">
-                <label class="job-input-label" for="referralSource">How did you hear about this position?</label>
+                <label class="job-input-label" for="referralSource">How did you hear about us?</label>
                 <select name="referralSource" id="referralSource">
                   <option value="">Select an option</option>
                   <option value="website">Company Website</option>
@@ -153,6 +117,11 @@ export function createJobDetailPage(slug) {
                   <option value="social-media">Social Media</option>
                   <option value="other">Other</option>
                 </select>
+              </div>
+
+              <div class="job-field">
+                <label class="job-input-label" for="additionalInfo">Additional Information</label>
+                <textarea name="additionalInfo" id="additionalInfo" rows="3" placeholder="Any additional information you'd like us to know..."></textarea>
               </div>
             </div>
 
@@ -190,7 +159,7 @@ export function createJobDetailPage(slug) {
             <div class="success-message">
               <i class="fas fa-check-circle"></i>
               <h3>Thank you for your application!</h3>
-              <p>We've received your application for the ${job.title} position. Our team will review your information and contact you within 3-5 business days if we'd like to move forward with your candidacy.</p>
+              <p>We've received your resume and will keep it on file for future opportunities. Our team will contact you if a suitable position becomes available.</p>
               <a href="/careers" data-route="/careers" class="back-to-careers">Back to Careers</a>
             </div>
           </div>
@@ -200,9 +169,9 @@ export function createJobDetailPage(slug) {
   `;
 }
 
-export function initJobDetailPage() {
+export function initGeneralApplicationPage() {
   // Form submission handler
-  const form = document.getElementById('job-application-form');
+  const form = document.getElementById('general-application-form');
   if (form) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -232,12 +201,15 @@ export function initJobDetailPage() {
           city: formData.get('city'),
           state: formData.get('state'),
           zipCode: formData.get('zipCode'),
+          desiredPosition: formData.get('desiredPosition'),
+          otherPosition: formData.get('otherPosition'),
           previousExperience: formData.get('previousExperience'),
           availableStartDate: formData.get('availableStartDate'),
           salaryExpectation: formData.get('salaryExpectation'),
           certifications: formData.get('certifications'),
           referralSource: formData.get('referralSource'),
-          position: document.querySelector('.job-hero-title').textContent,
+          additionalInfo: formData.get('additionalInfo'),
+          position: 'General Application',
           recaptchaResponse: recaptchaResponse
         };
 
@@ -283,4 +255,21 @@ export function initJobDetailPage() {
       }
     });
   });
+
+  // Handle "Other" position selection
+  const desiredPositionSelect = document.getElementById('desiredPosition');
+  const otherPositionField = document.getElementById('otherPosition');
+
+  if (desiredPositionSelect && otherPositionField) {
+    desiredPositionSelect.addEventListener('change', (e) => {
+      if (e.target.value === 'other') {
+        otherPositionField.style.display = 'block';
+        otherPositionField.required = true;
+      } else {
+        otherPositionField.style.display = 'none';
+        otherPositionField.required = false;
+        otherPositionField.value = '';
+      }
+    });
+  }
 } 

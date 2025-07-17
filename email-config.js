@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport(emailConfig);
 
 // Email templates
 const emailTemplates = {
-  // Email sent to the business owner
+  // Email sent to the business owner for contact form
   businessNotification: (formData) => ({
     subject: `New Contact Form Submission - ${formData.service || 'General Inquiry'}`,
     html: `
@@ -174,10 +174,171 @@ const emailTemplates = {
         </div>
       </div>
     `
+  }),
+
+  // Email sent to the business owner for job applications
+  jobApplicationNotification: (formData) => ({
+    subject: `New Job Application - ${formData.position} - ${formData.firstName} ${formData.lastName}`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 10px;">
+          New Job Application Received
+        </h2>
+        
+        <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #374151; margin-top: 0;">Position Applied For</h3>
+          <p style="font-size: 18px; font-weight: bold; color: #1f2937; margin: 0;">${formData.position}</p>
+        </div>
+
+        <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #374151; margin-top: 0;">Applicant Information</h3>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px 0; font-weight: bold; color: #374151;">Name:</td>
+              <td style="padding: 8px 0;">${formData.firstName} ${formData.lastName}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; font-weight: bold; color: #374151;">Email:</td>
+              <td style="padding: 8px 0;"><a href="mailto:${formData.email}">${formData.email}</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; font-weight: bold; color: #374151;">Phone:</td>
+              <td style="padding: 8px 0;"><a href="tel:${formData.phone}">${formData.phone}</a></td>
+            </tr>
+            ${formData.address ? `
+            <tr>
+              <td style="padding: 8px 0; font-weight: bold; color: #374151;">Address:</td>
+              <td style="padding: 8px 0;">${formData.address}, ${formData.city}, ${formData.state} ${formData.zipCode}</td>
+            </tr>
+            ` : ''}
+            ${formData.availableStartDate ? `
+            <tr>
+              <td style="padding: 8px 0; font-weight: bold; color: #374151;">Available Start Date:</td>
+              <td style="padding: 8px 0;">${formData.availableStartDate}</td>
+            </tr>
+            ` : ''}
+            ${formData.salaryExpectation ? `
+            <tr>
+              <td style="padding: 8px 0; font-weight: bold; color: #374151;">Salary Expectation:</td>
+              <td style="padding: 8px 0;">${formData.salaryExpectation}</td>
+            </tr>
+            ` : ''}
+            ${formData.referralSource ? `
+            <tr>
+              <td style="padding: 8px 0; font-weight: bold; color: #374151;">Referral Source:</td>
+              <td style="padding: 8px 0;">${formData.referralSource}</td>
+            </tr>
+            ` : ''}
+          </table>
+        </div>
+
+        ${formData.previousExperience ? `
+        <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #374151; margin-top: 0;">Previous HVAC Experience</h3>
+          <p style="margin: 0; line-height: 1.6; color: #374151;">${formData.previousExperience}</p>
+        </div>
+        ` : ''}
+
+        ${formData.certifications ? `
+        <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #374151; margin-top: 0;">Certifications & Licenses</h3>
+          <p style="margin: 0; line-height: 1.6; color: #374151;">${formData.certifications}</p>
+        </div>
+        ` : ''}
+
+        <div style="background: #dbeafe; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #3b82f6;">
+          <p style="margin: 0; color: #1e40af; font-weight: bold;">
+            📧 <strong>Quick Action:</strong> Review application and contact ${formData.firstName} ${formData.lastName} at ${formData.email} or ${formData.phone}
+          </p>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+          <p style="color: #6b7280; font-size: 14px;">
+            This application was submitted through your Heartland Heating + Air careers page.
+          </p>
+        </div>
+      </div>
+    `
+  }),
+
+  // Confirmation email sent to job applicants
+  jobApplicationConfirmation: (formData) => ({
+    subject: `Application Received - ${formData.position} - Heartland Heating + Air`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <h1 style="color: #1f2937; margin-bottom: 10px;">Application Received!</h1>
+          <p style="color: #6b7280; font-size: 18px;">Thank you for your interest in joining our team.</p>
+        </div>
+
+        <div style="background: #f8fafc; padding: 25px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #374151; margin-top: 0;">Application Summary</h3>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px 0; font-weight: bold; color: #374151;">Position:</td>
+              <td style="padding: 8px 0;">${formData.position}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; font-weight: bold; color: #374151;">Applicant:</td>
+              <td style="padding: 8px 0;">${formData.firstName} ${formData.lastName}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; font-weight: bold; color: #374151;">Email:</td>
+              <td style="padding: 8px 0;">${formData.email}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; font-weight: bold; color: #374151;">Phone:</td>
+              <td style="padding: 8px 0;">${formData.phone}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div style="background: #dbeafe; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #1e40af; margin-top: 0;">What Happens Next?</h3>
+          <ol style="color: #374151; line-height: 1.8;">
+            <li><strong>Application Review:</strong> Our hiring team will review your application within 3-5 business days</li>
+            <li><strong>Initial Contact:</strong> If selected, we'll contact you to discuss next steps</li>
+            <li><strong>Interview Process:</strong> Qualified candidates will be invited for an interview</li>
+            <li><strong>Final Decision:</strong> We'll notify you of our decision within 2 weeks</li>
+          </ol>
+        </div>
+
+        <div style="background: #fef3c7; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #92400e; margin-top: 0;">Questions About Your Application?</h3>
+          <p style="color: #92400e; margin-bottom: 15px;">
+            If you have any questions about your application or the hiring process:
+          </p>
+          <div style="text-align: center;">
+            <a href="tel:+13175550123" style="display: inline-block; background: #dc2626; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+              📞 Call HR: (317) 555-0123
+            </a>
+          </div>
+        </div>
+
+        <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #374151; margin-top: 0;">Why Work at Heartland Heating + Air?</h3>
+          <ul style="color: #374151; line-height: 1.8;">
+            <li>✅ <strong>Competitive Pay</strong> - Industry-leading compensation packages</li>
+            <li>✅ <strong>Health Benefits</strong> - Medical, dental, and vision coverage</li>
+            <li>✅ <strong>Professional Growth</strong> - Training and advancement opportunities</li>
+            <li>✅ <strong>Great Team</strong> - Supportive, collaborative work environment</li>
+          </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+          <p style="color: #6b7280; font-size: 14px;">
+            Heartland Heating + Air<br>
+            Indianapolis & Midwest Region<br>
+            <a href="tel:+13175550123" style="color: #3b82f6;">(317) 555-0123</a> | 
+            <a href="mailto:careers@heartlandheatingair.com" style="color: #3b82f6;">careers@heartlandheatingair.com</a>
+          </p>
+        </div>
+      </div>
+    `
   })
 };
 
-// Function to send emails
+// Function to send contact form emails
 const sendEmails = async (formData) => {
   try {
     // Send notification to business owner
@@ -226,6 +387,50 @@ const sendEmails = async (formData) => {
   }
 };
 
+// Function to send job application emails
+const sendJobApplicationEmails = async (formData) => {
+  try {
+    // Send notification to business owner
+    const businessEmail = {
+      from: `"Heartland Heating + Air Job Application" <${process.env.EMAIL_USER}>`,
+      to: process.env.BUSINESS_EMAIL || process.env.EMAIL_USER,
+      ...emailTemplates.jobApplicationNotification(formData)
+    };
+
+    // Send confirmation to applicant
+    const applicantEmail = {
+      from: `"Heartland Heating + Air" <${process.env.EMAIL_USER}>`,
+      to: formData.email,
+      ...emailTemplates.jobApplicationConfirmation(formData)
+    };
+
+    // Send emails
+    const results = [];
+
+    // Send business notification
+    const businessResult = await transporter.sendMail(businessEmail);
+    results.push({ type: 'business', success: true, messageId: businessResult.messageId });
+
+    // Send applicant confirmation
+    const applicantResult = await transporter.sendMail(applicantEmail);
+    results.push({ type: 'applicant', success: true, messageId: applicantResult.messageId });
+
+    return {
+      success: true,
+      results,
+      message: 'Job application emails sent successfully'
+    };
+
+  } catch (error) {
+    console.error('Job application email sending error:', error);
+    return {
+      success: false,
+      error: error.message,
+      message: 'Failed to send job application emails'
+    };
+  }
+};
+
 // Verify transporter connection
 const verifyConnection = async () => {
   try {
@@ -242,5 +447,6 @@ module.exports = {
   transporter,
   emailTemplates,
   sendEmails,
+  sendJobApplicationEmails,
   verifyConnection
 }; 

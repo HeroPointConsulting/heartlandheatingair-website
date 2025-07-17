@@ -15,6 +15,7 @@ import { createFloatingButtons } from './components/FloatingButtons.js';
 import { createContactComponent, initContactForm } from './components/Contact.js';
 import { createCareersPage, initCareersPage } from './components/Careers.js';
 import { createJobDetailPage, initJobDetailPage } from './components/JobDetail.js';
+import { createGeneralApplicationPage, initGeneralApplicationPage } from './components/GeneralApplication.js';
 import './components/Services.js';
 
 // Initialize the app when DOM is loaded
@@ -102,13 +103,17 @@ function initializeApp() {
       console.log('Careers page content not loaded, attempting fallback...');
       loadCareersPage();
     }
-    // Check if job detail page content loaded
-    else if (currentPath.startsWith('/careers/') && document.querySelector('main') && !document.querySelector('.job-detail-page')) {
-      console.log('Job detail page content not loaded, attempting fallback...');
+    // Check if job detail page or general application content loaded
+    else if (currentPath.startsWith('/careers/') && document.querySelector('main') && !document.querySelector('.job-detail-page') && !document.querySelector('.general-application-page')) {
+      console.log('Careers sub-page content not loaded, attempting fallback...');
       const pathParts = currentPath.split('/');
       const jobSlug = pathParts[pathParts.length - 1];
       if (jobSlug && jobSlug !== 'careers') {
-        loadJobDetailPage(jobSlug);
+        if (jobSlug === 'general-application') {
+          loadGeneralApplicationPage();
+        } else {
+          loadJobDetailPage(jobSlug);
+        }
       }
     }
   }, 2000);
@@ -330,6 +335,22 @@ function loadJobDetailPage(jobSlug) {
     }
   } catch (error) {
     console.error('Error loading job detail page:', error);
+  }
+}
+
+function loadGeneralApplicationPage() {
+  try {
+    const mainContent = document.querySelector('main');
+    if (mainContent) {
+      console.log('Loading general application page...');
+      mainContent.innerHTML = createGeneralApplicationPage();
+      initGeneralApplicationPage();
+      console.log('General application page loaded successfully');
+    } else {
+      console.error('Main content area not found');
+    }
+  } catch (error) {
+    console.error('Error loading general application page:', error);
   }
 }
 
@@ -568,9 +589,9 @@ function initializeCareersPages() {
       console.log('Detected careers page, loading...');
       loadCareersPage();
     }
-    // Check if we're on a specific job page
+    // Check if we're on a specific job page or general application
     else if (currentPath.startsWith('/careers/')) {
-      console.log('Detected job detail page, loading...');
+      console.log('Detected careers sub-page, loading...');
       const pathParts = currentPath.split('/');
       const jobSlug = pathParts[pathParts.length - 1];
       console.log('Path parts:', pathParts);
@@ -580,7 +601,15 @@ function initializeCareersPages() {
         // Remove .html extension if present
         const cleanSlug = jobSlug.replace('.html', '');
         console.log('Clean slug:', cleanSlug);
-        loadJobDetailPage(cleanSlug);
+
+        // Check if it's the general application
+        if (cleanSlug === 'general-application') {
+          console.log('Loading general application page...');
+          loadGeneralApplicationPage();
+        } else {
+          console.log('Loading job detail page...');
+          loadJobDetailPage(cleanSlug);
+        }
       }
     } else {
       console.log('Not on a careers page');
