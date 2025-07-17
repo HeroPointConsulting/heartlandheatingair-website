@@ -70,8 +70,6 @@ body {
   position: relative;
 }
 
-
-
 .section-header {
   margin-bottom: 3rem;
 }
@@ -90,10 +88,6 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-
-
-
-
 
 /* Emergency Float Button */
 .emergency-float {
