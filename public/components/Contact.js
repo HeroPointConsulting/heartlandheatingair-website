@@ -186,6 +186,11 @@ function createContactComponent() {
                   <div class="error-message" id="consent-error"></div>
                 </div>
                 
+                <div class="form-field recaptcha-field">
+                  <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                  <div class="error-message" id="recaptcha-error"></div>
+                </div>
+                
                 <button type="submit" class="submit-btn" id="submitBtn">
                   <i class="fas fa-paper-plane"></i>
                   <span class="submit-text">Get My Custom Quote</span>
@@ -209,7 +214,7 @@ function initContactForm() {
   if (!form) return;
 
   form.addEventListener('submit', handleContactSubmit);
-  
+
   // Add real-time validation
   const requiredFields = ['name', 'phone', 'customer_type', 'service'];
   requiredFields.forEach(fieldName => {
@@ -225,34 +230,46 @@ function initContactForm() {
   if (consentCheckbox) {
     consentCheckbox.addEventListener('change', () => clearFieldError(consentCheckbox));
   }
+
+  // Handle reCAPTCHA
+  const recaptchaElement = form.querySelector('.g-recaptcha');
+  if (recaptchaElement) {
+    // Clear reCAPTCHA error when user interacts with it
+    recaptchaElement.addEventListener('click', () => {
+      clearFieldError({ name: 'recaptcha' });
+    });
+  }
 }
 
 // Handle form submission
 async function handleContactSubmit(e) {
   e.preventDefault();
-  
+
   const form = e.target;
   const submitBtn = document.getElementById('submitBtn');
   const submitText = submitBtn.querySelector('.submit-text');
   const submitLoading = submitBtn.querySelector('.submit-loading');
-  
+
   // Clear previous errors
   clearAllErrors();
-  
+
   // Validate form
   if (!validateForm(form)) {
     return;
   }
-  
+
   // Show loading state
   submitBtn.disabled = true;
   submitText.style.display = 'none';
   submitLoading.style.display = 'inline';
-  
+
   try {
-    // Collect form data
+        // Collect form data
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
+    
+    // Add reCAPTCHA response
+    data.recaptchaResponse = grecaptcha.getResponse();
     
     // Send to backend
     const response = await fetch('/api/contact', {
@@ -262,9 +279,9 @@ async function handleContactSubmit(e) {
       },
       body: JSON.stringify(data)
     });
-    
+
     const result = await response.json();
-    
+
     if (result.success) {
       // Show success message
       showSuccessMessage(result.message);
@@ -273,7 +290,7 @@ async function handleContactSubmit(e) {
       // Show error message
       showErrorMessage(result.message || 'An error occurred. Please try again.');
     }
-    
+
   } catch (error) {
     console.error('Form submission error:', error);
     showErrorMessage('Network error. Please check your connection and try again.');
@@ -290,42 +307,42 @@ function validateField(field) {
   const fieldName = field.name;
   const value = field.value.trim();
   const errorElement = document.getElementById(`${fieldName}-error`);
-  
+
   if (!errorElement) return true;
-  
+
   let isValid = true;
   let errorMessage = '';
-  
+
   // Required field validation
   if (field.hasAttribute('required') && !value) {
     isValid = false;
     errorMessage = 'This field is required.';
   }
-  
+
   // Email validation
   if (fieldName === 'email' && value && !isValidEmail(value)) {
     isValid = false;
     errorMessage = 'Please enter a valid email address.';
   }
-  
+
   // Phone validation
   if (fieldName === 'phone' && value && !isValidPhone(value)) {
     isValid = false;
     errorMessage = 'Please enter a valid phone number.';
   }
-  
+
   // Consent validation
   if (fieldName === 'consent' && !field.checked) {
     isValid = false;
     errorMessage = 'You must agree to receive communications from us.';
   }
-  
+
   if (!isValid) {
     showFieldError(field, errorMessage);
   } else {
     clearFieldError(field);
   }
-  
+
   return isValid;
 }
 
@@ -333,7 +350,7 @@ function validateField(field) {
 function validateForm(form) {
   const requiredFields = ['name', 'phone', 'customer_type', 'service'];
   let isValid = true;
-  
+
   // Validate required fields
   requiredFields.forEach(fieldName => {
     const field = form.querySelector(`[name="${fieldName}"]`);
@@ -341,13 +358,18 @@ function validateForm(form) {
       isValid = false;
     }
   });
-  
+
   // Validate consent
   const consentCheckbox = form.querySelector('input[name="consent"]');
   if (consentCheckbox && !validateField(consentCheckbox)) {
     isValid = false;
   }
-  
+
+  // Validate reCAPTCHA
+  if (!validateRecaptcha()) {
+    isValid = false;
+  }
+
   return isValid;
 }
 
@@ -380,7 +402,7 @@ function clearAllErrors() {
     element.textContent = '';
     element.style.display = 'none';
   });
-  
+
   const errorFields = document.querySelectorAll('.form-field input.error, .form-field select.error');
   errorFields.forEach(field => {
     field.classList.remove('error');
@@ -400,14 +422,14 @@ function showSuccessMessage(message) {
       <p>We'll contact you within 2 hours during business hours.</p>
     </div>
   `;
-  
+
   // Insert after form
   const form = document.getElementById('contactForm');
   form.parentNode.insertBefore(successDiv, form.nextSibling);
-  
+
   // Scroll to success message
   successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  
+
   // Remove after 10 seconds
   setTimeout(() => {
     if (successDiv.parentNode) {
@@ -429,14 +451,14 @@ function showErrorMessage(message) {
       <p>Please try again or call us directly at <a href="tel:+13175550123">(317) 555-0123</a></p>
     </div>
   `;
-  
+
   // Insert after form
   const form = document.getElementById('contactForm');
   form.parentNode.insertBefore(errorDiv, form.nextSibling);
-  
+
   // Scroll to error message
   errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  
+
   // Remove after 8 seconds
   setTimeout(() => {
     if (errorDiv.parentNode) {
@@ -454,6 +476,27 @@ function isValidEmail(email) {
 function isValidPhone(phone) {
   const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
   return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+}
+
+// Validate reCAPTCHA
+function validateRecaptcha() {
+  const recaptchaResponse = grecaptcha.getResponse();
+  const errorElement = document.getElementById('recaptcha-error');
+
+  if (!recaptchaResponse) {
+    if (errorElement) {
+      errorElement.textContent = 'Please complete the reCAPTCHA verification.';
+      errorElement.style.display = 'block';
+    }
+    return false;
+  }
+
+  if (errorElement) {
+    errorElement.textContent = '';
+    errorElement.style.display = 'none';
+  }
+
+  return true;
 }
 
 export { createContactComponent, initContactForm }; 

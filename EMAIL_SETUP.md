@@ -147,3 +147,74 @@ If you encounter issues:
 - `POST /api/quote` - Quote request form submission
 - `GET /api/health` - Health check
 - `GET /api/test-email` - Test email configuration
+
+---
+
+# reCAPTCHA Setup Guide
+
+This guide will help you set up Google reCAPTCHA to protect your contact forms from spam and bots.
+
+## Prerequisites
+
+- A Google account
+- Access to Google reCAPTCHA admin console
+
+## Step 1: Create reCAPTCHA Site
+
+1. Go to the Google reCAPTCHA admin console: https://www.google.com/recaptcha/admin
+2. Click "Create" to add a new site
+3. Choose **reCAPTCHA v2** with **"I'm not a robot" Checkbox**
+4. Add your domains:
+   - For development: `localhost`, `127.0.0.1`
+   - For production: `yourdomain.com`, `www.yourdomain.com`
+5. Accept the terms and click "Submit"
+
+## Step 2: Get Your Keys
+
+After creating the site, you'll get two keys:
+
+- **Site Key** (public) - Used in your HTML forms
+- **Secret Key** (private) - Used in your server-side verification
+
+## Step 3: Configure Environment Variables
+
+Add these to your `.env` file:
+
+```env
+# reCAPTCHA Configuration
+RECAPTCHA_SITE_KEY=your_site_key_here
+RECAPTCHA_SECRET_KEY=your_secret_key_here
+```
+
+## Step 4: Test reCAPTCHA
+
+1. Start your server: `npm start`
+2. Visit your contact form
+3. You should see the reCAPTCHA checkbox
+4. Complete the reCAPTCHA and submit the form
+5. Check that the form submission works correctly
+
+## Troubleshooting
+
+### reCAPTCHA not showing
+
+- Verify your site key is correct
+- Check that your domain is in the allowed list
+- Ensure the reCAPTCHA script is loading
+
+### Form submission failing
+
+- Check browser console for JavaScript errors
+- Verify your secret key is correct
+- Check server logs for reCAPTCHA verification errors
+
+### "Invalid domain" error
+
+- Add your domain to the reCAPTCHA allowed list
+- For local development, make sure `localhost` is included
+
+## Security Notes
+
+- **Never expose your secret key** in client-side code
+- The secret key is only used server-side for verification
+- Keep your keys secure and rotate them if compromised

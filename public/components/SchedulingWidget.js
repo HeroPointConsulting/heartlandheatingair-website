@@ -109,6 +109,9 @@ class SchedulingWidget {
                 </select>
               </div>
               <textarea name="details" placeholder="Tell us about your project..." rows="3"></textarea>
+              <div class="recaptcha-field">
+                <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+              </div>
               <button type="submit" class="quote-submit">
                 <i class="fas fa-paper-plane"></i>
                 Send Request
@@ -365,11 +368,21 @@ class SchedulingWidget {
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     submitBtn.disabled = true;
 
-    try {
+        try {
+      // Validate reCAPTCHA
+      const recaptchaResponse = grecaptcha.getResponse();
+      if (!recaptchaResponse) {
+        this.showQuoteError('Please complete the reCAPTCHA verification.');
+        return;
+      }
+      
       // Collect form data
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
-
+      
+      // Add reCAPTCHA response
+      data.recaptchaResponse = recaptchaResponse;
+      
       // Send to backend
       const response = await fetch('/api/quote', {
         method: 'POST',

@@ -10,6 +10,7 @@
     "preview": "cd public && live-server --port=8080 --open=/index.html --no-browser",
     "generate-seo": "node scripts/generate-location-pages.js",
     "add-favicons": "node scripts/add-favicons.js",
+    "add-recaptcha": "node scripts/add-recaptcha.js",
     "seo-build": "npm run generate-seo && npm run build"
   },
   "keywords": [

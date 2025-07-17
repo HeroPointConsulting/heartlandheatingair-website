@@ -4,6 +4,29 @@ const path = require('path');
 const { sendEmails, verifyConnection } = require('./email-config');
 require('dotenv').config();
 
+// reCAPTCHA verification function
+async function verifyRecaptcha(recaptchaResponse) {
+  if (!recaptchaResponse) {
+    return false;
+  }
+
+  try {
+    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaResponse}`
+    });
+
+    const data = await response.json();
+    return data.success;
+  } catch (error) {
+    console.error('reCAPTCHA verification error:', error);
+    return false;
+  }
+}
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -28,6 +51,15 @@ app.get('/api/health', (req, res) => {
 app.post('/api/contact', async (req, res) => {
   try {
     const formData = req.body;
+
+    // Verify reCAPTCHA
+    const recaptchaValid = await verifyRecaptcha(formData.recaptchaResponse);
+    if (!recaptchaValid) {
+      return res.status(400).json({
+        success: false,
+        message: 'reCAPTCHA verification failed. Please try again.'
+      });
+    }
 
     // Validate required fields
     const requiredFields = ['name', 'phone', 'customer_type', 'service'];
@@ -91,6 +123,15 @@ app.post('/api/contact', async (req, res) => {
 app.post('/api/quote', async (req, res) => {
   try {
     const formData = req.body;
+
+    // Verify reCAPTCHA
+    const recaptchaValid = await verifyRecaptcha(formData.recaptchaResponse);
+    if (!recaptchaValid) {
+      return res.status(400).json({
+        success: false,
+        message: 'reCAPTCHA verification failed. Please try again.'
+      });
+    }
 
     // Validate required fields
     const requiredFields = ['name', 'phone', 'service'];

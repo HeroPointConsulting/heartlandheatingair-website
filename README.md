@@ -28,9 +28,9 @@ This project implements a comprehensive long-tail SEO strategy for Heartland Hea
 npm install
 ```
 
-### Email Setup (Required for Contact Forms)
+### Email & reCAPTCHA Setup (Required for Contact Forms)
 
-Before running the application, you need to set up email functionality:
+Before running the application, you need to set up email functionality and reCAPTCHA:
 
 1. **Copy the environment template:**
 
@@ -38,10 +38,11 @@ Before running the application, you need to set up email functionality:
    cp env.example .env
    ```
 
-2. **Follow the email setup guide:**
+2. **Follow the setup guides:**
    - See `EMAIL_SETUP.md` for detailed instructions
    - Configure Gmail App Password
-   - Set up environment variables
+   - Set up Google reCAPTCHA keys
+   - Configure environment variables
 
 ### Development
 

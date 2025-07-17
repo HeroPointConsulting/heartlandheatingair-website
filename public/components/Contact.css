@@ -100,6 +100,24 @@
   cursor: not-allowed;
 }
 
+/* reCAPTCHA Styling */
+.recaptcha-field {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.recaptcha-field .g-recaptcha {
+  transform: scale(0.9);
+  transform-origin: 0 0;
+}
+
+@media (max-width: 480px) {
+  .recaptcha-field .g-recaptcha {
+    transform: scale(0.8);
+  }
+}
+
 /* Quote Notifications */
 .quote-notification {
   position: fixed;
