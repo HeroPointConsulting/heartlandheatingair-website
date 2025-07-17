@@ -226,9 +226,34 @@ function isValidEmail(email) {
   return emailRegex.test(email);
 }
 
-// Catch-all route to serve index.html for SPA routing
+// Catch-all route to serve appropriate HTML files for SPA routing
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  const path = req.path;
+  console.log(`Server received request for path: ${path}`);
+
+  // Handle careers routes - serve careers.html for any /careers/* path
+  if (path.startsWith('/careers')) {
+    console.log(`Serving careers.html for path: ${path}`);
+    res.sendFile(path.join(__dirname, 'public', 'careers.html'));
+  }
+  // Handle other specific pages
+  else if (path.startsWith('/about')) {
+    console.log(`Serving about.html for path: ${path}`);
+    res.sendFile(path.join(__dirname, 'public', 'about.html'));
+  }
+  else if (path.startsWith('/contact')) {
+    console.log(`Serving contact.html for path: ${path}`);
+    res.sendFile(path.join(__dirname, 'public', 'contact.html'));
+  }
+  else if (path.startsWith('/service')) {
+    console.log(`Serving service.html for path: ${path}`);
+    res.sendFile(path.join(__dirname, 'public', 'service.html'));
+  }
+  // Default to index.html for all other routes
+  else {
+    console.log(`Serving index.html for path: ${path}`);
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  }
 });
 
 // Start server

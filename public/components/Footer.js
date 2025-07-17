@@ -54,7 +54,7 @@ export default class Footer {
                   <li><a href="https://g.page/r/CQfKjB6VHxWXEB0/review" target="_blank" rel="noopener">Customer Reviews</a></li>
                   <li><a href="#contact">Contact</a></li>
                   <li><a href="/blog">HVAC Tips & News</a></li>
-                  <li><a href="/careers">Careers</a></li>
+                  <li><a href="/careers.html">Careers</a></li>
                 </ul>
               </div>
               

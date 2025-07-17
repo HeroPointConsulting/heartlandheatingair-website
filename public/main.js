@@ -13,6 +13,8 @@ import { createServicePage, initServicePage } from './components/ServicePage.js'
 import { LocationPage } from './components/LocationPage.js';
 import { createFloatingButtons } from './components/FloatingButtons.js';
 import { createContactComponent, initContactForm } from './components/Contact.js';
+import { createCareersPage, initCareersPage } from './components/Careers.js';
+import { createJobDetailPage, initJobDetailPage } from './components/JobDetail.js';
 import './components/Services.js';
 
 // Initialize the app when DOM is loaded
@@ -20,8 +22,12 @@ document.addEventListener('DOMContentLoaded', function () {
   // Initialize all app features
   initializeApp();
 
-  // Initialize page-specific functionality
-  initializePageSpecificFeatures();
+  // Handle browser back/forward buttons
+  window.addEventListener('popstate', function () {
+    console.log('Popstate event triggered, current path:', window.location.pathname);
+    // Re-initialize careers pages when URL changes
+    initializeCareersPages();
+  });
 });
 
 // Main initialization function
@@ -75,6 +81,12 @@ function initializeApp() {
   initializeServicePages();
   initializeLocationPages();
 
+  // Initialize careers pages if needed
+  initializeCareersPages();
+
+  // Initialize page-specific features
+  initializePageSpecificFeatures();
+
   // Initialize Calendly (if script is loaded)
   setTimeout(() => {
     initializeCalendly();
@@ -82,6 +94,24 @@ function initializeApp() {
 
   // Initialize live chat
   initializeLiveChat();
+
+  // Fallback: Check if careers page content loaded after a delay
+  setTimeout(() => {
+    const currentPath = window.location.pathname;
+    if ((currentPath === '/careers' || currentPath === '/careers.html') && document.querySelector('main') && !document.querySelector('.careers-page')) {
+      console.log('Careers page content not loaded, attempting fallback...');
+      loadCareersPage();
+    }
+    // Check if job detail page content loaded
+    else if (currentPath.startsWith('/careers/') && document.querySelector('main') && !document.querySelector('.job-detail-page')) {
+      console.log('Job detail page content not loaded, attempting fallback...');
+      const pathParts = currentPath.split('/');
+      const jobSlug = pathParts[pathParts.length - 1];
+      if (jobSlug && jobSlug !== 'careers') {
+        loadJobDetailPage(jobSlug);
+      }
+    }
+  }, 2000);
 }
 
 // Initialize Floating Buttons Component
@@ -264,6 +294,42 @@ function loadFooterComponent() {
     }
   } catch (error) {
     console.error('Error loading footer component:', error);
+  }
+}
+
+// Load Careers Page
+function loadCareersPage() {
+  try {
+    console.log('Loading careers page...');
+    const mainContent = document.querySelector('main');
+    if (mainContent) {
+      console.log('Found main content element, loading careers content...');
+      mainContent.innerHTML = createCareersPage();
+      initCareersPage();
+      console.log('Careers page loaded successfully');
+    } else {
+      console.error('Main content element not found');
+    }
+  } catch (error) {
+    console.error('Error loading careers page:', error);
+  }
+}
+
+// Load Job Detail Page
+function loadJobDetailPage(jobSlug) {
+  try {
+    console.log('Loading job detail page for slug:', jobSlug);
+    const mainContent = document.querySelector('main');
+    if (mainContent) {
+      console.log('Found main content element, loading job detail content...');
+      mainContent.innerHTML = createJobDetailPage(jobSlug);
+      initJobDetailPage();
+      console.log('Job detail page loaded successfully');
+    } else {
+      console.error('Main content element not found');
+    }
+  } catch (error) {
+    console.error('Error loading job detail page:', error);
   }
 }
 
@@ -491,6 +557,39 @@ function initializeLocationPages() {
   }
 }
 
+// Initialize Careers Pages
+function initializeCareersPages() {
+  try {
+    const currentPath = window.location.pathname;
+    console.log('Checking careers pages, current path:', currentPath);
+
+    // Check if we're on the careers page
+    if (currentPath === '/careers' || currentPath === '/careers.html') {
+      console.log('Detected careers page, loading...');
+      loadCareersPage();
+    }
+    // Check if we're on a specific job page
+    else if (currentPath.startsWith('/careers/')) {
+      console.log('Detected job detail page, loading...');
+      const pathParts = currentPath.split('/');
+      const jobSlug = pathParts[pathParts.length - 1];
+      console.log('Path parts:', pathParts);
+      console.log('Job slug:', jobSlug);
+
+      if (jobSlug && jobSlug !== 'careers') {
+        // Remove .html extension if present
+        const cleanSlug = jobSlug.replace('.html', '');
+        console.log('Clean slug:', cleanSlug);
+        loadJobDetailPage(cleanSlug);
+      }
+    } else {
+      console.log('Not on a careers page');
+    }
+  } catch (error) {
+    console.error('Error initializing careers pages:', error);
+  }
+}
+
 // Helper function to get service data
 function getServiceData(serviceSlug) {
   const services = {
@@ -715,6 +814,13 @@ function initializePageSpecificFeatures() {
   // Check if we're on the about page
   if (window.location.pathname.includes('about.html')) {
     initializeAboutPageFeatures();
+  }
+
+  // Check if we're on the careers page
+  if (window.location.pathname.includes('careers.html')) {
+    console.log('Initializing careers page features...');
+    // The careers page content should already be loaded by initializeCareersPages()
+    // This is just for any additional page-specific features
   }
 }
 

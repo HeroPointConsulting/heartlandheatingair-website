@@ -44,7 +44,7 @@ class Navbar {
           <nav class="nav-menu" id="navMenu">
             <div class="nav-dropdown">
               <a href="#services" class="nav-link">
-                Services <i class="fas fa-chevron-down"></i>
+                SERVICES <i class="fas fa-chevron-down"></i>
               </a>
               <div class="dropdown-content">
                 <div class="dropdown-section">
@@ -80,9 +80,10 @@ class Navbar {
               </div>
             </div>
             
-            <a href="#service-areas" class="nav-link">Service Areas</a>
-            <a href="/about.html" class="nav-link">About</a>
-            <a href="/contact.html" class="nav-link">Contact</a>
+            <a href="#service-areas" class="nav-link">SERVICE AREAS</a>
+            <a href="/about.html" class="nav-link">ABOUT</a>
+            <a href="/careers.html" class="nav-link">CAREERS</a>
+            <a href="/contact.html" class="nav-link">CONTACT</a>
           </nav>
 
           <!-- Trust Badges -->

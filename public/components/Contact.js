@@ -187,7 +187,7 @@ function createContactComponent() {
                 </div>
                 
                 <div class="form-field recaptcha-field">
-                  <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                  <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY_HERE"></div>
                   <div class="error-message" id="recaptcha-error"></div>
                 </div>
                 
