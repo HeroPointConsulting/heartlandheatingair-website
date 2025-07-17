@@ -45,7 +45,7 @@ export function createServicePage(serviceSlug) {
               <a href="tel:+13175550123" class="btn btn-secondary btn-hero">
                 Call Now: (317) 555-0123
               </a>
-              <a href="#contact" class="btn btn-outline btn-hero">
+              <a href="contact.html" class="btn btn-outline btn-hero">
                 Get Quote
               </a>
             ` : `
@@ -173,7 +173,7 @@ export function createServicePage(serviceSlug) {
               <div class="cta-card">
                 <h3>Ready to Get Started?</h3>
                 ${service.id === 'commercial-hvac' ? `
-                  <a href="#contact" class="btn btn-primary">Get Quote</a>
+                  <a href="contact.html" class="btn btn-primary">Get Quote</a>
                   <a href="tel:+13175550123" class="btn btn-secondary">Call Now</a>
                 ` : `
                   <a href="#schedule" class="btn btn-primary">Schedule Service</a>

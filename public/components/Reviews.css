@@ -317,19 +317,20 @@
   
   .reviews-cta {
     margin-top: 2rem;
-  }
-  
-  .review-links {
     flex-direction: column;
-    align-items: center;
+    gap: 1rem;
+    padding: 0 1rem;
   }
   
   .cta-button,
   .more-reviews-button,
   .leave-review-button {
     width: 100%;
+    max-width: 300px;
     text-align: center;
     justify-content: center;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
   }
 }
 

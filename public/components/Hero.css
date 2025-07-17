@@ -334,6 +334,12 @@
     gap: 1.5rem;
   }
   
+  .hero-headline {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  
   .slide-btn {
     width: 4px;
     height: 20px;
@@ -382,42 +388,17 @@
   }
 }
 
-/* Floating Emergency Button */
-.floating-emergency {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 1000;
-  background: var(--heartland-red);
-  color: var(--white);
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.3);
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: 2px solid var(--heartland-red);
-}
-
-.floating-emergency:hover {
-  background: var(--heartland-red-hover);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
-  color: var(--white);
-}
-
-.floating-emergency i {
-  font-size: 1rem;
-}
-
-@media (max-width: 768px) {
-  .floating-emergency {
-    display: none; /* Hide on mobile - use sticky bottom bar instead */
+/* Very small screens */
+@media (max-width: 480px) {
+  .hero-headline {
+    font-size: clamp(2rem, 6vw, 2.5rem);
+    line-height: 1.2;
+    white-space: nowrap;
   }
-} 
+  
+  .hero-subtitle {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+  }
+}
+
+ 

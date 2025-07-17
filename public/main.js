@@ -12,6 +12,7 @@ import { TrustSignals } from './components/TrustSignals.js';
 import SchedulingWidget from './components/SchedulingWidget.js';
 import { createServicePage, initServicePage } from './components/ServicePage.js';
 import { LocationPage } from './components/LocationPage.js';
+import { createFloatingButtons } from './components/FloatingButtons.js';
 import './components/Services.js';
 
 // Initialize the app when DOM is loaded
@@ -37,8 +38,8 @@ function initializeApp() {
   // Initialize contact form
   initializeContactForm();
 
-  // Initialize chat widget
-  initializeChatWidget();
+  // Initialize floating buttons (emergency call + chat widget)
+  initializeFloatingButtons();
 
   // Initialize story modal
   initializeStoryModal();
@@ -83,6 +84,23 @@ function initializeApp() {
 
   // Initialize live chat
   initializeLiveChat();
+}
+
+// Initialize Floating Buttons Component
+function initializeFloatingButtons() {
+  try {
+    // Check if we're on a page that shouldn't have floating buttons
+    const currentPath = window.location.pathname;
+    const isLocationPage = currentPath.includes('/locations/');
+    const isLegalPage = currentPath.includes('/privacy') || currentPath.includes('/terms');
+
+    if (!isLocationPage && !isLegalPage) {
+      // Create and initialize floating buttons
+      createFloatingButtons();
+    }
+  } catch (error) {
+    console.error('Error initializing floating buttons:', error);
+  }
 }
 
 // Load Navbar component - Class-based Pattern
@@ -347,49 +365,7 @@ function initializeLiveChat() {
   // For example, show/hide chat based on user behavior
 }
 
-// Interactive Chat Widget
-function initializeChatWidget() {
-  const chatToggle = document.getElementById('chatToggle');
-  const chatPopup = document.getElementById('chatPopup');
-  const chatClose = document.getElementById('chatClose');
-  const chatBadge = document.querySelector('.chat-badge');
 
-  if (chatToggle && chatPopup && chatClose) {
-    // Toggle chat popup
-    chatToggle.addEventListener('click', () => {
-      chatPopup.classList.toggle('show');
-
-      // Hide badge when chat is opened
-      if (chatPopup.classList.contains('show')) {
-        chatBadge.style.display = 'none';
-      }
-    });
-
-    // Close chat popup
-    chatClose.addEventListener('click', () => {
-      chatPopup.classList.remove('show');
-    });
-
-    // Close chat when clicking outside
-    document.addEventListener('click', (event) => {
-      if (!chatToggle.contains(event.target) && !chatPopup.contains(event.target)) {
-        chatPopup.classList.remove('show');
-      }
-    });
-
-    // Handle chat option clicks
-    const chatOptions = document.querySelectorAll('.chat-option');
-    chatOptions.forEach(option => {
-      option.addEventListener('click', (e) => {
-        // Close chat popup when option is clicked
-        chatPopup.classList.remove('show');
-
-        // Track which option was clicked
-        const optionText = option.querySelector('span').textContent;
-      });
-    });
-  }
-}
 
 // Story Video Modal
 function initializeStoryModal() {
@@ -814,20 +790,20 @@ function initializeServicePageFeatures() {
   // Load service page content
   loadServicePageContent(serviceSlug);
 
-  // Load other components (conditionally for emergency service)
-  if (serviceSlug !== 'emergency-service') {
+  // Load other components (conditionally for emergency service and commercial HVAC)
+  if (serviceSlug !== 'emergency-service' && serviceSlug !== 'commercial-hvac') {
     loadTrustSignalsComponent();
     loadContactComponent();
   }
 
-  // Only initialize contact form and scheduler for non-emergency services
-  if (serviceSlug !== 'emergency-service') {
+  // Only initialize contact form and scheduler for non-emergency and non-commercial services
+  if (serviceSlug !== 'emergency-service' && serviceSlug !== 'commercial-hvac') {
     initializeContactForm();
     initializeScheduler();
   }
 
-  // Initialize Calendly (only for non-emergency services)
-  if (serviceSlug !== 'emergency-service') {
+  // Initialize Calendly (only for non-emergency and non-commercial services)
+  if (serviceSlug !== 'emergency-service' && serviceSlug !== 'commercial-hvac') {
     setTimeout(() => {
       initializeCalendly();
     }, 1000);
@@ -838,7 +814,7 @@ function initializeServicePageFeatures() {
     hideEmergencySections();
   }
 
-  // Hide schedule section for commercial HVAC (keep contact/quote section)
+  // Hide schedule section for commercial HVAC (redirect to contact page for quotes)
   if (serviceSlug === 'commercial-hvac') {
     hideScheduleSectionForCommercial();
   }
@@ -979,11 +955,17 @@ function updateChatWidgetForEmergency() {
   }
 }
 
-// Hide schedule section for commercial HVAC (keep contact/quote section)
+// Hide schedule section for commercial HVAC (redirect to contact page for quotes)
 function hideScheduleSectionForCommercial() {
   const scheduleSection = document.getElementById('schedule');
   if (scheduleSection) {
     scheduleSection.style.display = 'none';
+  }
+
+  // Hide the contact component container for commercial HVAC
+  const contactContainer = document.getElementById('contact-component-container');
+  if (contactContainer) {
+    contactContainer.style.display = 'none';
   }
 
   // Update chat widget for commercial service
@@ -1001,7 +983,7 @@ function updateChatWidgetForCommercial() {
       const text = scheduleOption.querySelector('span');
       if (icon) icon.className = 'fas fa-file-invoice';
       if (text) text.textContent = 'Get Quote';
-      scheduleOption.href = '#contact';
+      scheduleOption.href = 'contact.html';
     }
   }
 }

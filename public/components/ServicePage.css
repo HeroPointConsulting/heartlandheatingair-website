@@ -10,6 +10,7 @@
   justify-content: center;
   color: white;
   overflow: hidden;
+  padding: 4rem 0;
 }
 
 .service-hero-background {
@@ -44,7 +45,7 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 2rem;
 }
 
 .service-hero-content {
@@ -482,12 +483,13 @@
 
 @media (max-width: 768px) {
   .service-hero {
-    height: 50vh;
-    min-height: 350px;
+    height: auto;
+    min-height: 400px;
+    padding: 4rem 0;
   }
   
   .service-hero-layout {
-    padding: 0 1.5rem;
+    padding: 1.5rem;
   }
   
   .service-hero-content {
@@ -542,8 +544,13 @@
 }
 
 @media (max-width: 640px) {
+  .service-hero {
+    min-height: 350px;
+    padding: 3rem 0;
+  }
+  
   .service-hero-layout {
-    padding: 0 1rem;
+    padding: 1rem;
   }
   
   .service-hero-content {
@@ -577,8 +584,8 @@
 
 @media (max-width: 480px) {
   .service-hero {
-    height: 45vh;
-    min-height: 300px;
+    min-height: 320px;
+    padding: 2.5rem 0;
   }
   
   .service-hero-headline {

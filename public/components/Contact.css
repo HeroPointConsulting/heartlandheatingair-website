@@ -106,12 +106,13 @@
 .form-group input,
 .form-group select,
 .form-group textarea {
-  padding: 0.625rem;
+  padding: 0.75rem;
   border: 1px solid var(--gray-200);
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
   background: white;
+  color: var(--gray-800);
 }
 
 .form-group input:focus,
@@ -293,31 +294,7 @@
   font-style: italic;
 }
 
-/* Floating Emergency Button */
-.floating-emergency {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background: var(--heartland-red);
-  color: white;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(190, 30, 45, 0.3);
-  transition: all 0.3s ease;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
 
-.floating-emergency:hover {
-  background: var(--heartland-red-hover);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(190, 30, 45, 0.4);
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -360,11 +337,7 @@
     font-size: 1.5rem;
   }
 
-  .floating-emergency {
-    bottom: 1.5rem;
-    right: 1.5rem;
-    padding: 0.875rem 1.25rem;
-  }
+
 }
 
 @media (max-width: 480px) {
@@ -392,13 +365,5 @@
     font-size: 1.375rem;
   }
 
-  .floating-emergency {
-    bottom: 1rem;
-    right: 1rem;
-    padding: 0.75rem 1rem;
-  }
 
-  .floating-emergency span {
-    display: none;
-  }
 } 

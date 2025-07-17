@@ -283,9 +283,9 @@
 .quote-form input,
 .quote-form select,
 .quote-form textarea {
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  color: white;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: var(--gray-800);
   padding: 1rem 1.5rem;
   border-radius: 12px;
   font-size: 1rem;
@@ -296,7 +296,7 @@
 .quote-form select {
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1rem;
@@ -304,8 +304,8 @@
 }
 
 .quote-form select option {
-  background: #1f2937;
-  color: white;
+  background: white;
+  color: var(--gray-800);
   padding: 0.5rem;
 }
 
@@ -313,13 +313,14 @@
 .quote-form select:focus,
 .quote-form textarea:focus {
   outline: none;
-  border-color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--heartland-blue);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(15, 46, 109, 0.1);
 }
 
 .quote-form input::placeholder,
 .quote-form textarea::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--gray-500);
 }
 
 .quote-form input,

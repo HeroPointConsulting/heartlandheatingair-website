@@ -11,6 +11,7 @@
 @import url('./components/ServicePage.css');
 @import url('./components/LocationPage.css');
 @import url('./components/Footer.css');
+@import url('./components/FloatingButtons.css');
 
 /* CSS Reset and Base Styles */
 * {
@@ -89,34 +90,7 @@ body {
   margin-right: auto;
 }
 
-/* Emergency Float Button */
-.emergency-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-}
 
-.emergency-btn {
-  background: var(--heartland-red);
-  color: var(--white);
-  padding: 12px 20px;
-  border-radius: 25px;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(190, 30, 45, 0.3);
-  transition: all 0.3s ease;
-}
-
-.emergency-btn:hover {
-  background: var(--heartland-red-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(190, 30, 45, 0.4);
-  color: var(--white);
-}
 
 /* Emergency Button Styles */
 .btn-emergency {
@@ -149,189 +123,6 @@ body {
   font-weight: 700;
 }
 
-/* Chat Widget */
-.chat-widget {
-  position: fixed;
-  bottom: 100px;
-  right: 20px;
-  z-index: 1000;
-}
-
-.chat-toggle {
-  width: 60px;
-  height: 60px;
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--white);
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.chat-toggle:hover {
-  background: rgba(0, 0, 0, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-}
-
-.chat-toggle i {
-  font-size: 24px;
-}
-
-.chat-badge {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background: var(--heartland-red);
-  color: var(--white);
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 600;
-  animation: pulse 2s infinite;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-}
-
-.chat-popup {
-  position: absolute;
-  bottom: 80px;
-  right: 0;
-  width: 320px;
-  background: var(--white);
-  border-radius: 16px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-  border: 1px solid var(--gray-200);
-}
-
-.chat-popup.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.chat-header {
-  background: var(--heartland-blue);
-  color: var(--white);
-  padding: 16px 20px;
-  border-radius: 16px 16px 0 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.chat-company {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-}
-
-.chat-close {
-  background: none;
-  border: none;
-  color: var(--white);
-  cursor: pointer;
-  font-size: 18px;
-  padding: 4px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-.chat-close:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.chat-content {
-  padding: 20px;
-}
-
-.chat-greeting {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.greeting-avatar {
-  width: 40px;
-  height: 40px;
-  background: var(--heartland-blue);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--white);
-  flex-shrink: 0;
-}
-
-.greeting-text h4 {
-  color: var(--gray-800);
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.greeting-text p {
-  color: var(--gray-600);
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.chat-options {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.chat-option {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  background: var(--gray-50);
-  border-radius: 8px;
-  text-decoration: none;
-  color: var(--gray-700);
-  transition: all 0.3s ease;
-}
-
-.chat-option:hover {
-  background: var(--heartland-blue);
-  color: var(--white);
-  transform: translateX(4px);
-}
-
-.chat-option i {
-  width: 16px;
-  text-align: center;
-}
-
-.chat-hours {
-  text-align: center;
-  padding-top: 16px;
-  border-top: 1px solid var(--gray-200);
-}
-
-.chat-hours p {
-  color: var(--gray-600);
-  font-size: 12px;
-  margin-bottom: 4px;
-}
-
 /* Animations */
 @keyframes pulse {
   0%, 100% { opacity: 1; }
@@ -340,25 +131,7 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .emergency-float {
-    display: none; /* Hide on mobile - use sticky bottom bar instead */
-  }
-  
-  .chat-widget {
-    bottom: 80px; /* Position above mobile call bar */
-  }
-}
-
-@media (max-width: 640px) {
-  .chat-popup {
-    width: 280px;
-    right: -10px;
-  }
-  
-  .chat-widget {
-    bottom: 80px; /* Position above mobile call bar */
-    right: 15px;
-  }
+  /* Mobile-specific styles can be added here */
 }
 
 
@@ -381,8 +154,5 @@ button:focus {
 
 /* Print styles */
 @media print {
-  .emergency-float,
-  .chat-widget {
-    display: none;
-  }
+  /* Print-specific styles can be added here */
 }

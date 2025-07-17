@@ -835,7 +835,7 @@
     
     .values-grid,
     .team-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
     
     .equipment-grid,
@@ -877,6 +877,12 @@
     .community-section,
     .about-page-cta {
         padding: 1.5rem 0;
+    }
+    
+    .values-grid,
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
     
     .story-modal-content {
