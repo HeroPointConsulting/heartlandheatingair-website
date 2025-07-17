@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Handle browser back/forward buttons
   window.addEventListener('popstate', function () {
-    console.log('Popstate event triggered, current path:', window.location.pathname);
     // Re-initialize careers pages when URL changes
     initializeCareersPages();
   });
@@ -100,12 +99,10 @@ function initializeApp() {
   setTimeout(() => {
     const currentPath = window.location.pathname;
     if ((currentPath === '/careers' || currentPath === '/careers.html') && document.querySelector('main') && !document.querySelector('.careers-page')) {
-      console.log('Careers page content not loaded, attempting fallback...');
       loadCareersPage();
     }
     // Check if job detail page or general application content loaded
     else if (currentPath.startsWith('/careers/') && document.querySelector('main') && !document.querySelector('.job-detail-page') && !document.querySelector('.general-application-page')) {
-      console.log('Careers sub-page content not loaded, attempting fallback...');
       const pathParts = currentPath.split('/');
       const jobSlug = pathParts[pathParts.length - 1];
       if (jobSlug && jobSlug !== 'careers') {
@@ -305,13 +302,10 @@ function loadFooterComponent() {
 // Load Careers Page
 function loadCareersPage() {
   try {
-    console.log('Loading careers page...');
     const mainContent = document.querySelector('main');
     if (mainContent) {
-      console.log('Found main content element, loading careers content...');
       mainContent.innerHTML = createCareersPage();
       initCareersPage();
-      console.log('Careers page loaded successfully');
     } else {
       console.error('Main content element not found');
     }
@@ -323,13 +317,10 @@ function loadCareersPage() {
 // Load Job Detail Page
 function loadJobDetailPage(jobSlug) {
   try {
-    console.log('Loading job detail page for slug:', jobSlug);
     const mainContent = document.querySelector('main');
     if (mainContent) {
-      console.log('Found main content element, loading job detail content...');
       mainContent.innerHTML = createJobDetailPage(jobSlug);
       initJobDetailPage();
-      console.log('Job detail page loaded successfully');
     } else {
       console.error('Main content element not found');
     }
@@ -342,10 +333,8 @@ function loadGeneralApplicationPage() {
   try {
     const mainContent = document.querySelector('main');
     if (mainContent) {
-      console.log('Loading general application page...');
       mainContent.innerHTML = createGeneralApplicationPage();
       initGeneralApplicationPage();
-      console.log('General application page loaded successfully');
     } else {
       console.error('Main content area not found');
     }
@@ -356,9 +345,8 @@ function loadGeneralApplicationPage() {
 
 
 
-// Mobile menu functionality (placeholder for future)
+// Mobile menu functionality
 function initializeMobileMenu() {
-  // TODO: Add mobile hamburger menu functionality
 }
 
 // Smooth scrolling for navigation links
@@ -456,7 +444,6 @@ function initializeScheduler() {
     }
 
     const schedulingWidget = new SchedulingWidget();
-    console.log('Scheduling widget initialized successfully');
   } catch (error) {
     console.error('Error initializing scheduling widget:', error);
 
@@ -582,37 +569,28 @@ function initializeLocationPages() {
 function initializeCareersPages() {
   try {
     const currentPath = window.location.pathname;
-    console.log('Checking careers pages, current path:', currentPath);
 
     // Check if we're on the careers page
     if (currentPath === '/careers' || currentPath === '/careers.html') {
-      console.log('Detected careers page, loading...');
       loadCareersPage();
     }
     // Check if we're on a specific job page or general application
     else if (currentPath.startsWith('/careers/')) {
-      console.log('Detected careers sub-page, loading...');
       const pathParts = currentPath.split('/');
       const jobSlug = pathParts[pathParts.length - 1];
-      console.log('Path parts:', pathParts);
-      console.log('Job slug:', jobSlug);
 
       if (jobSlug && jobSlug !== 'careers') {
         // Remove .html extension if present
         const cleanSlug = jobSlug.replace('.html', '');
-        console.log('Clean slug:', cleanSlug);
 
         // Check if it's the general application
         if (cleanSlug === 'general-application') {
-          console.log('Loading general application page...');
           loadGeneralApplicationPage();
         } else {
-          console.log('Loading job detail page...');
           loadJobDetailPage(cleanSlug);
         }
       }
     } else {
-      console.log('Not on a careers page');
     }
   } catch (error) {
     console.error('Error initializing careers pages:', error);
@@ -847,7 +825,6 @@ function initializePageSpecificFeatures() {
 
   // Check if we're on the careers page
   if (window.location.pathname.includes('careers.html')) {
-    console.log('Initializing careers page features...');
     // The careers page content should already be loaded by initializeCareersPages()
     // This is just for any additional page-specific features
   }

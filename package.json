@@ -22,12 +22,12 @@
   "author": "Hero Point Consulting",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "nodemailer": "^6.9.7",
     "cors": "^2.8.5",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.7"
   },
   "devDependencies": {
-    "live-server": "^1.2.2"
+    "live-server": "^1.2.0"
   }
 }

@@ -235,5 +235,4 @@ function formatPricingLabel(key) {
 // Initialize service page functionality
 export function initServicePage() {
   // Add any service page specific functionality here
-  console.log('Service page initialized');
 } 

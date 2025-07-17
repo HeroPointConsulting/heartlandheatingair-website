@@ -306,11 +306,9 @@ function isValidEmail(email) {
 // Catch-all route to serve appropriate HTML files for SPA routing
 app.get('*', (req, res) => {
   const reqPath = req.path;
-  console.log(`Server received request for path: ${reqPath}`);
 
   // Handle careers routes - serve careers.html for any /careers/* path
   if (reqPath.startsWith('/careers')) {
-    console.log(`Serving careers.html for path: ${reqPath}`);
     res.sendFile(path.join(__dirname, 'public', 'careers.html'), (err) => {
       if (err) {
         console.error('Error sending careers.html:', err);
@@ -320,20 +318,16 @@ app.get('*', (req, res) => {
   }
   // Handle other specific pages
   else if (reqPath.startsWith('/about')) {
-    console.log(`Serving about.html for path: ${reqPath}`);
     res.sendFile(path.join(__dirname, 'public', 'about.html'));
   }
   else if (reqPath.startsWith('/contact')) {
-    console.log(`Serving contact.html for path: ${reqPath}`);
     res.sendFile(path.join(__dirname, 'public', 'contact.html'));
   }
   else if (reqPath.startsWith('/service')) {
-    console.log(`Serving service.html for path: ${reqPath}`);
     res.sendFile(path.join(__dirname, 'public', 'service.html'));
   }
   // Default to index.html for all other routes
   else {
-    console.log(`Serving index.html for path: ${reqPath}`);
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
   }
 });

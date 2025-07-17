@@ -22,7 +22,6 @@ export function createCareersPage() {
 
   const openingsHtml = jobOpenings.map((job, index) => {
     const slug = slugify(job.title);
-    console.log(`Generating link for job "${job.title}" with slug: ${slug}`);
 
     return `
       <div class="career-opening-card">
@@ -147,13 +146,11 @@ export function initCareersPage() {
   // Debug: Log all career links
   const careerLinks = document.querySelectorAll('.career-opening-apply');
   careerLinks.forEach(link => {
-    console.log('Career link found:', link.href, 'data-route:', link.getAttribute('data-route'));
 
     // Add click event listener for client-side routing
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const route = link.getAttribute('data-route');
-      console.log('Career link clicked, navigating to:', route);
 
       // Update browser URL without page reload
       window.history.pushState({}, '', route);
@@ -161,7 +158,6 @@ export function initCareersPage() {
       // Trigger the careers page initialization to load job detail
       const pathParts = route.split('/');
       const jobSlug = pathParts[pathParts.length - 1];
-      console.log('Loading job detail for slug:', jobSlug);
 
       // Load the job detail page
       const mainContent = document.querySelector('main');
@@ -169,7 +165,6 @@ export function initCareersPage() {
         import('./JobDetail.js').then(({ createJobDetailPage, initJobDetailPage }) => {
           mainContent.innerHTML = createJobDetailPage(jobSlug);
           initJobDetailPage();
-          console.log('Job detail page loaded via client-side routing');
         }).catch(error => {
           console.error('Error loading job detail page:', error);
         });

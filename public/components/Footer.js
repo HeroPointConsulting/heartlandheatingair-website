@@ -130,7 +130,6 @@ export default class Footer {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         // Add analytics tracking here
-        console.log('Social link clicked:', link.getAttribute('aria-label'));
       });
     });
   }
