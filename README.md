@@ -4,7 +4,7 @@
 
 - **Agency**: Hero Point Consulting
 - **Client**: Heartland Heating + Air
-- **Project Date**: January 2025
+- **Project Date**: July 2025
 - **Project Type**: Long-tail Location SEO Implementation
 
 ## 📋 Project Overview
