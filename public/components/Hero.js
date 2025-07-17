@@ -44,11 +44,11 @@ export function createHero() {
         <div class="hero-content">
           <div class="hero-text">
             <h1 class="hero-headline">
-              Comfort You Can Count On
+              COMFORT YOU CAN COUNT ON
             </h1>
             <div class="hero-meta">
               <p class="hero-subtitle">
-                American-Made, Midwestern Craftsmanship
+                AMERICAN-MADE, MIDWESTERN CRAFTSMANSHIP
               </p>
               <p class="hero-tagline">
                 24/7 Emergency Service • Licensed & Insured<br>Google Guaranteed

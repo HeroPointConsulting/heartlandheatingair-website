@@ -7,7 +7,6 @@ import { createReviews, initReviews } from './components/Reviews.js';
 import { createServiceAreas, initServiceAreas } from './components/ServiceAreas.js';
 import { createWhyChoose, initWhyChoose } from './components/WhyChoose.js';
 import { createAboutComponent, initAboutComponent } from './components/About.js';
-import { createContactComponent } from './components/Contact.js';
 import { TrustSignals } from './components/TrustSignals.js';
 import SchedulingWidget from './components/SchedulingWidget.js';
 import { createServicePage, initServicePage } from './components/ServicePage.js';
@@ -34,9 +33,6 @@ function initializeApp() {
 
   // Initialize smooth scrolling
   initializeSmoothScrolling();
-
-  // Initialize contact form
-  initializeContactForm();
 
   // Initialize floating buttons (emergency call + chat widget)
   initializeFloatingButtons();
@@ -91,10 +87,9 @@ function initializeFloatingButtons() {
   try {
     // Check if we're on a page that shouldn't have floating buttons
     const currentPath = window.location.pathname;
-    const isLocationPage = currentPath.includes('/locations/');
     const isLegalPage = currentPath.includes('/privacy') || currentPath.includes('/terms');
 
-    if (!isLocationPage && !isLegalPage) {
+    if (!isLegalPage) {
       // Create and initialize floating buttons
       createFloatingButtons();
     }
@@ -254,66 +249,7 @@ function loadFooterComponent() {
   }
 }
 
-// Contact form handling
-function initializeContactForm() {
-  // Wait for the contact component to be loaded
-  setTimeout(() => {
-    const contactForm = document.querySelector('.modern-form');
 
-    if (contactForm) {
-      contactForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        // Get form data
-        const formData = new FormData(contactForm);
-        const data = {
-          name: formData.get('name'),
-          phone: formData.get('phone'),
-          email: formData.get('email'),
-          customer_type: formData.get('customer_type'),
-          service: formData.get('service'),
-          project_scope: formData.get('project_scope'),
-          timeline: formData.get('timeline'),
-          preferred_time: formData.get('preferred_time'),
-          details: formData.get('details'),
-          consent: formData.get('consent')
-        };
-
-        // Show success message
-        showSuccessMessage('Thank you! We\'ll contact you within 24 hours.');
-
-        // Reset form
-        contactForm.reset();
-
-        // TODO: Send data to your backend/email service
-        // submitContactForm(data);
-      });
-    }
-  }, 100);
-}
-
-// Show success message
-function showSuccessMessage(message) {
-  // Create success message element
-  const successDiv = document.createElement('div');
-  successDiv.className = 'success-message';
-  successDiv.innerHTML = `
-        <div style="background-color: #10b981; color: white; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; text-align: center;">
-            ✅ ${message}
-        </div>
-    `;
-
-  // Insert after contact form
-  const contactForm = document.querySelector('.modern-form');
-  if (contactForm) {
-    contactForm.parentNode.insertBefore(successDiv, contactForm.nextSibling);
-  }
-
-  // Remove message after 5 seconds
-  setTimeout(() => {
-    successDiv.remove();
-  }, 5000);
-}
 
 // Mobile menu functionality (placeholder for future)
 function initializeMobileMenu() {
@@ -446,25 +382,7 @@ function initializeBasicScheduler() {
 }
 
 
-// Utility function to handle API calls (for future use)
-async function submitContactForm(data) {
-  try {
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    });
 
-    if (!response.ok) {
-      throw new Error('Form submission failed');
-    }
-  } catch (error) {
-    // Handle error appropriately - could show user feedback
-    throw error;
-  }
-}
 
 // Add some interactive enhancements
 document.addEventListener('DOMContentLoaded', function () {
@@ -895,30 +813,12 @@ function updatePageMeta(serviceSlug) {
   });
 }
 
-// Load Contact component
-function loadContactComponent() {
-  try {
-    const contactContainer = document.getElementById('contact-component-container');
-    if (contactContainer) {
-      contactContainer.innerHTML = createContactComponent();
-    }
-  } catch (error) {
-    console.error('Error loading contact component:', error);
-  }
-}
-
 // Hide scheduling and contact sections for emergency service
 function hideEmergencySections() {
   // Hide the schedule section
   const scheduleSection = document.getElementById('schedule');
   if (scheduleSection) {
     scheduleSection.style.display = 'none';
-  }
-
-  // Hide the contact component container
-  const contactContainer = document.getElementById('contact-component-container');
-  if (contactContainer) {
-    contactContainer.style.display = 'none';
   }
 
   // Hide the trust signals component container
@@ -960,12 +860,6 @@ function hideScheduleSectionForCommercial() {
   const scheduleSection = document.getElementById('schedule');
   if (scheduleSection) {
     scheduleSection.style.display = 'none';
-  }
-
-  // Hide the contact component container for commercial HVAC
-  const contactContainer = document.getElementById('contact-component-container');
-  if (contactContainer) {
-    contactContainer.style.display = 'none';
   }
 
   // Update chat widget for commercial service

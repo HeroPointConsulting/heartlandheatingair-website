@@ -24,7 +24,7 @@ class Navbar {
           <div class="logo-section">
             <a href="/" class="logo-link">
               <div class="logo-heart-container">
-                <img src="img/hha_heart.png" alt="Heartland Heating + Air Heart Logo" class="logo-heart">
+                <img src="/img/hha_heart.png" alt="Heartland Heating + Air Heart Logo" class="logo-heart">
               </div>
               <div class="logo-text-container">
                 <span class="logo-text">HEARTLAND</span>

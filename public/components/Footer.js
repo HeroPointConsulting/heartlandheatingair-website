@@ -15,7 +15,7 @@ export default class Footer {
               <div class="footer-section footer-brand">
                 <div class="footer-logo">
                   <div class="logo-heart-container">
-                    <img src="img/hha_heart.png" alt="Heartland Heating + Air Heart Logo" class="logo-heart">
+                    <img src="/img/hha_heart.png" alt="Heartland Heating + Air Heart Logo" class="logo-heart">
                   </div>
                   <div class="logo-text-container">
                     <span class="logo-text">HEARTLAND</span>
@@ -101,7 +101,7 @@ export default class Footer {
                 </div>
               </div>
               <div class="footer-credentials">
-                <p>Licensed • Bonded • Insured • Google Guaranteed</p>
+                <p>Licensed • Bonded • Insured<br>Google Guaranteed</p>
                 <p>Indiana HVAC License #HC12345678</p>
               </div>
             </div>
@@ -109,7 +109,7 @@ export default class Footer {
             <!-- Agency Credits -->
             <div class="footer-agency">
               <div class="agency-credit">
-                <p>Website by <a href="https://heropointconsulting.com" target="_blank" rel="noopener">Hero Point Consulting</a> <img src="img/hpc_design.png" alt="Hero Point Consulting Design Logo" class="hpc-logo-img"></p>
+                <p>Website by <a href="https://heropointconsulting.com" target="_blank" rel="noopener">Hero Point Consulting</a> <img src="/img/hpc_design.png" alt="Hero Point Consulting Design Logo" class="hpc-logo-img"></p>
               </div>
             </div>
           </div>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>24/7 Emergency HVAC Service Locations | Heartland Heating + Air</title>
+  <meta name="description" content="24/7 emergency HVAC repair across Indianapolis, Carmel, Fishers, Noblesville, and Westfield. Fast response, same-day service. Call (317) 555-0123 for immediate assistance.">
+  <meta name="keywords" content="emergency hvac repair, 24 hour hvac service, emergency furnace repair, emergency ac repair, hvac emergency service, Indianapolis emergency hvac, Carmel emergency hvac, Fishers emergency hvac, Noblesville emergency hvac, Westfield emergency hvac">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="24/7 Emergency HVAC Service Locations | Heartland Heating + Air">
+  <meta property="og:description" content="24/7 emergency HVAC repair across Indianapolis, Carmel, Fishers, Noblesville, and Westfield. Fast response, same-day service. Call (317) 555-0123 for immediate assistance.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://heartlandheatingair.com/emergency">
+  
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Heartland Heating + Air",
+    "description": "24/7 Emergency HVAC Service across Central Indiana",
+    "telephone": "(317) 555-0123",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Indianapolis",
+      "addressRegion": "IN",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 39.7684,
+      "longitude": -86.1581
+    },
+    "openingHours": "Mo-Su 00:00-23:59",
+    "priceRange": "$$",
+    "serviceArea": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 39.7684,
+        "longitude": -86.1581
+      },
+      "geoRadius": "50 miles"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Emergency HVAC Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "24/7 Emergency HVAC Repair",
+            "description": "Emergency heating and cooling repair services across Central Indiana"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://heartlandheatingair.com/emergency">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="components/Navbar.css">
+  <link rel="stylesheet" href="components/Footer.css">
+  <link rel="stylesheet" href="components/FloatingButtons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    .emergency-hero {
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .emergency-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('img/slideshow-3.png') center/cover;
+      opacity: 0.1;
+    }
+    
+    .emergency-hero .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .emergency-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+    
+    .emergency-hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .emergency-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    
+    .btn-emergency {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 15px 30px;
+      background: #fbbf24;
+      color: #1e3c72;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .btn-emergency:hover {
+      background: #f59e0b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    
+    .btn-secondary {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 2px solid white;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .location-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+    
+    .location-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      border-color: #dc2626;
+    }
+    
+    .location-card h3 {
+      color: #1e3c72;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    
+    .location-card p {
+      color: #666;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .location-services {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    
+    .location-services li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: #555;
+    }
+    
+    .location-services li:before {
+      content: "✓";
+      color: #dc2626;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+    
+    .location-link {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #1e3c72;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    
+    .location-link:hover {
+      background: #dc2626;
+      transform: translateY(-2px);
+    }
+    
+    .emergency-info {
+      background: #f8f9fa;
+      padding: 60px 0;
+    }
+    
+    .emergency-info h2 {
+      color: #1e3c72;
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+    
+    .emergency-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .feature {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .feature i {
+      font-size: 2.5rem;
+      color: #dc2626;
+      margin-bottom: 1rem;
+    }
+    
+    .feature h3 {
+      color: #1e3c72;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    
+    .feature p {
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    @media (max-width: 768px) {
+      .emergency-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .emergency-hero p {
+        font-size: 1.1rem;
+      }
+      
+      .emergency-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn-emergency {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+      
+      .locations-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .emergency-info h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar Component Container -->
+  <div id="navbar-component-container"></div>
+
+  <!-- Emergency Hero Section -->
+  <section class="emergency-hero">
+    <div class="container">
+      <h1>24/7 Emergency HVAC Service</h1>
+      <p>Available anytime, day or night, for urgent heating and cooling emergencies across Central Indiana</p>
+      
+      <div class="emergency-cta">
+        <a href="tel:3175550123" class="btn-emergency">
+          <i class="fas fa-phone"></i>
+          Call Now: (317) 555-0123
+        </a>
+        <a href="sms:3175550123" class="btn-emergency btn-secondary">
+          <i class="fas fa-sms"></i>
+          Text Us
+        </a>
+      </div>
+      
+      <p><strong>Available 24/7/365</strong> • Fast Response Times • Licensed & Insured • Google Guaranteed</p>
+    </div>
+  </section>
+
+  <!-- Emergency Service Locations -->
+  <section class="emergency-info">
+    <div class="container">
+      <h2>Emergency HVAC Service Locations</h2>
+      <p style="text-align: center; font-size: 1.2rem; color: #666; max-width: 800px; margin: 0 auto 3rem;">
+        We provide 24/7 emergency HVAC repair services throughout Central Indiana. 
+        Our experienced technicians are available anytime for urgent heating and cooling emergencies.
+      </p>
+      
+      <div class="locations-grid">
+        <div class="location-card">
+          <h3>Indianapolis</h3>
+          <p>Circle City emergency HVAC service with fast response times throughout the metro area.</p>
+          <ul class="location-services">
+            <li>No-heat emergencies</li>
+            <li>AC failure in hot weather</li>
+            <li>Gas leak detection</li>
+            <li>Electrical HVAC problems</li>
+          </ul>
+          <a href="/locations/indianapolis/emergency-hvac" class="location-link">Indianapolis Emergency Service</a>
+        </div>
+        
+        <div class="location-card">
+          <h3>Carmel</h3>
+          <p>Reliable emergency HVAC service in Carmel with same-day response for urgent issues.</p>
+          <ul class="location-services">
+            <li>Furnace breakdowns</li>
+            <li>AC system failures</li>
+            <li>Thermostat malfunctions</li>
+            <li>Blower motor issues</li>
+          </ul>
+          <a href="/locations/carmel/emergency-hvac" class="location-link">Carmel Emergency Service</a>
+        </div>
+        
+        <div class="location-card">
+          <h3>Fishers</h3>
+          <p>24/7 emergency HVAC repair in Fishers with experienced technicians and stocked service trucks.</p>
+          <ul class="location-services">
+            <li>Heating system failures</li>
+            <li>Cooling emergencies</li>
+            <li>Frozen pipe issues</li>
+            <li>System shutdowns</li>
+          </ul>
+          <a href="/locations/fishers/emergency-hvac" class="location-link">Fishers Emergency Service</a>
+        </div>
+        
+        <div class="location-card">
+          <h3>Noblesville</h3>
+          <p>Emergency HVAC service in Noblesville with rapid response times and comprehensive diagnostics.</p>
+          <ul class="location-services">
+            <li>Emergency repairs</li>
+            <li>System diagnostics</li>
+            <li>Part replacement</li>
+            <li>Preventive maintenance</li>
+          </ul>
+          <a href="/locations/noblesville/emergency-hvac" class="location-link">Noblesville Emergency Service</a>
+        </div>
+        
+        <div class="location-card">
+          <h3>Westfield</h3>
+          <p>Trusted emergency HVAC service in Westfield with American-made equipment and expert technicians.</p>
+          <ul class="location-services">
+            <li>24/7 availability</li>
+            <li>Same-day service</li>
+            <li>Licensed technicians</li>
+            <li>Warranty coverage</li>
+          </ul>
+          <a href="/locations/westfield/emergency-hvac" class="location-link">Westfield Emergency Service</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency Service Features -->
+  <section class="emergency-info" style="background: white;">
+    <div class="container">
+      <h2>Why Choose Heartland for Emergency Service?</h2>
+      
+      <div class="emergency-features">
+        <div class="feature">
+          <i class="fas fa-clock"></i>
+          <h3>24/7 Availability</h3>
+          <p>We're available every day of the year, including holidays and weekends, for urgent HVAC emergencies.</p>
+        </div>
+        
+        <div class="feature">
+          <i class="fas fa-truck"></i>
+          <h3>Fast Response</h3>
+          <p>Our service trucks are stocked with common parts and our technicians typically respond within 2-4 hours.</p>
+        </div>
+        
+        <div class="feature">
+          <i class="fas fa-user-tie"></i>
+          <h3>Expert Technicians</h3>
+          <p>Our team consists of licensed, certified professionals with years of experience in emergency HVAC repair.</p>
+        </div>
+        
+        <div class="feature">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Licensed & Insured</h3>
+          <p>We're fully licensed, bonded, and insured for your protection and peace of mind during emergencies.</p>
+        </div>
+        
+        <div class="feature">
+          <i class="fas fa-tools"></i>
+          <h3>Quality Equipment</h3>
+          <p>We use American-made equipment and genuine parts to ensure reliable, long-lasting repairs.</p>
+        </div>
+        
+        <div class="feature">
+          <i class="fas fa-star"></i>
+          <h3>Google Guaranteed</h3>
+          <p>We're Google Guaranteed, meaning Google backs our service quality and will refund you if you're not satisfied.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency CTA Section -->
+  <section class="emergency-info" style="background: #1e3c72; color: white;">
+    <div class="container" style="text-align: center;">
+      <h2 style="color: white;">Need Emergency Service Now?</h2>
+      <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">
+        Don't wait for regular business hours. Call us immediately for urgent HVAC issues.
+      </p>
+      
+      <div class="emergency-cta">
+        <a href="tel:3175550123" class="btn-emergency" style="background: #dc2626; color: white;">
+          <i class="fas fa-phone"></i>
+          Call Now: (317) 555-0123
+        </a>
+        <a href="sms:3175550123" class="btn-emergency btn-secondary">
+          <i class="fas fa-sms"></i>
+          Text Us
+        </a>
+      </div>
+      
+      <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 8px;">
+        <p><strong>Emergency Service Details:</strong></p>
+        <p>• Available 24/7/365 • Emergency fee: $150 (includes diagnostic) • Response time: 2-4 hours</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Component Container -->
+  <footer></footer>
+
+  <!-- Main JavaScript -->
+  <script src="main.js" type="module"></script>
+</body>
+</html> 

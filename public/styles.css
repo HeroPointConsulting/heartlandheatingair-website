@@ -90,8 +90,6 @@ body {
   margin-right: auto;
 }
 
-
-
 /* Emergency Button Styles */
 .btn-emergency {
   background: var(--heartland-red);
@@ -133,8 +131,6 @@ body {
 @media (max-width: 768px) {
   /* Mobile-specific styles can be added here */
 }
-
-
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {

@@ -143,6 +143,16 @@
   background: white;
 }
 
+/* Service page specific spacing */
+.service-page .service-content {
+  margin-bottom: 0;
+}
+
+/* Ensure proper spacing for service hero section */
+.service-page .service-hero {
+  margin-bottom: 0;
+}
+
 /* Emergency Service Specific Styles */
 .emergency-content {
   padding: 30px 0;

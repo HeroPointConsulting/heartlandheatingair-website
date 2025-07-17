@@ -8,6 +8,12 @@
   padding: 1.5rem 0;
 }
 
+/* Service page specific spacing */
+.service-page .section.bg-gray-100 {
+  padding: 3rem 0;
+  margin: 0;
+}
+
 
 
 .trust-headline {

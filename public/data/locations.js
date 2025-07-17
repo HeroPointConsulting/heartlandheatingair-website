@@ -63,12 +63,30 @@ export const locations = {
 };
 
 export const services = {
+  "emergency-hvac": {
+    name: "Emergency HVAC Service",
+    shortName: "Emergency HVAC",
+    description: "24/7 emergency heating and cooling repair services",
+    longTailKeywords: [
+      "emergency hvac repair",
+      "24 hour hvac service",
+      "emergency furnace repair",
+      "emergency ac repair",
+      "hvac emergency service",
+      "same day hvac repair",
+      "urgent hvac repair",
+      "overnight hvac service"
+    ],
+    urgencyLevel: "critical",
+    averagePrice: "$150-$500",
+    serviceTime: "2-4 hours"
+  },
   "hvac-repair": {
     name: "HVAC Repair",
     shortName: "HVAC Repair",
     description: "Professional heating and cooling system repair services",
     longTailKeywords: [
-      "emergency hvac repair",
+      "hvac repair",
       "furnace repair",
       "air conditioner repair",
       "heating system repair",

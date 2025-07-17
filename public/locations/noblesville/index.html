@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HVAC Services in Noblesville | Heartland Heating + Air</title>
+  <meta name="description" content="Professional HVAC services in Noblesville, IN. Installation, repair, maintenance, and emergency service. Call (317) 555-0123.">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/components/Navbar.css">
+  <link rel="stylesheet" href="/components/Footer.css">
+  <link rel="stylesheet" href="/components/FloatingButtons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    .location-hero {
+      background: linear-gradient(135deg, #1e3c72 0%, #1e40af 100%);
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+      margin-top: 0;
+    }
+    
+    .location-hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 800;
+    }
+    
+    .location-hero p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+    
+    .location-hero .trust-badges {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      white-space: nowrap;
+    }
+    
+    .location-hero .trust-badges .separator {
+      margin: 0 8px;
+      opacity: 0.6;
+    }
+    
+    .location-info {
+      background: #f8f9fa;
+      padding: 40px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .location-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .info-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    .info-card h3 {
+      color: #1e3c72;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .info-card p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    
+    .services-section {
+      padding: 40px 0 60px 0;
+    }
+    
+    .services-section h2 {
+      text-align: center;
+      color: #1e3c72;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .service-card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: all 0.3s;
+      border: 1px solid #e5e7eb;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      border-color: #dc2626;
+    }
+    
+    .service-card h3 {
+      color: #1e3c72;
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+    
+    .service-card p {
+      color: #666;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+      font-size: 0.9rem;
+    }
+    
+    .service-link {
+      display: inline-block;
+      padding: 8px 16px;
+      background: #1e3c72;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    
+    .service-link:hover {
+      background: #dc2626;
+      transform: translateY(-1px);
+    }
+    
+    .emergency-section {
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
+      color: white;
+      padding: 80px 0;
+      margin-top: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .emergency-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.02)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.02)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.02)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      pointer-events: none;
+    }
+    
+    .emergency-section h2 {
+      color: white;
+      text-align: center;
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 900;
+      text-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      letter-spacing: -0.03em;
+      position: relative;
+      z-index: 2;
+      line-height: 1.1;
+    }
+    
+    .emergency-section p {
+      text-align: center;
+      font-size: 1.4rem;
+      margin-bottom: 3rem;
+      opacity: 0.95;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+      font-weight: 400;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .emergency-cta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .btn-emergency {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 1rem !important;
+      padding: 24px 48px !important;
+      background: #fbbf24 !important;
+      color: #1e3c72 !important;
+      text-decoration: none !important;
+      border-radius: 16px !important;
+      font-weight: 900 !important;
+      font-size: 1.5rem !important;
+      transition: all 0.3s ease !important;
+      white-space: nowrap !important;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2) !important;
+      min-width: 320px !important;
+      justify-content: center !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+      border: none !important;
+      margin: 0 auto !important;
+      text-align: center !important;
+    }
+    
+    .btn-emergency:hover {
+      background: #f59e0b !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3) !important;
+    }
+    
+    .btn-emergency:active {
+      transform: translateY(0) !important;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2) !important;
+    }
+    
+    /* Secondary button styles removed - using single button only */
+    
+    /* Secondary button hover styles removed */
+    
+    @media (max-width: 768px) {
+      .location-hero {
+        padding: 30px 0;
+      }
+      
+      .location-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .location-hero p {
+        font-size: 1rem;
+      }
+      
+      .location-hero .trust-badges {
+        font-size: 0.8rem;
+      }
+      
+      .services-section {
+        grid-template-columns: 1fr;
+        padding: 40px 0 40px 0;
+      }
+      
+      .emergency-section {
+        padding: 60px 0;
+      }
+      
+      .emergency-section h2 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+      }
+      
+      .emergency-section p {
+        font-size: 1.2rem;
+        padding: 0 1rem;
+        margin-bottom: 2rem;
+      }
+      
+      .btn-emergency {
+        width: 90%;
+        max-width: 360px;
+        justify-content: center;
+        padding: 20px 32px;
+        font-size: 1.3rem;
+        min-width: auto;
+        gap: 0.75rem;
+        margin: 0 auto;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar Component Container -->
+  <div id="navbar-component-container"></div>
+
+  <!-- Location Hero Section -->
+  <section class="location-hero">
+    <div class="container">
+      <h1>HVAC Services in Noblesville</h1>
+      <p>Historic Noblesville HVAC services combining traditional charm with modern comfort solutions</p>
+      <div class="trust-badges">
+        <span>Licensed & Insured</span>
+        <span class="separator">•</span>
+        <span>24/7 Emergency Service</span>
+        <span class="separator">•</span>
+        <span>Google Guaranteed</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Info Section -->
+  <section class="location-info">
+    <div class="container">
+      <h2 style="text-align: center; color: #1e3c72; font-size: 1.8rem; margin-bottom: 1rem; font-weight: 700;">
+        Serving Noblesville, Indiana
+      </h2>
+      <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+        Professional HVAC services throughout Noblesville and surrounding communities
+      </p>
+      
+      <div class="location-info-grid">
+        <div class="info-card">
+          <h3><i class="fas fa-map-marker-alt" style="color: #dc2626; margin-right: 8px;"></i>Service Area</h3>
+          <p>20-mile radius from Noblesville covering Noblesville and nearby communities</p>
+        </div>
+        
+        <div class="info-card">
+          <h3><i class="fas fa-users" style="color: #dc2626; margin-right: 8px;"></i>Population</h3>
+          <p>Serving 69,000+ residents in the Noblesville area</p>
+        </div>
+        
+        <div class="info-card">
+          <h3><i class="fas fa-home" style="color: #dc2626; margin-right: 8px;"></i>Neighborhoods</h3>
+          <p>Historic Downtown, Morse Lake, White River, Forest Park, Promise Road</p>
+        </div>
+        
+        <div class="info-card">
+          <h3><i class="fas fa-clock" style="color: #dc2626; margin-right: 8px;"></i>Response Time</h3>
+          <p>Same-day service available, emergency response within 2-4 hours</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section">
+    <div class="container">
+      <h2>Our Services in Noblesville</h2>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Air Conditioning Service</h3>
+          <p>Professional AC installation, repair, and maintenance in Noblesville with experienced technicians and quality equipment.</p>
+          <a href="air-conditioning-service.html" class="service-link">Learn More</a>
+        </div>
+        
+        <div class="service-card">
+          <h3>Duct Cleaning</h3>
+          <p>Comprehensive duct cleaning services in Noblesville to improve indoor air quality and system efficiency.</p>
+          <a href="duct-cleaning.html" class="service-link">Learn More</a>
+        </div>
+        
+        <div class="service-card">
+          <h3>Furnace Installation</h3>
+          <p>Expert furnace installation and replacement in Noblesville with American-made equipment and professional service.</p>
+          <a href="furnace-installation.html" class="service-link">Learn More</a>
+        </div>
+        
+        <div class="service-card">
+          <h3>HVAC Maintenance</h3>
+          <p>Preventive maintenance plans and tune-ups in Noblesville to keep your system running efficiently year-round.</p>
+          <a href="hvac-maintenance.html" class="service-link">Learn More</a>
+        </div>
+        
+        <div class="service-card">
+          <h3>HVAC Repair</h3>
+          <p>Fast, reliable HVAC repair services in Noblesville with same-day service and emergency availability.</p>
+          <a href="hvac-repair.html" class="service-link">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency Section -->
+  <section class="emergency-section">
+    <div class="container">
+      <h2>24/7 Emergency HVAC Service</h2>
+      <p>Available anytime, day or night, for urgent heating and cooling emergencies in Noblesville</p>
+      
+      <div class="emergency-cta-location">
+        <a href="tel:3175550123" class="btn-emergency">
+          <i class="fas fa-phone"></i>
+          Call Now: (317) 555-0123
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Component Container -->
+  <footer></footer>
+
+  <!-- Main JavaScript -->
+  <script src="/main.js" type="module"></script>
+</body>
+</html>

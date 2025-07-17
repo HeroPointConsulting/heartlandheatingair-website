@@ -111,6 +111,12 @@
   font-size: 0.9rem;
 }
 
+.emergency-cta {
+  background: #fffbe6; /* or your preferred yellow */
+  padding: 2.5rem 0;
+  text-align: center;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .location-hero h1 {
