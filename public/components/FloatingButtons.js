@@ -53,7 +53,7 @@ export class FloatingButtons {
                 <i class="fas fa-phone"></i>
                 <span>Call Now</span>
               </a>
-              <a href="#contact" class="chat-option">
+              <a href="/contact.html" class="chat-option">
                 <i class="fas fa-envelope"></i>
                 <span>Send Message</span>
               </a>
@@ -90,7 +90,7 @@ export class FloatingButtons {
     const chatClose = document.getElementById('chatClose');
 
     if (chatToggle && chatPopup && chatClose) {
-            // Toggle chat popup
+      // Toggle chat popup
       chatToggle.addEventListener('click', () => {
         this.isChatOpen = !this.isChatOpen;
         chatPopup.classList.toggle('show', this.isChatOpen);
@@ -104,9 +104,9 @@ export class FloatingButtons {
 
       // Close chat when clicking outside
       document.addEventListener('click', (e) => {
-        if (this.isChatOpen && 
-            !chatPopup.contains(e.target) && 
-            !chatToggle.contains(e.target)) {
+        if (this.isChatOpen &&
+          !chatPopup.contains(e.target) &&
+          !chatToggle.contains(e.target)) {
           this.isChatOpen = false;
           chatPopup.classList.remove('show');
         }
