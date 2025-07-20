@@ -193,6 +193,7 @@
   text-decoration: none;
   color: var(--gray-700);
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .chat-option:hover {

@@ -1,9 +1,12 @@
 // FloatingButtons Component
 // Handles emergency call button and interactive chat widget
 
+import { createReviewForm } from './ReviewForm.js';
+
 export class FloatingButtons {
   constructor() {
     this.isChatOpen = false;
+    this.reviewForm = null;
     this.init();
   }
 
@@ -57,10 +60,10 @@ export class FloatingButtons {
                 <i class="fas fa-envelope"></i>
                 <span>Send Message</span>
               </a>
-              <a href="#reviews" class="chat-option">
+              <button class="chat-option" id="leaveReviewBtn">
                 <i class="fas fa-star"></i>
                 <span>Leave Review</span>
-              </a>
+              </button>
             </div>
             
             <div class="chat-hours">
@@ -82,6 +85,10 @@ export class FloatingButtons {
 
     // Initialize chat widget functionality
     this.initializeChatWidget();
+
+    // Initialize review form
+    this.reviewForm = createReviewForm();
+    this.reviewForm.init();
   }
 
   initializeChatWidget() {
@@ -116,11 +123,24 @@ export class FloatingButtons {
       const chatOptions = document.querySelectorAll('.chat-option');
       chatOptions.forEach(option => {
         option.addEventListener('click', (e) => {
-          // Close chat after option selection
-          setTimeout(() => {
-            this.isChatOpen = false;
-            chatPopup.classList.remove('show');
-          }, 100);
+          // Handle review button specifically
+          if (option.id === 'leaveReviewBtn') {
+            e.preventDefault();
+            // Close chat and open review form
+            setTimeout(() => {
+              this.isChatOpen = false;
+              chatPopup.classList.remove('show');
+              if (this.reviewForm) {
+                this.reviewForm.open();
+              }
+            }, 100);
+          } else {
+            // Close chat after other option selection
+            setTimeout(() => {
+              this.isChatOpen = false;
+              chatPopup.classList.remove('show');
+            }, 100);
+          }
         });
       });
     }

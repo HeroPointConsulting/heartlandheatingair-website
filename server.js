@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { sendEmails, sendJobApplicationEmails, verifyConnection } = require('./email-config');
+const { sendEmails, sendJobApplicationEmails, sendReviewEmails, verifyConnection } = require('./email-config');
 require('dotenv').config();
 
 // reCAPTCHA verification function
@@ -184,6 +184,84 @@ app.post('/api/quote', async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'An error occurred while processing your quote request. Please try again or call us directly.'
+    });
+  }
+});
+
+// Review submission endpoint
+app.post('/api/review', async (req, res) => {
+  try {
+    const formData = req.body;
+
+    // Validate required fields
+    const requiredFields = ['name', 'comment', 'rating'];
+    const missingFields = requiredFields.filter(field => !formData[field]);
+
+    if (missingFields.length > 0) {
+      return res.status(400).json({
+        success: false,
+        message: `Missing required fields: ${missingFields.join(', ')}`
+      });
+    }
+
+    // Validate rating
+    const rating = parseInt(formData.rating);
+    if (isNaN(rating) || rating < 1 || rating > 5) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid rating. Please select a rating between 1 and 5.'
+      });
+    }
+
+    // Sanitize data
+    const sanitizedData = {
+      name: formData.name.trim(),
+      location: formData.location ? formData.location.trim() : '',
+      service: formData.service || '',
+      comment: formData.comment.trim(),
+      email: formData.email ? formData.email.trim() : '',
+      rating: rating,
+      consent: formData.consent === 'on' || formData.consent === true
+    };
+
+    // Validate email format if provided
+    if (sanitizedData.email && !isValidEmail(sanitizedData.email)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid email format'
+      });
+    }
+
+    // Check consent
+    if (!sanitizedData.consent) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please agree to have your review published.'
+      });
+    }
+
+    // Send review notification emails
+    const emailResult = await sendReviewEmails(sanitizedData);
+
+    if (emailResult.success) {
+      res.json({
+        success: true,
+        message: 'Thank you for your review! We appreciate your feedback.',
+        emailResults: emailResult.results
+      });
+    } else {
+      console.error('Review email sending failed:', emailResult.error);
+      res.status(500).json({
+        success: false,
+        message: 'We received your review but had trouble sending confirmation emails. Thank you for your feedback!'
+      });
+    }
+
+  } catch (error) {
+    console.error('Review submission error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'An error occurred while submitting your review. Please try again.'
     });
   }
 });
