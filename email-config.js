@@ -431,6 +431,176 @@ const sendJobApplicationEmails = async (formData) => {
   }
 };
 
+// Function to send review emails
+const sendReviewEmails = async (formData) => {
+  try {
+    // Send notification to business owner
+    const businessEmail = {
+      from: `"Heartland Heating + Air Review" <${process.env.EMAIL_USER}>`,
+      to: process.env.BUSINESS_EMAIL || process.env.EMAIL_USER,
+      subject: `New Customer Review - ${formData.rating}/5 Stars - Heartland Heating + Air`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="text-align: center; margin-bottom: 30px;">
+            <h1 style="color: #1f2937; margin-bottom: 10px;">New Customer Review!</h1>
+            <p style="color: #6b7280; font-size: 18px;">A customer has left a review for your business.</p>
+          </div>
+
+          <div style="background: #f8fafc; padding: 25px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #374151; margin-top: 0;">Review Details</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #374151;">Rating:</td>
+                <td style="padding: 8px 0;">
+                  ${'★'.repeat(formData.rating)}${'☆'.repeat(5 - formData.rating)} (${formData.rating}/5)
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #374151;">Customer:</td>
+                <td style="padding: 8px 0;">${formData.name}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #374151;">Location:</td>
+                <td style="padding: 8px 0;">${formData.location || 'Not specified'}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #374151;">Service:</td>
+                <td style="padding: 8px 0;">${formData.service || 'Not specified'}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #374151;">Email:</td>
+                <td style="padding: 8px 0;">${formData.email || 'Not provided'}</td>
+              </tr>
+            </table>
+          </div>
+
+          <div style="background: #dbeafe; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1e40af; margin-top: 0;">Customer Review</h3>
+            <blockquote style="border-left: 4px solid #3b82f6; padding-left: 20px; margin: 0; font-style: italic; color: #374151;">
+              "${formData.comment}"
+            </blockquote>
+          </div>
+
+          <div style="background: #fef3c7; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #92400e; margin-top: 0;">Next Steps</h3>
+            <ul style="color: #92400e; line-height: 1.8;">
+              <li><strong>Review the feedback</strong> - Consider any areas for improvement</li>
+              <li><strong>Respond if needed</strong> - Reach out to the customer if they provided contact info</li>
+              <li><strong>Share positive reviews</strong> - Use great reviews in your marketing</li>
+              <li><strong>Monitor trends</strong> - Track review patterns over time</li>
+            </ul>
+          </div>
+
+          <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+            <p style="color: #6b7280; font-size: 14px;">
+              This review was submitted through your website's review form.
+            </p>
+          </div>
+        </div>
+      `
+    };
+
+    // Send confirmation to customer (if email provided)
+    let customerEmail = null;
+    if (formData.email) {
+      customerEmail = {
+        from: `"Heartland Heating + Air" <${process.env.EMAIL_USER}>`,
+        to: formData.email,
+        subject: 'Thank You for Your Review - Heartland Heating + Air',
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 30px;">
+              <h1 style="color: #1f2937; margin-bottom: 10px;">Thank You!</h1>
+              <p style="color: #6b7280; font-size: 18px;">We've received your review and appreciate your feedback.</p>
+            </div>
+
+            <div style="background: #f8fafc; padding: 25px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="color: #374151; margin-top: 0;">Your Review Summary</h3>
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 8px 0; font-weight: bold; color: #374151;">Rating:</td>
+                  <td style="padding: 8px 0;">
+                    ${'★'.repeat(formData.rating)}${'☆'.repeat(5 - formData.rating)} (${formData.rating}/5)
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0; font-weight: bold; color: #374151;">Service:</td>
+                  <td style="padding: 8px 0;">${formData.service || 'Not specified'}</td>
+                </tr>
+              </table>
+            </div>
+
+            <div style="background: #dbeafe; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="color: #1e40af; margin-top: 0;">Your Feedback</h3>
+              <blockquote style="border-left: 4px solid #3b82f6; padding-left: 20px; margin: 0; font-style: italic; color: #374151;">
+                "${formData.comment}"
+              </blockquote>
+            </div>
+
+            <div style="background: #fef3c7; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="color: #92400e; margin-top: 0;">What Happens Next?</h3>
+              <ul style="color: #92400e; line-height: 1.8;">
+                <li><strong>Review Published:</strong> Your review will be featured on our website</li>
+                <li><strong>Team Notification:</strong> Our team has been notified of your feedback</li>
+                <li><strong>Follow-up:</strong> We may reach out if we have any questions</li>
+                <li><strong>Continuous Improvement:</strong> Your feedback helps us serve customers better</li>
+              </ul>
+            </div>
+
+            <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="color: #374151; margin-top: 0;">Need More Help?</h3>
+              <p style="color: #374151; margin-bottom: 15px;">
+                If you need additional HVAC services or have questions:
+              </p>
+              <div style="text-align: center;">
+                <a href="tel:+13175550123" style="display: inline-block; background: #dc2626; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; margin: 0 10px;">
+                  📞 Call Now: (317) 555-0123
+                </a>
+              </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+              <p style="color: #6b7280; font-size: 14px;">
+                Heartland Heating + Air<br>
+                Indianapolis & Midwest Region<br>
+                <a href="tel:+13175550123" style="color: #3b82f6;">(317) 555-0123</a> | 
+                <a href="mailto:info@heartlandheatingair.com" style="color: #3b82f6;">info@heartlandheatingair.com</a>
+              </p>
+            </div>
+          </div>
+        `
+      };
+    }
+
+    // Send emails
+    const results = [];
+
+    // Send business notification
+    const businessResult = await transporter.sendMail(businessEmail);
+    results.push({ type: 'business', success: true, messageId: businessResult.messageId });
+
+    // Send customer confirmation if email provided
+    if (customerEmail) {
+      const customerResult = await transporter.sendMail(customerEmail);
+      results.push({ type: 'customer', success: true, messageId: customerResult.messageId });
+    }
+
+    return {
+      success: true,
+      results,
+      message: 'Review emails sent successfully'
+    };
+
+  } catch (error) {
+    console.error('Review email sending error:', error);
+    return {
+      success: false,
+      error: error.message,
+      message: 'Failed to send review emails'
+    };
+  }
+};
+
 // Verify transporter connection
 const verifyConnection = async () => {
   try {
@@ -448,5 +618,6 @@ module.exports = {
   emailTemplates,
   sendEmails,
   sendJobApplicationEmails,
+  sendReviewEmails,
   verifyConnection
 }; 

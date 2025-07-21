@@ -12,6 +12,7 @@ import SchedulingWidget from './components/SchedulingWidget.js';
 import { createServicePage, initServicePage } from './components/ServicePage.js';
 import { LocationPage } from './components/LocationPage.js';
 import { createFloatingButtons } from './components/FloatingButtons.js';
+import { createReviewForm } from './components/ReviewForm.js';
 import { createContactComponent, initContactForm } from './components/Contact.js';
 import { createCareersPage, initCareersPage } from './components/Careers.js';
 import { createJobDetailPage, initJobDetailPage } from './components/JobDetail.js';

@@ -13,6 +13,7 @@
 @import url('./components/Careers.css');
 @import url('./components/Footer.css');
 @import url('./components/FloatingButtons.css');
+@import url('./components/ReviewForm.css');
 
 /* CSS Reset and Base Styles */
 * {

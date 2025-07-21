@@ -9,7 +9,7 @@ export function createHero() {
       <div class="hero-background">
         <!-- Video for largest screens only -->
         <video class="hero-video" autoplay muted loop playsinline>
-          <source src="video/hha_hero_video - Made with Clipchamp.mp4" type="video/mp4">
+          <source src="video/hha_hero_video.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
         
